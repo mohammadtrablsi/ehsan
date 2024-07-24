@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class EventItem extends StatelessWidget {
-  const EventItem({super.key});
+  const EventItem({super.key, required this.indexForTag});
+  final int indexForTag;
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +45,17 @@ class EventItem extends StatelessWidget {
   }
 
   Widget _imageInEventitemCard() {
-    return Container(
-      width: 20.w,
-      height: 10.h,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.sp),
-          image: const DecorationImage(
-              image: AssetImage(AssetsData.toDo2), fit: BoxFit.cover)),
+    return Hero(
+      tag: 'tag$indexForTag',
+      child: Container(
+        width: 20.w,
+        height: 10.h,
+        decoration: BoxDecoration(
+            color: const Color(0xFFCACACA),
+            borderRadius: BorderRadius.circular(10.sp),
+            image: const DecorationImage(
+                image: AssetImage(AssetsData.eventImage), fit: BoxFit.cover)),
+      ),
     );
   }
 

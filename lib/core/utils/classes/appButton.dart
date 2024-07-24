@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton({super.key, this.onTap, required this.paddingVertical, required this.text});
+  const AppButton(
+      {super.key,
+      this.onTap,
+      required this.paddingVertical,
+      required this.text,
+      this.isGradient = false});
   final void Function()? onTap;
   final double paddingVertical;
   final String text;
+  final bool isGradient;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +23,19 @@ class AppButton extends StatelessWidget {
         width: double.infinity,
         padding: EdgeInsets.symmetric(vertical: paddingVertical),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.sp), color: kPrimaryColor),
+            gradient: isGradient
+                ? LinearGradient(
+                    colors: [kPrimaryColor, kPrimaryColor.withOpacity(0.75)],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  )
+                : const LinearGradient(
+                    colors: [kPrimaryColor, kPrimaryColor],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                  ),
+            borderRadius: BorderRadius.circular(10.sp),
+            color: kPrimaryColor),
         child: Center(
           child: Text(
             text,

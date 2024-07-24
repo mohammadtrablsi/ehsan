@@ -31,12 +31,23 @@ abstract class AppRouter {
   static const kProfileRoute = '/profile';
   static const kAskDoubtRoute = '/askDoubt';
   static const kHomeRoute = '/home';
+  static const kEventDetailsRoute = '/eventDetails';
+  static const kOnBoardingRoute = '/onBoarding';
+  static const kLoginRoute = '/login';
 
   static final router = GoRouter(
     routes: [
       GoRoute(
         path: '/',
         builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: kOnBoardingRoute,
+        builder: (context, state) => const OnBoarding(),
+      ),
+      GoRoute(
+        path: kLoginRoute,
+        builder: (context, state) => const Login(),
       ),
       GoRoute(
         path: kTasksView,
@@ -50,6 +61,14 @@ abstract class AppRouter {
         path: kViewEventsRoute,
         builder: (context, state) => const ViewEvents(),
       ),
+      GoRoute(
+          path: kEventDetailsRoute,
+          builder: (context, state) {
+            final indexForTag = state.queryParams['indexForTag'];
+            return EventDetails(
+              indexForTag: int.parse(indexForTag!),
+            );
+          }),
       GoRoute(
         path: kDownloadFilesRoute,
         builder: (context, state) => const DownloadFiles(),

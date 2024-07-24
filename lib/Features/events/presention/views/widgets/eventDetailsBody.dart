@@ -1,11 +1,15 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:ehsan/Features/events/presention/views/widgets/buttonInEventsDetails.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:sizer/sizer.dart';
+import 'package:go_router/go_router.dart';
 
 class EventDetailsBody extends StatelessWidget {
-  const EventDetailsBody({super.key});
+  const EventDetailsBody({super.key, required this.indexForTag});
+  final int indexForTag;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,68 @@ class EventDetailsBody extends StatelessWidget {
             ],
           ),
           Positioned(
-              left: 5.w, bottom: 4.h, child: const ButtonInEventsDetails()),
+              left: 5.5.w,
+              bottom: 4.h,
+              child: AvatarGlow(
+                // glowBorderRadius: BorderRadius.circular(15.sp),
+                //               startDelay: const Duration(milliseconds: 1000),
+                glowColor: Colors.blue,
+                glowShape: BoxShape.circle,
+                //               animate: true,
+                //               curve: Curves.fastOutSlowIn,
+                //               glowCount: 1,
+                //               // glowRadiusFactor:
+                //               //     3.0, // Keep this value to control the width of the effect
+                //               // endRadius: 60.0,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(180 * 3.14),
+                  onTap: () {},
+                  child: CircleAvatar(
+                    radius: 7.w,
+                    backgroundColor: kPrimaryColor,
+                    child: Icon(
+                      Icons.app_registration,
+                      color: kContentColor1,
+                      size: 20.sp,
+                    ),
+                  ),
+                ),
+              )),
+          // Stack(
+          //   // alignment: Alignment.center,
+          //   children: [
+          //     Positioned(
+          //         // left: 101,
+          //         bottom: 2.5.h,
+          //         child: Transform.translate(
+          //           offset: Offset(-24.w, -1.2.h),
+          //           child: Transform(
+          //             transform: Matrix4.diagonal3Values(
+          //                 2.4, 1.1, 1.1), // Adjust the 0.5 to scale the height
+          //             child: AvatarGlow(
+          //               glowBorderRadius: BorderRadius.circular(15.sp),
+          //               startDelay: const Duration(milliseconds: 1000),
+          //               glowColor: Colors.blue,
+          //               glowShape: BoxShape.rectangle,
+          //               animate: true,
+          //               curve: Curves.fastOutSlowIn,
+          //               glowCount: 1,
+          //               // glowRadiusFactor:
+          //               //     3.0, // Keep this value to control the width of the effect
+          //               // endRadius: 60.0, // Adjust as needed
+          //               child: SizedBox(
+          //                 height: 5.h,
+          //                 width: 40.w,
+          //               ),
+          //             ),
+          //           ),
+          //         )),
+          //     Positioned(
+          //         left: 5.w,
+          //         bottom: 3.75.h,
+          //         child: const ButtonInEventsDetails()),
+          //   ],
+          // ),
         ],
       ),
     );
@@ -49,12 +114,16 @@ class EventDetailsBody extends StatelessWidget {
     return Stack(
       alignment: Alignment.topRight,
       children: [
-        Container(
-          width: double.infinity,
-          height: 36.h,
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage(AssetsData.toDo2), fit: BoxFit.cover)),
+        Hero(
+          tag: 'tag$indexForTag',
+          child: Container(
+            width: double.infinity,
+            height: 36.h,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(AssetsData.eventImage),
+                    fit: BoxFit.cover)),
+          ),
         ),
         Positioned(
           top: 6.h,

@@ -4,6 +4,8 @@ import 'package:ehsan/core/utils/classes/AppHeader.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../../core/utils/app_router.dart';
+
 class ViewEventsBody extends StatelessWidget {
   const ViewEventsBody({super.key});
 
@@ -20,7 +22,10 @@ class ViewEventsBody extends StatelessWidget {
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsetsDirectional.only(bottom: 1.5.h),
-                child: const EventItem(),
+                child: InkWell(
+                    onTap: () =>
+                        AppRouter.router.push("${AppRouter.kEventDetailsRoute}?indexForTag=$index"),
+                    child: EventItem(indexForTag:index)),
               );
             },
           ),

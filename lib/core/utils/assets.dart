@@ -16,4 +16,7 @@ class AssetsData {
   static const onBoarding1Image = 'assets/images/undraw_Books_re_8gea.png';
   static const onBoarding2Image = 'assets/images/undraw_family_vg76.png';
   static const onBoarding3Image = 'assets/images/undraw_Professor_re_mj1s.png';
+  static const logo = 'assets/images/logo.png';
+  static const eventImage = 'assets/images/event.jpg';
+  static const lunchImage = 'assets/images/lunch.png';
 }

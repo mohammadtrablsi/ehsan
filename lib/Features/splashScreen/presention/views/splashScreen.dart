@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen>
             tag: "logo",
             child: Center(
               child: Image.asset(
-                AssetsData.onBoarding1Image,
+                AssetsData.logo,
                 height: 100,
                 width: 100,
               ),
@@ -77,6 +77,6 @@ class _SplashScreenState extends State<SplashScreen>
     await Future.delayed(const Duration(seconds: 3));
     animcontroller.forward();
     await Future.delayed(const Duration(seconds: 2))
-        .then((value) => AppRouter.router.push(AppRouter.kHomeRoute));
+        .then((value) => AppRouter.router.push(AppRouter.kOnBoardingRoute));
   }
 }

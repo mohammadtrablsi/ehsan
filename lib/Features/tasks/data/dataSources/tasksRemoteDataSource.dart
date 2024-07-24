@@ -30,7 +30,7 @@ class TasksRemoteDataSourceImpl extends TasksRemoteDataSource {
   Future<List<TaskEntity>> getAllTasks(Map<String, dynamic> page) async {
     var data = await apiService.get(
         endPoint:
-            'https://dummyjson.com/todos?limit=${page['limit']}&skip=${page['pageNumber'] * 10}');
+            'https://dummyjson.com/todos?limit=${page['limit']}&skip=${page['pageNumber'] * 10}', data: {}, headers: {});
     print('dataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa1$data');
     List<TaskEntity> tasks = getTasksList(data);
     saveTasksData(tasks, kTasksBox);

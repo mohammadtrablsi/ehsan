@@ -26,7 +26,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
 
   @override
   void initState() {
-    Future.delayed(const Duration(milliseconds: 200)).then((value) {
+    Future.delayed(const Duration(milliseconds: 300)).then((value) {
       setState(() {
         isAnimated = true;
       });
@@ -37,7 +37,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 600),
+      duration: const Duration(milliseconds: 400),
       child: TableCalendar(
         firstDay: DateTime.utc(2020, 1, 1),
         lastDay: DateTime.utc(2030, 12, 31),
@@ -85,7 +85,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
     return Center(
       child: AnimatedOpacity(
         opacity: isAnimated ? 1.0 : 0.0,
-        duration: const Duration(milliseconds: 600),
+        duration: const Duration(milliseconds: 400),
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.sp),
@@ -96,8 +96,7 @@ class _CustomCalendarState extends State<CustomCalendar> {
           child: Center(
             child: Text(
               '${day.day}',
-              style:
-                  TextStyle(color: isAnimated ? Colors.white : Colors.black87),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),

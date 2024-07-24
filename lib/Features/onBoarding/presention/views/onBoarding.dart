@@ -1,6 +1,7 @@
 import 'package:ehsan/Features/onBoarding/presention/views/widgets/animatedPoints.dart';
 import 'package:ehsan/Features/onBoarding/presention/views/widgets/onBoardingButtonPart.dart';
 import 'package:ehsan/Features/onBoarding/presention/views/widgets/pageInOnBoarding.dart';
+import 'package:ehsan/core/utils/app_router.dart';
 import 'package:ehsan/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -70,7 +71,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 OnBoardingButtonsPart(
                   text: 'Continue',
                   transport: () {
-                    // controller.transport();
+                    AppRouter.router.push(AppRouter.kLoginRoute);
                   },
                   index: indexPage,
                   goToRegister: () => print("ii"),

@@ -17,31 +17,49 @@ class AbsencesBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: AppHeader(
-      text: "غيابات وتأخيرات",
-      widget: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: kAppPadding),
-            child: Column(
-              children: [
-                CustomCalendar(
-                    absences: absences,
-                    delays: delays,
-                    absencesColor: absencesColor,
-                    delayColor: delayColor),
-                SizedBox(
-                  height: 2.h,
+        body: Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        AppHeader(
+          text: "غيابات وتأخيرات",
+          widget: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: kAppPadding),
+                child: Column(
+                  children: [
+                    CustomCalendar(
+                        absences: absences,
+                        delays: delays,
+                        absencesColor: absencesColor,
+                        delayColor: delayColor),
+                    SizedBox(
+                      height: 2.h,
+                    ),
+                    CountOfAbsences(
+                        absencesColor: absencesColor, delayColor: delayColor),
+                  ],
                 ),
-                CountOfAbsences(
-                    absencesColor: absencesColor, delayColor: delayColor),
-              ],
-            ),
+              ),
+              // const Spacer(),
+              // const AppBackgroundImage(),
+            ],
           ),
-          const Spacer(),
-          const AppBackgroundImage(),
-        ],
-      ),
+        ),
+        SizedBox(
+          height: 100.h,
+          width: 100.w,
+          child: const Column(
+            children: [
+              Spacer(),
+              // SizedBox(
+              //   height: 0.5.h,
+              // ),
+              AppBackgroundImage(),
+            ],
+          ),
+        ),
+      ],
     ));
   }
 }

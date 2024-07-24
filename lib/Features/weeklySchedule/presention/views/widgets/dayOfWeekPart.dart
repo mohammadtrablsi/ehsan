@@ -25,6 +25,7 @@ class _DayOfWeekPartState extends State<DayOfWeekPart> {
 
   Widget _dayOfWeekCard(List<String> days) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(
           days.length,
@@ -41,7 +42,7 @@ class _DayOfWeekPartState extends State<DayOfWeekPart> {
 
   Widget _dayItem(String text, int index) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 1.25.w, horizontal: 4.5.w),
+      padding: EdgeInsets.symmetric(vertical: 1.25.w, horizontal: 4.7.w),
       decoration: BoxDecoration(
           color: index != howIsPressed ? Colors.white : kPrimaryColor,
           borderRadius: BorderRadius.circular(10.sp)),

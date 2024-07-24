@@ -17,14 +17,14 @@ void main() async {
 
   setupServiceLocator();
   await Hive.openBox<TaskEntity>(kTasksBox);
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await initDatabase();
 
   Bloc.observer = SimpleBlocObserver();
   runApp(const PowerOfTask());
 }
 
-  Future<void> initDatabase() async {
+Future<void> initDatabase() async {
   var databasesPath = await getDatabasesPath();
   String path = join(databasesPath, 'demo.db');
 
@@ -48,5 +48,4 @@ class PowerOfTask extends StatelessWidget {
       );
     });
   }
-
 }

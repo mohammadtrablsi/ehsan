@@ -31,6 +31,7 @@ class FileItem extends StatelessWidget {
           ),
           AppButton(
               text: "تنزيل الملف",
+              isGradient: true,
               paddingVertical: 1.h,
               onTap: () {
                 AppRouter.router.push(AppRouter.kPdfViewRoute);

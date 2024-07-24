@@ -23,12 +23,12 @@ class MarksPart extends StatelessWidget {
               child: ExpansionTile(
                 shape: Border.all(color: Colors.transparent),
                 collapsedIconColor: kPrimaryColor,
-                title: _textFormarks(),
+                title: _textFormarks(index),
                 children: [
                   SizedBox(
                     height: 1.h,
                   ),
-                  const MarksItem(),
+                  MarksItem(),
                 ],
               ),
             ),
@@ -38,9 +38,9 @@ class MarksPart extends StatelessWidget {
     ));
   }
 
-  Widget _textFormarks() {
+  Widget _textFormarks(int index) {
     return Text(
-      "مذاكرة1",
+      "مذاكرة${index + 1}",
       style: TextStyle(
           fontSize: 10.sp, fontWeight: FontWeight.w600, color: kPrimaryColor),
     );
