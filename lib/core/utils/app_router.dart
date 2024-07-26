@@ -6,7 +6,7 @@ import 'package:ehsan/Features/events/presention/views/eventDetails.dart';
 import 'package:ehsan/Features/events/presention/views/viewEvents.dart';
 import 'package:ehsan/Features/examSchedule/presention/examSchedule.dart';
 import 'package:ehsan/Features/grades/presention/views/grades.dart';
-import 'package:ehsan/Features/home()/presention/views/home.dart';
+import 'package:ehsan/Features/home/presention/views/home.dart';
 import 'package:ehsan/Features/metrices/presention/views/metrices.dart';
 import 'package:ehsan/Features/onBoarding/presention/views/onBoarding.dart';
 import 'package:ehsan/Features/profile/presention/views/profile.dart';

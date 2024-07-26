@@ -1,4 +1,4 @@
-import 'package:ehsan/Features/home()/presention/views/widgets/metricesInHomePage.dart';
+import 'package:ehsan/Features/home/presention/views/widgets/metricesInHomePage.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/animatedSubjectsInMetrices.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/lineMetrices.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/subjectsInMetrices.dart';

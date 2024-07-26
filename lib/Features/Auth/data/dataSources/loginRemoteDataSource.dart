@@ -20,7 +20,7 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
   Future<LoginEntity> makeLogin(
       {required Map<String, dynamic> request}) async {
     var response = await apiService.post(
-        data: request, endPoint: 'https://dummyjson.com/auth/login');
+        data: request, endPoint: 'https://dummyjson.com/auth/login', headers: {});
     LoginEntity entity;
     entity = LoginModel.fromJson(response);
     SharedPreferences prefs = await SharedPreferences.getInstance();
