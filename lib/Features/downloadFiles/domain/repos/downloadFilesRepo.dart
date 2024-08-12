@@ -5,7 +5,7 @@ import 'package:ehsan/Features/downloadFiles/domain/entites/downloadFilesEntity.
 import '../../../../core/errors/failure.dart';
 
 abstract class DownloadFilesRepo {
-  Future<Either<Failure, DownloadFilesEntity>> viewDownloadFiles(
+  Future<Either<Failure, List<DownloadFilesEntity>>> viewDownloadFiles(
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body});
 }

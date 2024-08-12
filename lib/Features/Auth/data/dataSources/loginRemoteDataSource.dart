@@ -1,14 +1,16 @@
 
+
+
+
+
+
+import 'package:ehsan/Features/Auth/data/models/loginModel.dart';
+import 'package:ehsan/Features/Auth/domain/entites/loginEntity.dart';
 import 'package:ehsan/core/utils/api_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../domain/entites/LoginEntity.dart';
-import '../models/LoginModel.dart';
-
-
-
 abstract class LoginRemoteDataSource {
-  Future<LoginEntity> makeLogin({required Map<String, dynamic> request});
+  Future<LoginEntity> makeLogin({required Map<String, dynamic> header,required Map<String, dynamic> body});
 }
 
 class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
@@ -18,14 +20,15 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
 
   @override
   Future<LoginEntity> makeLogin(
-      {required Map<String, dynamic> request}) async {
+      {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
     var response = await apiService.post(
-        data: request, endPoint: 'https://dummyjson.com/auth/login', headers: {});
+        headers:header,data: body, endPoint: 'https://ehsanschool.onrender.com/api/studentLogin',);
+
     LoginEntity entity;
     entity = LoginModel.fromJson(response);
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('userId', entity.id);
-    print("iddddddddddddddddddddddddddddddddddd${entity.id}");
+    await prefs.setString('token', entity.token??"noToken");
+    //  print("temmmmmmmmmmmmmmmmmmmmmmmmmmm${prefs.get('token')}");
     return entity;
   }
 

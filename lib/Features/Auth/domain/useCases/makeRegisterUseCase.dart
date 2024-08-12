@@ -1,18 +1,17 @@
-import 'package:ehsan/Features/Auth/domain/repos/loginRepo.dart';
+
+
 import 'package:dartz/dartz.dart';
+import 'package:ehsan/Features/Auth/domain/entites/loginEntity.dart';
+import 'package:ehsan/Features/Auth/domain/repos/loginRepo.dart';
+import 'package:ehsan/core/errors/failure.dart';
 
-import '../../../../core/errors/failure.dart';
-import '../../../../core/use_cases/use_case.dart';
-import '../entites/LoginEntity.dart';
-
-class LoginUseCase extends UseCase<LoginEntity, Map<String, dynamic>> {
+class LoginUseCase {
   final LoginRepo loginRepo;
 
   LoginUseCase(this.loginRepo);
 
-  @override
   Future<Either<Failure, LoginEntity>> call(
-      [Map<String, dynamic> param = const {}]) async {
-    return await loginRepo.makeLogin(data: param);
+      Map<String, dynamic> header,Map<String, dynamic> body) async {
+    return await loginRepo.makeLogin(header:header,body:body);
   }
 }

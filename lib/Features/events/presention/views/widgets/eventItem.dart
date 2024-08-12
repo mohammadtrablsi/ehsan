@@ -1,11 +1,13 @@
+import 'package:ehsan/Features/events/domain/entites/eventsEntity.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class EventItem extends StatelessWidget {
-  const EventItem({super.key, required this.indexForTag});
+  const EventItem({super.key, required this.indexForTag, required this.data});
   final int indexForTag;
+  final EventsEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class EventItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            "مسابقة صيد الأسماك",
+            data.name!,
             style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -33,7 +35,7 @@ class EventItem extends StatelessWidget {
 
   Widget _eventItemCard() {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         _textsInEventItemCard(),
         SizedBox(
@@ -53,8 +55,12 @@ class EventItem extends StatelessWidget {
         decoration: BoxDecoration(
             color: const Color(0xFFCACACA),
             borderRadius: BorderRadius.circular(10.sp),
-            image: const DecorationImage(
-                image: AssetImage(AssetsData.eventImage), fit: BoxFit.cover)),
+            image: DecorationImage(
+                image: data.photo == null
+                    ? const AssetImage(AssetsData.eventImage)
+                        as ImageProvider<Object>
+                    : NetworkImage(data.photo!),
+                fit: BoxFit.cover)),
       ),
     );
   }
@@ -71,7 +77,7 @@ class EventItem extends StatelessWidget {
               Container(
                 constraints: BoxConstraints(maxWidth: 60.w),
                 child: Text(
-                  "06 يناير 23، 09:00 صباحًا",
+                  data.date!, //"06 يناير 23، 09:00 صباحًا"
                   maxLines: 1,
                   style: TextStyle(
                       fontSize: 10.sp,
@@ -97,7 +103,7 @@ class EventItem extends StatelessWidget {
             child: Container(
               constraints: BoxConstraints(maxWidth: 70.w),
               child: Text(
-                "مسابقة صيد الأسماك هي حدث يجمع بين عشاق صيد الأسماك للتنافس في صيد أكبر وأثقل الأسماك. تُنظم هذه المسابقات عادة على مدى عدة أيام حيث يقوم المشاركون بالخروج إلى المياه المفتوحة، سواء كانت بحيرة، بحر أو نهر، للبحث عن الأسماك ذات الحجم الكبير وتسجيلها بواسطة الوزن أو الطول. تهدف هذه المسابقات إلى تعزيز المهارات الصيدية والترفيه عن المشاركين، بالإضافة إلى دعم حفظ الموارد الطبيعية والاستدامة في صيد الأسماك.",
+                data.description!, //"مسابقة صيد الأسماك هي حدث يجمع بين عشاق صيد الأسماك للتنافس في صيد أكبر وأثقل الأسماك. تُنظم هذه المسابقات عادة على مدى عدة أيام حيث يقوم المشاركون بالخروج إلى المياه المفتوحة، سواء كانت بحيرة، بحر أو نهر، للبحث عن الأسماك ذات الحجم الكبير وتسجيلها بواسطة الوزن أو الطول. تهدف هذه المسابقات إلى تعزيز المهارات الصيدية والترفيه عن المشاركين، بالإضافة إلى دعم حفظ الموارد الطبيعية والاستدامة في صيد الأسماك.",
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

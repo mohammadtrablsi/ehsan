@@ -1,11 +1,11 @@
-import 'package:dartz/dartz.dart';
-import 'package:ehsan/Features/absences/domain/entites/absencesEntity.dart';
-import 'package:ehsan/Features/Events/domain/entites/EventsEntity.dart';
 
-import '../../../../core/errors/failure.dart';
+
+import 'package:dartz/dartz.dart';
+import 'package:ehsan/Features/events/domain/entites/eventsEntity.dart';
+import 'package:ehsan/core/errors/failure.dart';
 
 abstract class EventsRepo {
-  Future<Either<Failure, EventsEntity>> viewEvents(
+  Future<Either<Failure, List<EventsEntity>>> viewEvents(
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body});
 }

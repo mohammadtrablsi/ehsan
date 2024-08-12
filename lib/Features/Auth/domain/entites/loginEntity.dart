@@ -1,7 +1,9 @@
 class LoginEntity {
-  final int id;
+  final String? message;
+  final String? token;
 
   LoginEntity({
-    required this.id,
+    required this.message,
+    required this.token,
   });
 }

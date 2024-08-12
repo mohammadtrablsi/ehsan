@@ -1,7 +1,11 @@
+import 'package:ehsan/Features/absences/data/models/absencesModel.dart';
+
 class AbsencseEntity {
-  final int id;
+    final List<Delay>? delays;
+  final List<Absence>? absences;
 
   AbsencseEntity({
-    required this.id,
+    required this.delays,
+    required this.absences
   });
 }

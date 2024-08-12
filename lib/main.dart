@@ -1,5 +1,3 @@
-import 'package:ehsan/Features/tasks/domain/entites/taskEntity.dart';
-import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/app_router.dart';
 import 'package:ehsan/core/utils/simple_bloc_observer.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +11,10 @@ import 'core/utils/functions/setup_service_locator.dart';
 
 void main() async {
   await Hive.initFlutter();
-  Hive.registerAdapter(TaskEntityAdapter());
+  // Hive.registerAdapter(TaskEntityAdapter());
 
   setupServiceLocator();
-  await Hive.openBox<TaskEntity>(kTasksBox);
+  // await Hive.openBox<TaskEntity>(kTasksBox);
   WidgetsFlutterBinding.ensureInitialized();
   await initDatabase();
 

@@ -6,7 +6,8 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:sqflite/sqflite.dart';
 
 class PdfView extends StatefulWidget {
-  const PdfView({super.key});
+  const PdfView({super.key, required this.file});
+  final String file;
 
   @override
   State<PdfView> createState() => _PdfViewState();
@@ -15,20 +16,21 @@ class PdfView extends StatefulWidget {
 class _PdfViewState extends State<PdfView> {
   @override
   Widget build(BuildContext context) {
+    print("urlurlurl${widget.file}");
     return Scaffold(
       body: Container(
         child: const PDF().cachedFromUrl(
-          'https://fernandamaterial2014.wordpress.com/wp-content/uploads/2014/05/tales-from-the-thousand-and-one-nights.pdf',
-          placeholder: (progress) => Center(child:Center(
-              child: CircularPercentIndicator(
-                radius: 60.0,
-                lineWidth: 5.0,
-                percent: progress/100,
-                center: Text('${progress.toStringAsFixed(1)}%'),
-                progressColor: kPrimaryColor,
-                
-              ),
-            )),
+          widget.file,
+          placeholder: (progress) => Center(
+              child: Center(
+            child: CircularPercentIndicator(
+              radius: 60.0,
+              lineWidth: 5.0,
+              percent: progress / 100,
+              center: Text('${progress.toStringAsFixed(1)}%'),
+              progressColor: kPrimaryColor,
+            ),
+          )),
           errorWidget: (error) => Center(child: Text(error.toString())),
         ),
       ),

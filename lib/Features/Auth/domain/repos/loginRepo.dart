@@ -1,11 +1,12 @@
 
 
-import 'package:dartz/dartz.dart';
 
-import '../../../../core/errors/failure.dart';
-import '../entites/LoginEntity.dart';
+
+import 'package:dartz/dartz.dart';
+import 'package:ehsan/Features/Auth/domain/entites/loginEntity.dart';
+import 'package:ehsan/core/errors/failure.dart';
 
 abstract class LoginRepo {
   Future<Either<Failure, LoginEntity>> makeLogin(
-      {required Map<String, dynamic> data});
+      {required Map<String, dynamic> header,required Map<String, dynamic> body});
 }

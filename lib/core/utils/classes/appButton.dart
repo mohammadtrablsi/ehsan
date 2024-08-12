@@ -8,11 +8,12 @@ class AppButton extends StatelessWidget {
       this.onTap,
       required this.paddingVertical,
       required this.text,
-      this.isGradient = false});
+      this.isGradient = false, this.isLoading=false});
   final void Function()? onTap;
   final double paddingVertical;
   final String text;
   final bool isGradient;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -37,14 +38,21 @@ class AppButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.sp),
             color: kPrimaryColor),
         child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-              fontSize: 12.sp,
-              fontWeight: FontWeight.bold,
-              color: kContentColor1,
-            ),
-          ),
+          child: isLoading
+              ? SizedBox(
+                height: 3.h,width: 6.w,
+                child: const CircularProgressIndicator(
+                    color: kContentColor1,
+                  ),
+              )
+              : Text(
+                  text,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.bold,
+                    color: kContentColor1,
+                  ),
+                ),
         ),
       ),
     );

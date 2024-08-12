@@ -1,54 +1,66 @@
-
-
-
-
-import 'package:ehsan/Features/absences/domain/entites/absencesEntity.dart';
 import 'package:ehsan/Features/downloadFiles/domain/entites/downloadFilesEntity.dart';
 
-class DownloadFilesModel extends DownloadFilesEntity {
-  int id;
-  String? username;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? gender;
-  String? image;
-  String token;
+class DownloadFilesModel extends DownloadFilesEntity{
+  String? sId;
+  String? name;
+  String? url;
+  List<String>? classesId;
+  SubjectId? subjectId;
+  String? createdAt;
+  String? updatedAt;
+  int? iV;
 
   DownloadFilesModel(
-      {required this.id,
-      this.username,
-      this.email,
-      this.firstName,
-      this.lastName,
-      this.gender,
-      this.image,
-      required this.token})
-      : super(
-          id: id,
-        );
+      {this.sId,
+      this.name,
+      this.url,
+      this.classesId,
+      this.subjectId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV}):super(subject:subjectId!.name,name:name,date:updatedAt,file:url);
 
-  factory DownloadFilesModel.fromJson(Map<String, dynamic> json) => DownloadFilesModel(
-        id: json['id'],
-        username: json['username'],
-        email: json['email'],
-        firstName: json['firstName'],
-        lastName: json['lastName'],
-        gender: json['gender'],
-        image: json['image'],
-        token: json['token'],
-      );
+  factory DownloadFilesModel.fromJson(Map<String, dynamic> json) =>DownloadFilesModel(
+    sId : json['_id'],
+    name : json['name'],
+    url : json['url'],
+    classesId : json['classes_id'].cast<String>(),
+    subjectId : json['subject_id'] != null
+        ? new SubjectId.fromJson(json['subject_id'])
+        : null,
+    createdAt : json['createdAt'],
+    updatedAt : json['updatedAt'],
+    iV : json['__v'],
+  );
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['username'] = this.username;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['gender'] = this.gender;
-    data['image'] = this.image;
-    data['token'] = this.token;
+    data['_id'] = this.sId;
+    data['name'] = this.name;
+    data['url'] = this.url;
+    data['classes_id'] = this.classesId;
+    if (this.subjectId != null) {
+      data['subject_id'] = this.subjectId!.toJson();
+    }
+    data['createdAt'] = this.createdAt;
+    data['updatedAt'] = this.updatedAt;
+    data['__v'] = this.iV;
+    return data;
+  }
+}
+
+class SubjectId {
+  String? name;
+
+  SubjectId({this.name});
+
+  SubjectId.fromJson(Map<String, dynamic> json) {
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['name'] = this.name;
     return data;
   }
 }

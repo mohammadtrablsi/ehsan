@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ehsan/Features/absences/domain/entites/absencesEntity.dart';
 import 'package:ehsan/Features/absences/domain/useCases/viewAbsencesUseCase.dart';
 
 part 'viewAbsencesStates.dart';
@@ -17,7 +18,7 @@ class viewAbsencseCubit extends Cubit<ViewAbsencseState> {
     result.fold((failure) {
       emit(ViewAbsencseFailure(failure.message));
     }, (_) {
-      emit(ViewAbsencseSuccess());
+      emit(ViewAbsencseSuccess(_));
     });
   }
 }

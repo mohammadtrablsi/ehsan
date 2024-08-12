@@ -15,4 +15,7 @@ class ViewEventsFailure extends ViewEventsState {
 // class ShowPassword extends ViewEventsState {
 // }
 
-class ViewEventsSuccess extends ViewEventsState {}
+class ViewEventsSuccess extends ViewEventsState {
+  final List<EventsEntity> entities;
+  ViewEventsSuccess(this.entities);
+}

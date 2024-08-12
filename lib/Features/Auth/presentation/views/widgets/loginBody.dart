@@ -24,20 +24,9 @@ class LoginBody extends StatefulWidget {
 }
 
 class _LoginBodyState extends State<LoginBody> {
-  TextEditingController? email = TextEditingController();
-  TextEditingController? name = TextEditingController();
-  TextEditingController? password = TextEditingController();
-  TextEditingController? repeatPassword = TextEditingController();
-  GlobalKey<FormState>? formstate = GlobalKey<FormState>();
   bool isPressed = false;
   @override
   void initState() {
-    email = TextEditingController();
-    name = TextEditingController();
-    password = TextEditingController();
-    repeatPassword = TextEditingController();
-    repeatPassword = TextEditingController();
-    formstate = GlobalKey<FormState>();
     Future.delayed(const Duration(milliseconds: 400))
         .then((value) => setState(() {
               isPressed = true;
@@ -76,11 +65,11 @@ class _LoginBodyState extends State<LoginBody> {
                           : EdgeInsets.symmetric(horizontal: 5.w),
                       duration: const Duration(milliseconds: 400),
                       child: Form(
-                        key: formstate,
+                        key: loginCubit.formstate,
                         child: Column(
                           children: [
                             AuthTextField(
-                              controller: name,
+                              controller: loginCubit.name,
                               label: 'enter your name',
                               preIcon: Icons.person,
                               vaildator: (val) {
@@ -96,8 +85,8 @@ class _LoginBodyState extends State<LoginBody> {
                             BlocBuilder<LoginCubit, LoginState>(
                                 builder: (context, state) {
                               return AuthTextField(
-                                controller: password,
-                                label: 'enter your password',
+                                controller: loginCubit.id,
+                                label: 'enter your id',
                                 preIcon: Icons.password,
                                 vaildator: (val) {
                                   return vaildator(val!, 5, 15, 'password');
@@ -114,12 +103,48 @@ class _LoginBodyState extends State<LoginBody> {
                             SizedBox(
                               height: 7.h,
                             ),
-                            AppButton(
-                              paddingVertical: 1.6.h,
-                              text: 'Login',
-                              onTap: () => setState(() {
-                                AppRouter.router.push(AppRouter.kHomeRoute);
-                              }),
+                            BlocListener<LoginCubit, LoginState>(
+                              listener: (context, state) {
+                                if (state is LoginSuccess) {
+                                  AppRouter.router.push(AppRouter.kHomeRoute);
+                                  appToast(context, 'Registration successful!');
+                                } else if (state is LoginFailure) {
+                                  appToast(context, state.errMessage);
+                                }
+                              },
+                              child: BlocBuilder<LoginCubit, LoginState>(
+                                builder: (context, state) {
+                                  if (state is LoginLoading) {
+                                    return AppButton(
+                                      isLoading: true,
+                                      paddingVertical: 1.6.h,
+                                      text: 'Login',
+                                      onTap: () => setState(() {
+                                        loginCubit.makeLogin({}, {
+                                          "full_name": "فراس",
+                                          "id": "66ad442007042ce972c0a0d0"
+                                        });
+                                        //
+                                      }),
+                                    );
+                                  } else {
+                                    return AppButton(
+                                      paddingVertical: 1.6.h,
+                                      text: 'Login',
+                                      onTap: () => setState(() {
+                                        loginCubit.makeLogin({}, {
+                                          "full_name": "فراس",
+                                          "id": "66ad442007042ce972c0a0d0"
+                                        });
+                                        // AppRouter.router.push(AppRouter.kHomeRoute);
+                                      }),
+                                    );
+                                  }
+                                  // Default return statement if none of the conditions are met.
+                                  // return const SizedBox
+                                  //     .shrink(); // Or any other fallback widget.
+                                },
+                              ),
                             ),
                             // AuthButton(
                             //   widget: BlocListener<LoginCubit, LoginState>(

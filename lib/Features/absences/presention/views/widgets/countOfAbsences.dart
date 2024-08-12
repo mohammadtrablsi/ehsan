@@ -4,9 +4,11 @@ import 'package:sizer/sizer.dart';
 
 class CountOfAbsences extends StatelessWidget {
   const CountOfAbsences(
-      {super.key, required this.absencesColor, required this.delayColor});
+      {super.key, required this.absencesColor, required this.delayColor, required this.numberOfDelays, required this.numberOfAbsences});
   final Color absencesColor;
   final Color delayColor;
+  final int numberOfDelays;
+  final int numberOfAbsences;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,7 @@ class CountOfAbsences extends StatelessWidget {
                 child: CountOfAbsencesItem(
                   text: index == 0 ? "غيابات" : "تأخيرات",
                   color: index == 0 ? absencesColor : delayColor,
+                  number: index == 0 ? numberOfAbsences : numberOfDelays,
                 ),
               )),
     );

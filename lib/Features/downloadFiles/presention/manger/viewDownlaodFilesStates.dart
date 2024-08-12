@@ -15,4 +15,7 @@ class ViewDownlaodFilesFailure extends ViewDownlaodFilesState {
 // class ShowPassword extends ViewDownlaodFilesState {
 // }
 
-class ViewDownlaodFilesSuccess extends ViewDownlaodFilesState {}
+class ViewDownlaodFilesSuccess extends ViewDownlaodFilesState {
+  final List<DownloadFilesEntity> entities;
+  ViewDownlaodFilesSuccess(this.entities);
+}

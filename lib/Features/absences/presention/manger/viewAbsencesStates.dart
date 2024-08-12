@@ -15,4 +15,7 @@ class ViewAbsencseFailure extends ViewAbsencseState {
 // class ShowPassword extends ViewAbsencseState {
 // }
 
-class ViewAbsencseSuccess extends ViewAbsencseState {}
+class ViewAbsencseSuccess extends ViewAbsencseState {
+  final AbsencseEntity entities;
+  ViewAbsencseSuccess(this.entities);
+}

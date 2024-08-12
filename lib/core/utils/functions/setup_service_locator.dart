@@ -1,11 +1,14 @@
-import 'package:ehsan/Features/tasks/data/repos/tasksRepoImp.dart';
+import 'package:ehsan/Features/absences/data/dataSources/absencesRemoteDataSource.dart';
+import 'package:ehsan/Features/absences/data/repos/absencesRepoImp.dart';
+import 'package:ehsan/Features/downloadFiles/data/dataSources/downloadFilesRemoteDataSource.dart';
+import 'package:ehsan/Features/downloadFiles/data/repos/downloadFilesRepoImp.dart';
+import 'package:ehsan/Features/events/data/dataSources/eventsRemoteDataSource.dart';
+import 'package:ehsan/Features/events/data/repos/eventsRepoImp.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../Features/Auth/data/dataSources/loginRemoteDataSource.dart';
 import '../../../Features/Auth/data/repos/loginRepoImp.dart';
-import '../../../Features/tasks/data/dataSources/tasksLocalDataSource.dart';
-import '../../../Features/tasks/data/dataSources/tasksRemoteDataSource.dart';
 import '../api_service.dart';
 
 final getIt = GetIt.instance;
@@ -25,12 +28,26 @@ void setupServiceLocator() {
     ),
   );
 
-  getIt.registerSingleton<TasksRepoImpl>(
-    TasksRepoImpl(
-      tasksRemoteDataSource: TasksRemoteDataSourceImpl(
+
+  getIt.registerSingleton<DownloadFilesRepoImpl>(
+    DownloadFilesRepoImpl(
+      downloadFilesRemoteDataSource: DownloadFilesRemoteDataSourceImpl(
         getIt.get<ApiService>(),
       ),
-      tasksLocalDataSource: TasksLocalDataSourceImpl(),
+    ),
+  );
+  getIt.registerSingleton<EventsRepoImpl>(
+    EventsRepoImpl(
+      eventsRemoteDataSource: EventsRemoteDataSourceImpl(
+        getIt.get<ApiService>(),
+      ),
+    ),
+  );
+   getIt.registerSingleton<AbsencseRepoImpl>(
+    AbsencseRepoImpl(
+      absencseRemoteDataSource: AbsencseRemoteDataSourceImpl(
+        getIt.get<ApiService>(),
+      ),
     ),
   );
 }

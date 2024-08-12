@@ -1,15 +1,15 @@
 
-import 'package:ehsan/Features/Events/data/models/EventsModel.dart';
-import 'package:ehsan/Features/Events/domain/entites/EventsEntity.dart';
+
+
+
+
+
+import 'package:ehsan/Features/events/data/models/eventsModel.dart';
+import 'package:ehsan/Features/events/domain/entites/eventsEntity.dart';
 import 'package:ehsan/core/utils/api_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-
-
-
 
 abstract class EventsRemoteDataSource {
-  Future<EventsEntity> viewEvents({required Map<String, dynamic> header,required Map<String, dynamic> body});
+  Future<List<EventsEntity>> viewEvents({required Map<String, dynamic> header,required Map<String, dynamic> body});
 }
 
 class EventsRemoteDataSourceImpl extends EventsRemoteDataSource {
@@ -18,17 +18,26 @@ class EventsRemoteDataSourceImpl extends EventsRemoteDataSource {
   EventsRemoteDataSourceImpl(this.apiService);
 
   @override
-  Future<EventsEntity> viewEvents(
+  Future<List<EventsEntity>> viewEvents(
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
     var response = await apiService.get(
       headers: header,
-        data: body, endPoint: 'https://dummyjson.com/auth/Events');
-    EventsEntity entity;
-    entity = EventsModel.fromJson(response);
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('userId', entity.id);
-    print("iddddddddddddddddddddddddddddddddddd${entity.id}");
+        data: body, endPoint: 'https://ehsanschool.onrender.com/api/showEvents');
+    // EventsEntity entity;
+    // entity = EventsModel.fromJson(response);
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // await prefs.setInt('userId', entity.id);
+    // print("iddddddddddddddddddddddddddddddddddd${entity.id}");
+    List<EventsEntity> entity = getEventsList(response);
     return entity;
+  }
+
+     List<EventsEntity> getEventsList(Map<String, dynamic> data) {
+    List<EventsEntity> files = [];
+    for (var eventMap in data['data']) {
+      files.add(EventsModel.fromJson(eventMap));
+    }
+    return files;
   }
 
 }

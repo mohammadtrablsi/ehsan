@@ -1,51 +1,129 @@
-
-
-import '../../domain/entites/LoginEntity.dart';
+import 'package:ehsan/Features/Auth/domain/entites/loginEntity.dart';
 
 class LoginModel extends LoginEntity {
-  int id;
-  String? username;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? gender;
-  String? image;
-  String token;
+  Data? data;
+  String? token;
+  String? message;
 
-  LoginModel(
-      {required this.id,
-      this.username,
-      this.email,
-      this.firstName,
-      this.lastName,
-      this.gender,
-      this.image,
-      required this.token})
+  LoginModel({this.data, this.token, this.message})
       : super(
-          id: id,
+          message: message,
+          token: token
         );
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
-        id: json['id'],
-        username: json['username'],
-        email: json['email'],
-        firstName: json['firstName'],
-        lastName: json['lastName'],
-        gender: json['gender'],
-        image: json['image'],
-        token: json['token'],
-      );
+      data: json['data'] != null ? new Data.fromJson(json['data']) : null,
+      token: json['token'],
+      message: json['message']);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['username'] = this.username;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['gender'] = this.gender;
-    data['image'] = this.image;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
     data['token'] = this.token;
+    data['message'] = this.message;
+    return data;
+  }
+}
+
+class Data {
+  String? sId;
+  String? fullName;
+  String? birthDate;
+  String? birthPlace;
+  String? joinDate;
+  String? fatherName;
+  String? motherName;
+  String? address;
+  String? teleNum;
+  String? mobileNum;
+  ClassId? classId;
+  String? createdAt;
+  String? updatedAt;
+  int? iV;
+
+  Data(
+      {this.sId,
+      this.fullName,
+      this.birthDate,
+      this.birthPlace,
+      this.joinDate,
+      this.fatherName,
+      this.motherName,
+      this.address,
+      this.teleNum,
+      this.mobileNum,
+      this.classId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    fullName = json['full_name'];
+    birthDate = json['birth_date'];
+    birthPlace = json['birth_place'];
+    joinDate = json['join_date'];
+    fatherName = json['father_name'];
+    motherName = json['mother_name'];
+    address = json['address'];
+    teleNum = json['tele_num'];
+    mobileNum = json['mobile_num'];
+    classId = json['class_id'] != null
+        ? new ClassId.fromJson(json['class_id'])
+        : null;
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    iV = json['__v'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['full_name'] = this.fullName;
+    data['birth_date'] = this.birthDate;
+    data['birth_place'] = this.birthPlace;
+    data['join_date'] = this.joinDate;
+    data['father_name'] = this.fatherName;
+    data['mother_name'] = this.motherName;
+    data['address'] = this.address;
+    data['tele_num'] = this.teleNum;
+    data['mobile_num'] = this.mobileNum;
+    if (this.classId != null) {
+      data['class_id'] = this.classId!.toJson();
+    }
+    data['createdAt'] = this.createdAt;
+    data['updatedAt'] = this.updatedAt;
+    data['__v'] = this.iV;
+    return data;
+  }
+}
+
+class ClassId {
+  String? sId;
+  String? name;
+  String? section;
+  int? iV;
+  String? admin;
+
+  ClassId({this.sId, this.name, this.section, this.iV, this.admin});
+
+  ClassId.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    name = json['name'];
+    section = json['section'];
+    iV = json['__v'];
+    admin = json['admin'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['name'] = this.name;
+    data['section'] = this.section;
+    data['__v'] = this.iV;
+    data['admin'] = this.admin;
     return data;
   }
 }

@@ -1,50 +1,73 @@
-
-import 'package:ehsan/Features/Events/domain/entites/EventsEntity.dart';
+import 'package:ehsan/Features/events/domain/entites/eventsEntity.dart';
 
 class EventsModel extends EventsEntity {
-  int id;
-  String? username;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? gender;
-  String? image;
-  String token;
+  String? sId;
+  String? name;
+  String? place;
+  String? date;
+  String? photo;
+  int? numberOfRegistrants;
+  String? description;
+  AdminAdded? adminAdded;
+  int? iV;
 
   EventsModel(
-      {required this.id,
-      this.username,
-      this.email,
-      this.firstName,
-      this.lastName,
-      this.gender,
-      this.image,
-      required this.token})
-      : super(
-          id: id,
-        );
+      {this.sId,
+      this.name,
+      this.place,
+      this.date,
+      this.photo,
+      this.numberOfRegistrants,
+      this.description,
+      this.adminAdded,
+      this.iV}):super(name:name,place:place,date:date,photo:photo,description:description);
 
-  factory EventsModel.fromJson(Map<String, dynamic> json) => EventsModel(
-        id: json['id'],
-        username: json['username'],
-        email: json['email'],
-        firstName: json['firstName'],
-        lastName: json['lastName'],
-        gender: json['gender'],
-        image: json['image'],
-        token: json['token'],
-      );
+  factory EventsModel.fromJson(Map<String, dynamic> json) =>EventsModel(
+    sId : json['_id'],
+    name : json['name'],
+    place : json['place'],
+    date : json['date'],
+    photo : json['photo'],
+    numberOfRegistrants : json['number_of_registrants'],
+    description : json['description'],
+    adminAdded : json['admin_added'] != null
+        ? new AdminAdded.fromJson(json['admin_added'])
+        : null,
+    iV : json['__v']
+  );
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['username'] = this.username;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['gender'] = this.gender;
-    data['image'] = this.image;
-    data['token'] = this.token;
+    data['_id'] = this.sId;
+    data['name'] = this.name;
+    data['place'] = this.place;
+    data['date'] = this.date;
+    data['photo'] = this.photo;
+    data['number_of_registrants'] = this.numberOfRegistrants;
+    data['description'] = this.description;
+    if (this.adminAdded != null) {
+      data['admin_added'] = this.adminAdded!.toJson();
+    }
+    data['__v'] = this.iV;
+    return data;
+  }
+}
+
+class AdminAdded {
+  String? sId;
+  String? name;
+
+  AdminAdded({this.sId, this.name});
+
+  AdminAdded.fromJson(Map<String, dynamic> json) {
+    sId = json['_id'];
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['_id'] = this.sId;
+    data['name'] = this.name;
     return data;
   }
 }

@@ -1,11 +1,14 @@
+import 'package:ehsan/Features/downloadFiles/domain/entites/downloadFilesEntity.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/app_router.dart';
 import 'package:ehsan/core/utils/classes/appButton.dart';
+import 'package:ehsan/core/utils/functions/formateDate.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class FileItem extends StatelessWidget {
-  const FileItem({super.key});
+  const FileItem({super.key,required this.data});
+  final DownloadFilesEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,8 @@ class FileItem extends StatelessWidget {
               isGradient: true,
               paddingVertical: 1.h,
               onTap: () {
-                AppRouter.router.push(AppRouter.kPdfViewRoute);
+                print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww${data.file}");
+                AppRouter.router.push("${AppRouter.kPdfViewRoute}?file=${data.file}");
               }),
           SizedBox(
             height: 1.h,
@@ -51,7 +55,7 @@ class FileItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.sp),
           color: kPrimaryColor.withOpacity(0.3)),
       child: Text(
-        "رياضيات",
+        data.subject!,
         style: TextStyle(
             fontSize: 11.sp, fontWeight: FontWeight.bold, color: kPrimaryColor),
       ),
@@ -60,7 +64,7 @@ class FileItem extends StatelessWidget {
 
   Widget _nameOfFile() {
     return Text(
-      "ورقة عن التكامل",
+      data.name!,
       style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
     );
   }
@@ -69,7 +73,7 @@ class FileItem extends StatelessWidget {
     return Row(
       children: [
         Text(
-          "10 Nov 20",
+          formateDate(data.date!),
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w600,

@@ -18,9 +18,9 @@ class DownloadFilesRepoImpl extends DownloadFilesRepo {
 
   DownloadFilesRepoImpl({required this.downloadFilesRemoteDataSource});
   @override
-  Future<Either<Failure, DownloadFilesEntity>> viewDownloadFiles(
+  Future<Either<Failure, List<DownloadFilesEntity>>> viewDownloadFiles(
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
-    DownloadFilesEntity entity;
+    List<DownloadFilesEntity> entity;
     try {
       entity = await downloadFilesRemoteDataSource.viewDownloadFiles(header: header,body: body);
       return right(entity);

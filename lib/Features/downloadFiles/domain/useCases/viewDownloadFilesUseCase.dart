@@ -18,7 +18,7 @@ class ViewDownloadFilesUseCase {
 
   ViewDownloadFilesUseCase(this.downloadFilesRepo);
 
-  Future<Either<Failure, DownloadFilesEntity>> call(
+  Future<Either<Failure, List<DownloadFilesEntity>>> call(
       Map<String, dynamic> header,Map<String,dynamic>body) async {
     return await downloadFilesRepo.viewDownloadFiles(header:header,body: body);
   }

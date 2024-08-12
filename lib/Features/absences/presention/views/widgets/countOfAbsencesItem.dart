@@ -3,9 +3,10 @@ import 'package:sizer/sizer.dart';
 
 class CountOfAbsencesItem extends StatelessWidget {
   const CountOfAbsencesItem(
-      {super.key, required this.color, required this.text});
+      {super.key, required this.color, required this.text, required this.number});
   final Color color;
   final String text;
+  final int number;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,7 @@ class CountOfAbsencesItem extends StatelessWidget {
           BoxDecoration(shape: BoxShape.circle, color: color.withOpacity(0.3)),
       child: Center(
           child: Text(
-        "5",
+        number.toString(),
         style: TextStyle(
             fontSize: 13.sp, fontWeight: FontWeight.bold, color: color),
       )),

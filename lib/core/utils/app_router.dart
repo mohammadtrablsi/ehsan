@@ -11,8 +11,6 @@ import 'package:ehsan/Features/metrices/presention/views/metrices.dart';
 import 'package:ehsan/Features/onBoarding/presention/views/onBoarding.dart';
 import 'package:ehsan/Features/profile/presention/views/profile.dart';
 import 'package:ehsan/Features/splashScreen/presention/views/splashScreen.dart';
-import 'package:ehsan/Features/tasks/presention/views/tasks.dart';
-import 'package:ehsan/Features/tasks/presention/views/updateTask.dart';
 import 'package:ehsan/Features/absences/presention/views/absences.dart';
 import 'package:ehsan/Features/weeklySchedule/presention/views/weeklySchedule.dart';
 import 'package:go_router/go_router.dart';
@@ -50,10 +48,6 @@ abstract class AppRouter {
         builder: (context, state) => const Login(),
       ),
       GoRoute(
-        path: kTasksView,
-        builder: (context, state) => const Tasks(),
-      ),
-      GoRoute(
         path: kGradesRoute,
         builder: (context, state) => const Grades(),
       ),
@@ -74,9 +68,12 @@ abstract class AppRouter {
         builder: (context, state) => const DownloadFiles(),
       ),
       GoRoute(
-        path: kPdfViewRoute,
-        builder: (context, state) => const PdfView(),
-      ),
+          path: kPdfViewRoute,
+          builder: (context, state) {
+            final file = state.queryParams['file'];
+            print("yyyyyyyyyyyyyyyyyyyyy${file}");
+            return PdfView(file: file!);
+          }),
       GoRoute(
         path: kAbsencesRoute,
         builder: (context, state) => Absences(),
@@ -104,28 +101,6 @@ abstract class AppRouter {
       GoRoute(
         path: kHomeRoute,
         builder: (context, state) => const Home(),
-      ),
-      GoRoute(
-        path: kUpdateTaskView,
-        builder: (context, state) {
-          final title = state.queryParams['title'];
-          final description = state.queryParams['description'];
-          final initDate = state.queryParams['initDate'];
-          final initTime = state.queryParams['initTime'];
-          final index = state.queryParams['index'];
-          final categoryId = state.queryParams['categoryId'];
-          final id = state.queryParams['id'];
-
-          return UpdateTask(
-            title: title!,
-            description: description!,
-            initDate: initDate!,
-            initTime: initTime!,
-            index: int.parse(index!),
-            categoryId: int.parse(categoryId!),
-            id: int.parse(id!),
-          );
-        },
       ),
     ],
   );

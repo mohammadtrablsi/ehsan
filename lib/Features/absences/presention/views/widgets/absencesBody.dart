@@ -1,16 +1,17 @@
+import 'package:ehsan/Features/absences/presention/manger/viewAbsencesCubit.dart';
 import 'package:ehsan/Features/absences/presention/views/widgets/countOfAbsences.dart';
 import 'package:ehsan/Features/absences/presention/views/widgets/customCalendar.dart';
+import 'package:ehsan/Features/absences/presention/views/widgets/shimmerForCountOfAbsences.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/classes/AppHeader.dart';
 import 'package:ehsan/core/utils/classes/appBackgroundImage.dart';
+import 'package:ehsan/core/utils/functions/formateDateForCalender.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class AbsencesBody extends StatelessWidget {
-  AbsencesBody({required this.absences, required this.delays});
-  final List<DateTime> absences;
-  final List<DateTime> delays;
   Color absencesColor = Colors.redAccent;
   Color delayColor = Colors.greenAccent;
 
@@ -28,19 +29,60 @@ class AbsencesBody extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: kAppPadding),
                 child: Column(
                   children: [
-                    CustomCalendar(
-                        absences: absences,
-                        delays: delays,
-                        absencesColor: absencesColor,
-                        delayColor: delayColor),
+                    BlocBuilder<viewAbsencseCubit, ViewAbsencseState>(
+                      builder: (context, state) {
+                        if (state is ViewAbsencseSuccess) {
+                          List<DateTime> absences = [];
+                          List<DateTime> delays = [];
+                          for (int i = 0;
+                              i < state.entities.absences!.length;
+                              i++) {
+                            absences.add(formateDateForCalender(
+                                state.entities.absences![i].updatedAt));
+                          }
+                          for (int j = 0;
+                              j < state.entities.delays!.length;
+                              j++) {
+                            delays.add(formateDateForCalender(
+                                state.entities.delays![j].updatedAt));
+                          }
+                          return CustomCalendar(
+                              absences: absences,
+                              delays: delays,
+                              absencesColor: absencesColor,
+                              delayColor: delayColor);
+                        } else {
+                          return CustomCalendar(
+                              absences: [],
+                              delays: [],
+                              absencesColor: absencesColor,
+                              delayColor: delayColor);
+                        }
+                      },
+                    ),
                     SizedBox(
                       height: 2.h,
                     ),
-                    CountOfAbsences(
-                        absencesColor: absencesColor, delayColor: delayColor),
+                    BlocBuilder<viewAbsencseCubit, ViewAbsencseState>(
+                      builder: (context, state) {
+                        if (state is ViewAbsencseSuccess) {
+                          print(
+                              ":::::::::::::::::::::::::::::::::${state.entities.delays!.length}");
+                          return CountOfAbsences(
+                            absencesColor: absencesColor,
+                            delayColor: delayColor,
+                            numberOfDelays: state.entities.delays!.length,
+                            numberOfAbsences: state.entities.absences!.length,
+                          );
+                        } else {
+                          return const ShimmerCountOfAbsences();
+                        }
+                      },
+                    ),
                   ],
                 ),
               ),
+
               // const Spacer(),
               // const AppBackgroundImage(),
             ],
