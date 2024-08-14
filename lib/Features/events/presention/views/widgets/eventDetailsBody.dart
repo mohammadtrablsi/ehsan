@@ -1,18 +1,27 @@
 import 'package:avatar_glow/avatar_glow.dart';
+import 'package:ehsan/Features/events/presention/manger/registerOnEventCubit.dart';
+import 'package:ehsan/Features/events/presention/manger/unRegisterOnEventCubit.dart';
 import 'package:ehsan/Features/events/presention/views/widgets/buttonInEventsDetails.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
+import 'package:ehsan/core/utils/functions/appToast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
 import 'package:sizer/sizer.dart';
 import 'package:go_router/go_router.dart';
 
 class EventDetailsBody extends StatelessWidget {
-  const EventDetailsBody({super.key, required this.indexForTag});
+  const EventDetailsBody(
+      {super.key, required this.indexForTag, required this.idOfEvent});
+
   final int indexForTag;
+  final String idOfEvent;
 
   @override
   Widget build(BuildContext context) {
+    final registerOnEventCubit = context.read<RegisterOnEventCubit>();
+    final unRegisterOnEventCubit = context.read<UnRegisterOnEventCubit>();
     return Scaffold(
       body: Stack(
         alignment: Alignment.bottomLeft,
@@ -43,33 +52,65 @@ class EventDetailsBody extends StatelessWidget {
             ],
           ),
           Positioned(
-              left: 5.5.w,
-              bottom: 4.h,
-              child: AvatarGlow(
-                // glowBorderRadius: BorderRadius.circular(15.sp),
-                //               startDelay: const Duration(milliseconds: 1000),
-                glowColor: Colors.blue,
-                glowShape: BoxShape.circle,
-                //               animate: true,
-                //               curve: Curves.fastOutSlowIn,
-                //               glowCount: 1,
-                //               // glowRadiusFactor:
-                //               //     3.0, // Keep this value to control the width of the effect
-                //               // endRadius: 60.0,
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(180 * 3.14),
-                  onTap: () {},
-                  child: CircleAvatar(
-                    radius: 7.w,
-                    backgroundColor: kPrimaryColor,
-                    child: Icon(
-                      Icons.app_registration,
-                      color: kContentColor1,
-                      size: 20.sp,
+            left: 5.5.w,
+            bottom: 4.h,
+            child: BlocConsumer<UnRegisterOnEventCubit, UnRegisterOnEventState>(
+              listener: (context, state) {
+                if (state is UnRegisterOnEventSuccess) {
+                  appToast(context, 'register is sucess');
+                } else if (state is RegisterOnEventFailure) {
+                  appToast(context, 'register is failure');
+                }
+              },
+              builder: (context, state) {
+                if (state is UnRegisterOnEventLoading) {
+                  return AvatarGlow(
+                    glowColor: Colors.blue,
+                    glowShape: BoxShape.circle,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(180 * 3.14),
+                      onTap: () {
+                        unRegisterOnEventCubit
+                            .unRegisterOnEvent({}, {"id": idOfEvent});
+                      },
+                      child: CircleAvatar(
+                        radius: 7.w,
+                        backgroundColor: kPrimaryColor,
+                        child: SizedBox(
+                          width: 4.w,
+                          height: 2.h,
+                          child: const CircularProgressIndicator(
+                            color: kContentColor1,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              )),
+                  );
+                } else {
+                  return AvatarGlow(
+                    glowColor: Colors.blue,
+                    glowShape: BoxShape.circle,
+                    child: InkWell(
+                      borderRadius: BorderRadius.circular(180 * 3.14),
+                      onTap: () {
+                        unRegisterOnEventCubit
+                            .unRegisterOnEvent({}, {"id": idOfEvent});
+                      },
+                      child: CircleAvatar(
+                        radius: 7.w,
+                        backgroundColor: kPrimaryColor,
+                        child: Icon(
+                          Icons.app_registration,
+                          color: kContentColor1,
+                          size: 20.sp,
+                        ),
+                      ),
+                    ),
+                  );
+                }
+              },
+            ),
+          ),
           // Stack(
           //   // alignment: Alignment.center,
           //   children: [

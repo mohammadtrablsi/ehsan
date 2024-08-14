@@ -50,6 +50,11 @@ class GridPart extends StatelessWidget {
         'image': AssetsData.homecalendraImage,
         'text': 'exam schedule',
         'route': AppRouter.kExamScheduleRoute
+      },
+      {
+        'image': AssetsData.homecalendraImage,
+        'text': 'infringement',
+        'route': AppRouter.kInfringementRoute
       }
     ];
     return AnimationLimiter(

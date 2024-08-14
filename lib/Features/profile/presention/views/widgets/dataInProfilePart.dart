@@ -1,20 +1,23 @@
+import 'package:ehsan/Features/Profile/domain/entites/ProfileEntity.dart';
 import 'package:ehsan/Features/profile/presention/views/widgets/dataInProfileItem.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class DataInProfilePart extends StatelessWidget {
-  const DataInProfilePart({super.key});
+  DataInProfilePart({super.key, required this.entity});
+  final ProfileEntity entity;
 
   @override
   Widget build(BuildContext context) {
+    setDataFromEntity();
     List<Map<String, String>> data = [
-      {'label': 'Academic Year', 'content': '2020-2021'},
-      {'label': 'Admission Class', 'content': 'VI'},
-      {'label': 'class', 'content': 'shaba1'},
-      {'label': 'Date Of Birthday', 'content': '28/1/2003'},
-      {'label': 'Mother Name', 'content': 'Monika'},
-      {'label': 'Father Name', 'content': 'Father Name'},
-      {'label': 'Address', 'content': 'Damascus'}
+      {'label': 'birthadate', 'content': '2020-2021'},
+      {'label': 'birthPlace', 'content': 'VI'},
+      {'label': 'fatherName', 'content': 'shaba1'},
+      {'label': 'motherName', 'content': '28/1/2003'},
+      {'label': 'joinDate', 'content': 'Monika'},
+      {'label': 'teleNum', 'content': 'Father Name'},
+      {'label': 'address', 'content': 'Damascus'}
     ];
     return Column(
       children: [
@@ -39,8 +42,8 @@ class DataInProfilePart extends StatelessWidget {
                       ? data[indexo]['label']!
                       : data[indexo + 1]['label']!,
                   content: index == 0
-                      ? data[indexo]['content']!
-                      : data[indexo + 1]['content']!,
+                      ? dataFromEntity[indexo]
+                      : dataFromEntity[indexo + 1],
                 ),
               ))),
     );
@@ -65,9 +68,20 @@ class DataInProfilePart extends StatelessWidget {
                 padding: EdgeInsetsDirectional.only(bottom: 4.h),
                 child: DataInProfileItem(
                   title: data[index + 4]['label']!,
-                  content: data[index + 4]['content']!,
+                  content: dataFromEntity[index + 4],
                 ),
               )),
     );
+  }
+
+  List<String> dataFromEntity = [];
+  void setDataFromEntity() {
+    dataFromEntity.add("l"); //entity.birthadate!
+    dataFromEntity.add(entity.birthPlace!);
+    dataFromEntity.add(entity.fatherName!);
+    dataFromEntity.add(entity.motherName!);
+    dataFromEntity.add(entity.joinDate!);
+    dataFromEntity.add(entity.teleNum!);
+    dataFromEntity.add(entity.address!);
   }
 }

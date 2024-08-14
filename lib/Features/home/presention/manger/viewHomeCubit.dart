@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ehsan/Features/home/domain/entites/homeEntity.dart';
 import 'package:ehsan/Features/home/domain/useCases/viewHomeUseCase.dart';
 
 part 'viewHomeStates.dart';
@@ -9,7 +10,7 @@ class ViewHomeCubit extends Cubit<ViewHomeState> {
 
   final ViewHomeUseCase viewHomeUseCase;
 
-  Future<void> viewAbsences(
+  Future<void> viewData(
       Map<String, dynamic> header, Map<String, dynamic> body) async {
     emit(ViewHomeLoading());
     var result = await viewHomeUseCase.call(header, body);
@@ -17,7 +18,7 @@ class ViewHomeCubit extends Cubit<ViewHomeState> {
     result.fold((failure) {
       emit(ViewHomeFailure(failure.message));
     }, (_) {
-      emit(ViewHomeSuccess());
+      emit(ViewHomeSuccess(_));
     });
   }
 }

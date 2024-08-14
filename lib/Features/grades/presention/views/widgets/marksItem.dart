@@ -1,31 +1,42 @@
+import 'package:ehsan/Features/grades/domain/entites/gradesEntity.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class MarksItem extends StatelessWidget {
-  MarksItem({super.key});
-  List data = [
-    {'subject': 'انكليزي', 'mark': 100},
-    {'subject': 'رياضيات', 'mark': 70},
-    {'subject': 'تاريخ', 'mark': 50},
-    {'subject': 'علوم', 'mark': 70},
-    {'subject': "روسي", 'mark': 20},
-    {'subject': 'عربي', 'mark': 100},
-  ];
+  final int indexo;
+  final GradesEntity data;
+  MarksItem({super.key, required this.indexo, required this.data});
+  // List data = [
+  //   {'subject': 'انكليزي', 'mark': 100},
+  //   {'subject': 'رياضيات', 'mark': 70},
+  //   {'subject': 'تاريخ', 'mark': 50},
+  //   {'subject': 'علوم', 'mark': 70},
+  //   {'subject': "روسي", 'mark': 20},
+  //   {'subject': 'عربي', 'mark': 100},
+  // ];
 
   @override
   Widget build(BuildContext context) {
+    List entity = [];
+    indexo == 0
+        ? entity = data.exam!
+        : indexo == 1
+            ? entity = data.oral!
+            : entity = data.test!;
+
     return Container(
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10.sp),
           border: Border.all(width: 0.05.h, color: Colors.grey)),
       child: Column(
-        children: List.generate(6, (index) => _markCardItem(index)),
+        children: List.generate(
+            entity.length, (index) => _markCardItem(index, entity)),
       ),
     );
   }
 
-  Widget _markCardItem(int index) {
+  Widget _markCardItem(int index, List entity) {
     return Row(
       children: [
         Padding(
@@ -33,7 +44,7 @@ class MarksItem extends StatelessWidget {
           child: SizedBox(
             width: 50.w,
             child: Text(
-              data[index]['subject'],
+              entity[index].subjectId.name,
               style: TextStyle(fontSize: 11.5.sp),
             ),
           ),
@@ -48,7 +59,7 @@ class MarksItem extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                '100',
+                entity[index].fullMark.toString(),
                 style: TextStyle(fontSize: 10.sp),
               ),
             ),
@@ -69,14 +80,14 @@ class MarksItem extends StatelessWidget {
                           bottomEnd: Radius.circular(10.sp),
                         )
                       : BorderRadius.circular(0.sp),
-              color: data[index]['mark'] >= 60
-                  ? Color.fromARGB(255, 200, 243,
+              color: entity[index].mark >= 60
+                  ? const Color.fromARGB(255, 200, 243,
                       197) //const Color.fromARGB(255, 208, 237, 202)
-                  : Color.fromARGB(255, 254, 211, 211),
+                  : const Color.fromARGB(255, 254, 211, 211),
             ),
             child: Center(
               child: Text(
-                data[index]['mark'].toString(),
+                entity[index].mark.toString(),
                 style: TextStyle(fontSize: 10.sp),
               ),
             ),

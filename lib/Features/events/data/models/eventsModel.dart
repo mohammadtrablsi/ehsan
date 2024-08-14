@@ -20,7 +20,7 @@ class EventsModel extends EventsEntity {
       this.numberOfRegistrants,
       this.description,
       this.adminAdded,
-      this.iV}):super(name:name,place:place,date:date,photo:photo,description:description);
+      this.iV}):super(name:name,place:place,date:date,photo:photo,description:description,id:sId);
 
   factory EventsModel.fromJson(Map<String, dynamic> json) =>EventsModel(
     sId : json['_id'],

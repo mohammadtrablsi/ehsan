@@ -15,4 +15,7 @@ class ViewMetricesFailure extends ViewMetricesState {
 // class ShowPassword extends ViewMetricesState {
 // }
 
-class ViewMetricesSuccess extends ViewMetricesState {}
+class ViewMetricesSuccess extends ViewMetricesState {
+  final MetricesEntity entity;
+  ViewMetricesSuccess(this.entity);
+}

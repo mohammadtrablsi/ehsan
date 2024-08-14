@@ -1,10 +1,11 @@
 
 
+
+
+
 import 'package:dartz/dartz.dart';
 import 'package:ehsan/Features/askDoubt/domain/entites/askDoubtEntity.dart';
-
-import '../../../../core/errors/failure.dart';
-
+import 'package:ehsan/core/errors/failure.dart';
 
 abstract class AskDoubtRepo {
   Future<Either<Failure, AskDoubtEntity>> makeAskDoubt(

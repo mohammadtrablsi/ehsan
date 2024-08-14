@@ -16,9 +16,9 @@ class ExamScheduleRepoImpl extends ExamScheduleRepo {
 
   ExamScheduleRepoImpl({required this.examScheduleRemoteDataSource});
   @override
-  Future<Either<Failure, ExamScheduleEntity>> viewExamSchedule(
+  Future<Either<Failure, List<ExamScheduleEntity>>> viewExamSchedule(
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
-    ExamScheduleEntity entity;
+    List<ExamScheduleEntity> entity;
     try {
       entity = await examScheduleRemoteDataSource.viewExamSchedule(header: header,body: body);
       return right(entity);

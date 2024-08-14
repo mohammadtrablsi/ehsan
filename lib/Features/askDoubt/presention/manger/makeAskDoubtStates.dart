@@ -15,4 +15,7 @@ class MakeAskDoubtFailure extends MakeAskDoubtState {
 // class ShowPassword extends MakeAskDoubtState {
 // }
 
-class MakeAskDoubtSuccess extends MakeAskDoubtState {}
+class MakeAskDoubtSuccess extends MakeAskDoubtState {
+  AskDoubtEntity entity;
+  MakeAskDoubtSuccess(this.entity);
+}

@@ -1,3 +1,4 @@
+import 'package:ehsan/Features/grades/domain/entites/gradesEntity.dart';
 import 'package:ehsan/Features/grades/presention/views/widgets/marksItem.dart';
 import 'package:ehsan/constants.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,8 @@ import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
 
 class MarksPart extends StatelessWidget {
-  const MarksPart({super.key});
+  const MarksPart({super.key, required this.data});
+  final GradesEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class MarksPart extends StatelessWidget {
         // height: 41.56.h,
         child: ListView.builder(
       padding: EdgeInsetsDirectional.only(bottom: 1.h),
-      itemCount: 2,
+      itemCount: 3,
       itemBuilder: (context, index) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +30,7 @@ class MarksPart extends StatelessWidget {
                   SizedBox(
                     height: 1.h,
                   ),
-                  MarksItem(),
+                  MarksItem(data:data,indexo:index),
                 ],
               ),
             ),
@@ -40,7 +42,11 @@ class MarksPart extends StatelessWidget {
 
   Widget _textFormarks(int index) {
     return Text(
-      "مذاكرة${index + 1}",
+      index == 0
+          ? "exam"
+          : index == 1
+              ? "oral"
+              : "test",
       style: TextStyle(
           fontSize: 10.sp, fontWeight: FontWeight.w600, color: kPrimaryColor),
     );

@@ -19,7 +19,7 @@ class ViewExamScheduleUseCase {
 
   ViewExamScheduleUseCase(this.examScheduleRepo);
 
-  Future<Either<Failure, ExamScheduleEntity>> call(
+  Future<Either<Failure, List<ExamScheduleEntity>>> call(
       Map<String, dynamic> header,Map<String,dynamic>body) async {
     return await examScheduleRepo.viewExamSchedule(header:header,body: body);
   }

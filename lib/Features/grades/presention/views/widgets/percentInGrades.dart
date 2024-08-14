@@ -1,10 +1,13 @@
+import 'package:ehsan/Features/grades/domain/entites/gradesEntity.dart';
 import 'package:ehsan/constants.dart';
+import 'package:ehsan/core/utils/functions/getJustFirstNumberAfterCama.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class PercentInGrades extends StatelessWidget {
-  const PercentInGrades({super.key});
+  const PercentInGrades({super.key, required this.data});
 
+  final GradesEntity data;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +34,7 @@ class PercentInGrades extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "85%",
+          getJustFirstNumberAfterCama(data.fullAverage!).toString(),
           style: TextStyle(fontSize: 26.sp, fontWeight: FontWeight.w900),
         ),
         Container(

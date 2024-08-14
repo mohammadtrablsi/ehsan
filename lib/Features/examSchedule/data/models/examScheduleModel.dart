@@ -1,51 +1,27 @@
-
-
 import 'package:ehsan/Features/examSchedule/domain/entites/examScheduleEntity.dart';
 
 class ExamScheduleModel extends ExamScheduleEntity {
-  int id;
-  String? username;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? gender;
-  String? image;
-  String token;
+  String? name;
+  String? date;
+  String? time;
+  int? iV;
 
-  ExamScheduleModel(
-      {required this.id,
-      this.username,
-      this.email,
-      this.firstName,
-      this.lastName,
-      this.gender,
-      this.image,
-      required this.token})
-      : super(
-          id: id,
-        );
+  ExamScheduleModel({this.name, this.date, this.time, this.iV})
+      : super(date: date, name: name, time: time);
 
-  factory ExamScheduleModel.fromJson(Map<String, dynamic> json) => ExamScheduleModel(
-        id: json['id'],
-        username: json['username'],
-        email: json['email'],
-        firstName: json['firstName'],
-        lastName: json['lastName'],
-        gender: json['gender'],
-        image: json['image'],
-        token: json['token'],
-      );
+  factory ExamScheduleModel.fromJson(Map<String, dynamic> json) =>
+      ExamScheduleModel(
+          name: json['name'],
+          date: json['date'],
+          time: json['time'],
+          iV: json['__v']);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['username'] = this.username;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['gender'] = this.gender;
-    data['image'] = this.image;
-    data['token'] = this.token;
+    data['name'] = this.name;
+    data['date'] = this.date;
+    data['time'] = this.time;
+    data['__v'] = this.iV;
     return data;
   }
 }

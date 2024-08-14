@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class ClassItem extends StatelessWidget {
-  const ClassItem({super.key, required this.numberOfPeriod});
+  const ClassItem({super.key, required this.numberOfPeriod, this.data});
   final int numberOfPeriod;
+  final data;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class ClassItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          "علوم الحاسب",
+          data.name,
           style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13.sp),
         ),
         SizedBox(
@@ -66,7 +67,7 @@ class ClassItem extends StatelessWidget {
         ),
         const Spacer(),
         Text(
-          'فراس ستوت',
+          data.teacher,
           style: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 12.sp, color: Colors.grey),
         ),

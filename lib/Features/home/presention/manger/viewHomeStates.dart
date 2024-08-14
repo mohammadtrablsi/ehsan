@@ -15,4 +15,7 @@ class ViewHomeFailure extends ViewHomeState {
 // class ShowPassword extends ViewHomeState {
 // }
 
-class ViewHomeSuccess extends ViewHomeState {}
+class ViewHomeSuccess extends ViewHomeState {
+  final HomeEntity entity;
+  ViewHomeSuccess(this.entity);
+}

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:ehsan/Features/Profile/domain/useCases/viewProfileUseCase.dart';
+import 'package:ehsan/Features/Profile/domain/entites/ProfileEntity.dart';
 
 part 'viewProfileStates.dart';
 
@@ -9,7 +10,7 @@ class ViewProfileCubit extends Cubit<ViewProfileState> {
 
   final ViewProfileUseCase viewProfileUseCase;
 
-  Future<void> viewAbsences(
+  Future<void> viewProfile(
       Map<String, dynamic> header, Map<String, dynamic> body) async {
     emit(ViewProfileLoading());
     var result = await viewProfileUseCase.call(header, body);
@@ -17,7 +18,7 @@ class ViewProfileCubit extends Cubit<ViewProfileState> {
     result.fold((failure) {
       emit(ViewProfileFailure(failure.message));
     }, (_) {
-      emit(ViewProfileSuccess());
+      emit(ViewProfileSuccess(_));
     });
   }
 }

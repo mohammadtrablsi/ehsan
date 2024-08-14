@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:ehsan/Features/absences/domain/useCases/viewAbsencesUseCase.dart';
 import 'package:ehsan/Features/Grades/domain/useCases/viewGradesUseCase.dart';
+import 'package:ehsan/Features/grades/domain/entites/gradesEntity.dart';
 
 part 'viewGradesStates.dart';
 
@@ -10,7 +11,7 @@ class ViewGradesCubit extends Cubit<ViewGradesState> {
 
   final ViewGradesUseCase viewGradesUseCase;
 
-  Future<void> viewAbsences(
+  Future<void> viewGrades(
       Map<String, dynamic> header, Map<String, dynamic> body) async {
     emit(ViewGradesLoading());
     var result = await viewGradesUseCase.call(header, body);
@@ -18,7 +19,7 @@ class ViewGradesCubit extends Cubit<ViewGradesState> {
     result.fold((failure) {
       emit(ViewGradesFailure(failure.message));
     }, (_) {
-      emit(ViewGradesSuccess());
+      emit(ViewGradesSuccess(_));
     });
   }
 }

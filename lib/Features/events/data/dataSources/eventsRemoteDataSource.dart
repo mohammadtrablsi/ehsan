@@ -10,6 +10,8 @@ import 'package:ehsan/core/utils/api_service.dart';
 
 abstract class EventsRemoteDataSource {
   Future<List<EventsEntity>> viewEvents({required Map<String, dynamic> header,required Map<String, dynamic> body});
+  Future<EventsEntity>  registerOnEvent({required Map<String, dynamic> header,required Map<String, dynamic> body});
+  Future<EventsEntity>  unRegisterOnEvent({required Map<String, dynamic> header,required Map<String, dynamic> body});
 }
 
 class EventsRemoteDataSourceImpl extends EventsRemoteDataSource {
@@ -32,6 +34,35 @@ class EventsRemoteDataSourceImpl extends EventsRemoteDataSource {
     return entity;
   }
 
+
+  @override
+  Future<EventsEntity>  registerOnEvent(
+      {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
+    var response = await apiService.post(
+      headers: header,
+        data: body, endPoint: 'https://ehsanschool.onrender.com/api/registerEvent');
+    EventsEntity entity;
+    entity = EventsModel.fromJson(response);
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // await prefs.setInt('userId', entity.id);
+    // print("iddddddddddddddddddddddddddddddddddd${entity.id}");
+    // List<EventsEntity> entity = getEventsList(response);
+    return entity;
+  }
+    @override
+  Future<EventsEntity>  unRegisterOnEvent(
+      {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
+    var response = await apiService.post(
+      headers: header,
+        data: body, endPoint: 'https://ehsanschool.onrender.com/api/unRegisterEvent');
+    EventsEntity entity;
+    entity = EventsModel.fromJson(response);
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // await prefs.setInt('userId', entity.id);
+    // print("iddddddddddddddddddddddddddddddddddd${entity.id}");
+    // List<EventsEntity> entity = getEventsList(response);
+    return entity;
+  }
      List<EventsEntity> getEventsList(Map<String, dynamic> data) {
     List<EventsEntity> files = [];
     for (var eventMap in data['data']) {

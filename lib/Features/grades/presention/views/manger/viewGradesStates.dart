@@ -15,4 +15,7 @@ class ViewGradesFailure extends ViewGradesState {
 // class ShowPassword extends ViewGradesState {
 // }
 
-class ViewGradesSuccess extends ViewGradesState {}
+class ViewGradesSuccess extends ViewGradesState {
+  final GradesEntity entity;
+  ViewGradesSuccess(this.entity);
+}

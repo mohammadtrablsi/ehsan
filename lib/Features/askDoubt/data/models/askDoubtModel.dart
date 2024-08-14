@@ -2,52 +2,67 @@
 
 import 'package:ehsan/Features/askDoubt/domain/entites/askDoubtEntity.dart';
 
-
-
 class AskDoubtModel extends AskDoubtEntity {
-  int id;
-  String? username;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? gender;
-  String? image;
-  String token;
+  bool? status;
+  String? message;
+  Data? data;
 
-  AskDoubtModel(
-      {required this.id,
-      this.username,
-      this.email,
-      this.firstName,
-      this.lastName,
-      this.gender,
-      this.image,
-      required this.token})
-      : super(
-          id: id,
-        );
+  AskDoubtModel({this.status, this.message, this.data})
+      : super(message: message);
 
   factory AskDoubtModel.fromJson(Map<String, dynamic> json) => AskDoubtModel(
-        id: json['id'],
-        username: json['username'],
-        email: json['email'],
-        firstName: json['firstName'],
-        lastName: json['lastName'],
-        gender: json['gender'],
-        image: json['image'],
-        token: json['token'],
-      );
+      status: json['status'],
+      message: json['message'],
+      data: json['data'] != null ? new Data.fromJson(json['data']) : null);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['username'] = this.username;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['gender'] = this.gender;
-    data['image'] = this.image;
-    data['token'] = this.token;
+    data['status'] = this.status;
+    data['message'] = this.message;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
+  }
+}
+
+class Data {
+  String? type;
+  String? description;
+  String? studentId;
+  String? sId;
+  String? createdAt;
+  String? updatedAt;
+  int? iV;
+
+  Data(
+      {this.type,
+      this.description,
+      this.studentId,
+      this.sId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    type = json['type'];
+    description = json['description'];
+    studentId = json['student_id'];
+    sId = json['_id'];
+    createdAt = json['createdAt'];
+    updatedAt = json['updatedAt'];
+    iV = json['__v'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['type'] = this.type;
+    data['description'] = this.description;
+    data['student_id'] = this.studentId;
+    data['_id'] = this.sId;
+    data['createdAt'] = this.createdAt;
+    data['updatedAt'] = this.updatedAt;
+    data['__v'] = this.iV;
     return data;
   }
 }

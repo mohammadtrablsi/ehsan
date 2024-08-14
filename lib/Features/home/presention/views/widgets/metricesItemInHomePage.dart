@@ -1,10 +1,14 @@
+import 'package:ehsan/Features/home/domain/entites/homeEntity.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class MetricesItemInHomePage extends StatefulWidget {
-  const MetricesItemInHomePage({super.key});
+  const MetricesItemInHomePage(
+      {super.key, required this.data, required this.index});
+  final HomeEntity data;
+  final int index;
 
   @override
   State<MetricesItemInHomePage> createState() => _MetricesItemInHomePageState();
@@ -32,7 +36,7 @@ class _MetricesItemInHomePageState extends State<MetricesItemInHomePage> {
       opacity: isLoading ? 1 : 0,
       child: AnimatedScale(
         duration: const Duration(milliseconds: 1000),
-        scale:   1 ,
+        scale: 1,
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 4.w),
           height: 25.h,
@@ -53,14 +57,16 @@ class _MetricesItemInHomePageState extends State<MetricesItemInHomePage> {
                 height: 2.h,
               ),
               Text(
-                "80.39 %",
+                widget.index == 0
+                    ? widget.data.average.toString()
+                    : widget.data.absences.toString(), //"80.39 %"
                 style: textStyle1,
               ),
               SizedBox(
                 height: 1.h,
               ),
               Text(
-                "Attendance",
+                widget.index == 0 ? "average" : "absences",
                 style: textStyle2,
               ),
             ],

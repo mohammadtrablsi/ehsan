@@ -1,10 +1,13 @@
 import 'dart:ui';
 
+import 'package:ehsan/Features/examSchedule/presention/manger/viewExamScheduleCubit.dart';
+import 'package:ehsan/Features/examSchedule/presention/views/widgets/shimmerListViewExamSchedule.dart';
 import 'package:ehsan/core/utils/classes/AppHeader.dart';
 import 'package:ehsan/core/utils/classes/appBackgroundImage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 import 'listViewExamSchedule.dart';
@@ -36,9 +39,17 @@ class ExamScheduleBody extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: EdgeInsetsDirectional.only(bottom: 3.h),
-              child: const ListViewExamSchedule(),
+            BlocBuilder<ViewExamScheduleCubit, ViewExamScheduleState>(
+              builder: (context, state) {
+                if (state is ViewExamScheduleSuccess) {
+                  return Padding(
+                    padding: EdgeInsetsDirectional.only(bottom: 3.h),
+                    child: ListViewExamSchedule(data: state.entity),
+                  );
+                } else {
+                  return const ShimmerListViewExamSchedule();
+                }
+              },
             ),
           ],
         ),

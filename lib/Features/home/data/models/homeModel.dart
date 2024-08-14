@@ -1,50 +1,23 @@
-
 import 'package:ehsan/Features/home/domain/entites/homeEntity.dart';
 
 class HomeModel extends HomeEntity {
-  int id;
-  String? username;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? gender;
-  String? image;
-  String token;
+  bool? status;
+  int? absence;
+  double? fullAverage;
 
-  HomeModel(
-      {required this.id,
-      this.username,
-      this.email,
-      this.firstName,
-      this.lastName,
-      this.gender,
-      this.image,
-      required this.token})
-      : super(
-          id: id,
-        );
+  HomeModel({this.status, this.absence, this.fullAverage})
+      : super(absences: absence, average: fullAverage);
 
   factory HomeModel.fromJson(Map<String, dynamic> json) => HomeModel(
-        id: json['id'],
-        username: json['username'],
-        email: json['email'],
-        firstName: json['firstName'],
-        lastName: json['lastName'],
-        gender: json['gender'],
-        image: json['image'],
-        token: json['token'],
-      );
+      status: json['status'],
+      absence: json['absence'],
+      fullAverage: json['full_average']);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['username'] = this.username;
-    data['email'] = this.email;
-    data['firstName'] = this.firstName;
-    data['lastName'] = this.lastName;
-    data['gender'] = this.gender;
-    data['image'] = this.image;
-    data['token'] = this.token;
+    data['status'] = this.status;
+    data['absence'] = this.absence;
+    data['full_average'] = this.fullAverage;
     return data;
   }
 }

@@ -15,4 +15,7 @@ class ViewProfileFailure extends ViewProfileState {
 // class ShowPassword extends ViewProfileState {
 // }
 
-class ViewProfileSuccess extends ViewProfileState {}
+class ViewProfileSuccess extends ViewProfileState {
+  final ProfileEntity entity;
+  ViewProfileSuccess(this.entity);
+}

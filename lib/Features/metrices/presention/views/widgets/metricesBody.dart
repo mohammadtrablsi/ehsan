@@ -1,11 +1,16 @@
 import 'package:ehsan/Features/home/presention/views/widgets/metricesInHomePage.dart';
+import 'package:ehsan/Features/metrices/presention/manger/viewMetricesCubit.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/animatedSubjectsInMetrices.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/lineMetrices.dart';
+import 'package:ehsan/Features/metrices/presention/views/widgets/metricesInMetricesPage.dart';
+import 'package:ehsan/Features/metrices/presention/views/widgets/shimmerLineMetrices.dart';
+import 'package:ehsan/Features/metrices/presention/views/widgets/shimmerMetricesInMetricesPage.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/subjectsInMetrices.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/classes/appHeader.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class MetricesBody extends StatelessWidget {
@@ -26,16 +31,34 @@ class MetricesBody extends StatelessWidget {
                   SizedBox(
                     height: 1.5.h,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MetricesInHomePage(),
+                      BlocBuilder<ViewMetricesCubit, ViewMetricesState>(
+                        builder: (context, state) {
+                          if (state is ViewMetricesSuccess) {
+                            return MetricesInMetricesPage(
+                              data: state.entity,
+                            );
+                          } else {
+                            return const ShimmerMetricesInMetricesPage();
+                          }
+                        },
+                      ),
                     ],
                   ),
                   SizedBox(
                     height: 2.h,
                   ),
-                  const LineMetrices(),
+                  BlocBuilder<ViewMetricesCubit, ViewMetricesState>(
+                    builder: (context, state) {
+                      if (state is ViewMetricesSuccess) {
+                        return LineMetrices(data: state.entity);
+                      } else {
+                        return const ShimmerLineMetrices();
+                      }
+                    },
+                  ),
                 ],
               ),
             ),

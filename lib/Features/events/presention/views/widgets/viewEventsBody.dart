@@ -31,7 +31,7 @@ class ViewEventsBody extends StatelessWidget {
                       padding: EdgeInsetsDirectional.only(bottom: 1.5.h),
                       child: InkWell(
                           onTap: () => AppRouter.router.push(
-                              "${AppRouter.kEventDetailsRoute}?indexForTag=$index"),
+                              "${AppRouter.kEventDetailsRoute}?indexForTag=$index&&idOfEvent=${state.entities[index].id}"),
                           child: EventItem(
                               indexForTag: index, data: state.entities[index])),
                     );

@@ -15,4 +15,7 @@ class ViewExamScheduleFailure extends ViewExamScheduleState {
 // class ShowPassword extends ViewExamScheduleState {
 // }
 
-class ViewExamScheduleSuccess extends ViewExamScheduleState {}
+class ViewExamScheduleSuccess extends ViewExamScheduleState {
+  final List<ExamScheduleEntity> entity;
+  ViewExamScheduleSuccess(this.entity);
+}

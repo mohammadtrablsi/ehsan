@@ -1,7 +1,9 @@
 class HomeEntity {
-  final int id;
+  final double? average;
+  final int? absences;
 
   HomeEntity({
-    required this.id,
+    required this.absences,
+    required this.average
   });
 }

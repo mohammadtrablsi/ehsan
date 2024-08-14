@@ -7,6 +7,7 @@ import 'package:ehsan/Features/events/presention/views/viewEvents.dart';
 import 'package:ehsan/Features/examSchedule/presention/examSchedule.dart';
 import 'package:ehsan/Features/grades/presention/views/grades.dart';
 import 'package:ehsan/Features/home/presention/views/home.dart';
+import 'package:ehsan/Features/infringement/presention/infringement.dart';
 import 'package:ehsan/Features/metrices/presention/views/metrices.dart';
 import 'package:ehsan/Features/onBoarding/presention/views/onBoarding.dart';
 import 'package:ehsan/Features/profile/presention/views/profile.dart';
@@ -32,6 +33,7 @@ abstract class AppRouter {
   static const kEventDetailsRoute = '/eventDetails';
   static const kOnBoardingRoute = '/onBoarding';
   static const kLoginRoute = '/login';
+    static const kInfringementRoute = '/infringement';
 
   static final router = GoRouter(
     routes: [
@@ -59,8 +61,9 @@ abstract class AppRouter {
           path: kEventDetailsRoute,
           builder: (context, state) {
             final indexForTag = state.queryParams['indexForTag'];
+            final idOfEvent = state.queryParams['idOfEvent'];
             return EventDetails(
-              indexForTag: int.parse(indexForTag!),
+              indexForTag: int.parse(indexForTag!), idOfEvent: idOfEvent!,
             );
           }),
       GoRoute(
@@ -85,6 +88,10 @@ abstract class AppRouter {
       GoRoute(
         path: kExamScheduleRoute,
         builder: (context, state) => const ExamSchedule(),
+      ),
+      GoRoute(
+        path: kInfringementRoute,
+        builder: (context, state) => const Infringement(),
       ),
       GoRoute(
         path: kMetricesRoute,

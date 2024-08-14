@@ -1,9 +1,11 @@
+import 'package:ehsan/Features/Profile/domain/entites/ProfileEntity.dart';
 import 'package:ehsan/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class CardInProfile extends StatelessWidget {
-  const CardInProfile({super.key});
+  const CardInProfile({super.key, required this.data});
+  final ProfileEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,14 @@ class CardInProfile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Akshay Syal",
+            data.name!,
             style: style1,
           ),
           SizedBox(
             height: 1.5.h,
           ),
           Text(
-            "Class XI-B  |  Roll no: 04",
+            "Grade ${data.className}  |  Class: ${data.classSection}",
             style: style2,
           ),
         ],

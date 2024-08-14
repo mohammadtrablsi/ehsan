@@ -15,4 +15,7 @@ class ViewWeeklyScheduleFailure extends ViewWeeklyScheduleState {
 // class ShowPassword extends ViewWeeklyScheduleState {
 // }
 
-class ViewWeeklyScheduleSuccess extends ViewWeeklyScheduleState {}
+class ViewWeeklyScheduleSuccess extends ViewWeeklyScheduleState {
+  final WeeklyScheduleEntity entity;
+  ViewWeeklyScheduleSuccess(this.entity);
+}

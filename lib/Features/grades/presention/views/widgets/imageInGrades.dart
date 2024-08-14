@@ -1,3 +1,4 @@
+import 'package:ehsan/Features/grades/domain/entites/gradesEntity.dart';
 import 'package:ehsan/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +8,7 @@ import '../../../../../constants.dart';
 
 class ImageInGrades extends StatelessWidget {
   const ImageInGrades({super.key});
+  
 
   @override
   Widget build(BuildContext context) {

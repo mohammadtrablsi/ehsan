@@ -21,12 +21,12 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
     var response = await apiService.get(
       headers: header,
-        data: body, endPoint: 'https://dummyjson.com/auth/Home');
+        data: body, endPoint: 'https://ehsanschool.onrender.com/api/homePage');
     HomeEntity entity;
     entity = HomeModel.fromJson(response);
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('userId', entity.id);
-    print("iddddddddddddddddddddddddddddddddddd${entity.id}");
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // await prefs.setInt('userId', entity.id);
+    // print("iddddddddddddddddddddddddddddddddddd${entity.id}");
     return entity;
   }
 

@@ -7,5 +7,5 @@ const kPrimaryColor = Color(0xff4c74bc);
 const kContentColor1 = Colors.white;
 const kTranstionDuration = Duration(milliseconds: 250);
 const kGtSectraFine = 'GT Sectra Fine';
-const kTasksBox = 'tasks_box';
+const kLoginBox = 'login_box';
 var kAppPadding = 4.w;

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:ehsan/Features/metrices/domain/entites/metricesEntity.dart';
 import 'package:ehsan/Features/metrices/domain/useCases/viewMetricesUseCase.dart';
 
 part 'viewMetricesStates.dart';
@@ -9,7 +10,7 @@ class ViewMetricesCubit extends Cubit<ViewMetricesState> {
 
   final ViewMetricesUseCase viewMetricesUseCase;
 
-  Future<void> viewAbsences(
+  Future<void> viewMetrices(
       Map<String, dynamic> header, Map<String, dynamic> body) async {
     emit(ViewMetricesLoading());
     var result = await viewMetricesUseCase.call(header, body);
@@ -17,7 +18,7 @@ class ViewMetricesCubit extends Cubit<ViewMetricesState> {
     result.fold((failure) {
       emit(ViewMetricesFailure(failure.message));
     }, (_) {
-      emit(ViewMetricesSuccess());
+      emit(ViewMetricesSuccess(_));
     });
   }
 }

@@ -1,11 +1,16 @@
 import 'package:bloc/bloc.dart';
+import 'package:ehsan/Features/askDoubt/domain/entites/askDoubtEntity.dart';
 import 'package:ehsan/Features/askDoubt/domain/useCases/makeAskDoubtUseCase.dart';
+import 'package:ehsan/Features/askDoubt/presention/views/askDoubt.dart';
+import 'package:flutter/material.dart';
 
 part 'makeAskDoubtStates.dart';
 
 class MakeAskDoubtCubit extends Cubit<MakeAskDoubtState> {
   MakeAskDoubtCubit(this.makeAskDoubtUseCase) : super(MakeAskDoubtInitial());
   bool isPassword = true;
+  TextEditingController description = TextEditingController();
+  TextEditingController  title= TextEditingController();
 
   final MakeAskDoubtUseCase makeAskDoubtUseCase;
 
@@ -17,7 +22,7 @@ class MakeAskDoubtCubit extends Cubit<MakeAskDoubtState> {
     result.fold((failure) {
       emit(MakeAskDoubtFailure(failure.message));
     }, (_) {
-      emit(MakeAskDoubtSuccess());
+      emit(MakeAskDoubtSuccess(_));
     });
   }
 }

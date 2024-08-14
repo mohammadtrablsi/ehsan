@@ -1,11 +1,15 @@
+import 'package:ehsan/Features/grades/presention/views/manger/viewGradesCubit.dart';
 import 'package:ehsan/Features/grades/presention/views/widgets/imageInGrades.dart';
 import 'package:ehsan/Features/grades/presention/views/widgets/marksPart.dart';
 import 'package:ehsan/Features/grades/presention/views/widgets/percentInGrades.dart';
+import 'package:ehsan/Features/grades/presention/views/widgets/shimmerMaskPart.dart';
+import 'package:ehsan/Features/grades/presention/views/widgets/shimmerPercentInGrades.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/classes/appBackgroundImage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class GradesBody extends StatelessWidget {
@@ -35,8 +39,16 @@ class GradesBody extends StatelessWidget {
               Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  const ImageInGrades(),
-                  Positioned(bottom: 6.h, child: const PercentInGrades()),
+                 const ImageInGrades(),
+                  Positioned(bottom: 6.h, child:  BlocBuilder<ViewGradesCubit, ViewGradesState>(
+                    builder: (context, state) {
+                      if (state is ViewGradesSuccess) {
+                        return PercentInGrades(data:state.entity);
+                      } else {
+                        return const  ShimmerPercentInGrades();
+                      }
+                    },
+                  ),),
                 ],
               ),
               Flexible(
@@ -52,7 +64,15 @@ class GradesBody extends StatelessWidget {
                       SizedBox(
                         height: 1.h,
                       ),
-                      const MarksPart(),
+                      BlocBuilder<ViewGradesCubit, ViewGradesState>(
+                    builder: (context, state) {
+                      if (state is ViewGradesSuccess) {
+                        return MarksPart(data:state.entity);
+                      } else {
+                        return const ShimmerMarksPart();
+                      }
+                    },
+                  ),
                     ],
                   ),
                 ),

@@ -1,3 +1,6 @@
+import 'package:ehsan/Features/Auth/data/models/loginModel.dart';
+import 'package:ehsan/Features/Auth/domain/entites/loginEntity.dart';
+import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/app_router.dart';
 import 'package:ehsan/core/utils/simple_bloc_observer.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +13,21 @@ import 'package:sqflite/sqflite.dart';
 import 'core/utils/functions/setup_service_locator.dart';
 
 void main() async {
-  await Hive.initFlutter();
-  // Hive.registerAdapter(TaskEntityAdapter());
-
+  // await Hive.initFlutter();
+  // Hive.registerAdapter(LoginEntityAdapter());
+// 
   setupServiceLocator();
-  // await Hive.openBox<TaskEntity>(kTasksBox);
+  // var box = await Hive.openBox<Data>(kLoginBox);
   WidgetsFlutterBinding.ensureInitialized();
   await initDatabase();
+  //  await Hive.openBox<LoginEntity>(kLoginBox);
+  // for (var key in box.keys) {
+  //   final value = box.get(key);
+  //   print('Key: $key, Value: ${value?.fatherName}');
+  // }
+  // if (box.isEmpty) {
+  //   print("boxIsEmpty");
+  // }
 
   Bloc.observer = SimpleBlocObserver();
   runApp(const PowerOfTask());

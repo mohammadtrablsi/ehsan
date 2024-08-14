@@ -1,7 +1,14 @@
-class GradesEntity {
-  final int id;
+import 'package:ehsan/Features/grades/data/models/gradesScheduleModel.dart';
 
-  GradesEntity({
-    required this.id,
-  });
+class GradesEntity {
+  final double? fullAverage;
+  final List<Exam>? exam;
+  final List<Oral>? oral;
+  final List<Test>? test;
+
+  GradesEntity(
+      {required this.fullAverage,
+      required this.exam,
+      required this.oral,
+      required this.test});
 }

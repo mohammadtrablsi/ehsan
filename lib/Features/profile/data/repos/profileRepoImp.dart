@@ -1,15 +1,11 @@
 
 
 import 'package:dartz/dartz.dart';
-import 'package:ehsan/Features/Profile/domain/entites/ProfileEntity.dart';
-import 'package:ehsan/Features/profile/domain/repos/profileRepo.dart';
-
-import 'package:ehsan/core/errors/failure.dart';
-
 import 'package:dio/dio.dart';
-
-
-import '../dataSources/profileRemoteDataSource.dart';
+import 'package:ehsan/Features/Profile/domain/entites/ProfileEntity.dart';
+import 'package:ehsan/Features/profile/data/dataSources/profileRemoteDataSource.dart';
+import 'package:ehsan/Features/profile/domain/repos/profileRepo.dart';
+import 'package:ehsan/core/errors/failure.dart';
 
 class ProfileRepoImpl extends ProfileRepo {
   final ProfileRemoteDataSource profileRemoteDataSource;

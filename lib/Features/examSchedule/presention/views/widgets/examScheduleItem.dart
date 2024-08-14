@@ -1,9 +1,12 @@
+import 'package:ehsan/Features/examSchedule/domain/entites/examScheduleEntity.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class ExamScheduleItem extends StatelessWidget {
-  const ExamScheduleItem({super.key, required this.isLatOrFirstItem});
+  const ExamScheduleItem(
+      {super.key, required this.isLatOrFirstItem, required this.data});
   final bool isLatOrFirstItem;
+  final ExamScheduleEntity data;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,7 @@ class ExamScheduleItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          "رياضيات هندسة",
+          data.name!,
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
@@ -90,7 +93,7 @@ class ExamScheduleItem extends StatelessWidget {
     return Row(
       children: [
         Text(
-          "09:00Am",
+          data.time!,
           style: TextStyle(
               fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.grey),
         ),

@@ -1,19 +1,9 @@
 
+
 import 'package:dartz/dartz.dart';
 import 'package:ehsan/Features/Profile/domain/entites/ProfileEntity.dart';
 import 'package:ehsan/Features/profile/domain/repos/profileRepo.dart';
-
-
-
-
-
-
-
-
-
-import '../../../../core/errors/failure.dart';
-
-
+import 'package:ehsan/core/errors/failure.dart';
 
 class ViewProfileUseCase {
   final ProfileRepo profileRepo;

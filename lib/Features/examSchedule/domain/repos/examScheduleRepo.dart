@@ -5,7 +5,7 @@ import 'package:ehsan/Features/examSchedule/domain/entites/examScheduleEntity.da
 import '../../../../core/errors/failure.dart';
 
 abstract class ExamScheduleRepo {
-  Future<Either<Failure, ExamScheduleEntity>> viewExamSchedule(
+  Future<Either<Failure, List<ExamScheduleEntity>>> viewExamSchedule(
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body});
 }

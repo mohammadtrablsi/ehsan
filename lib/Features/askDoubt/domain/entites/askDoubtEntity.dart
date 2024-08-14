@@ -1,7 +1,7 @@
 class AskDoubtEntity {
-  final int id;
+  final String? message;
 
   AskDoubtEntity({
-    required this.id,
+    required this.message,
   });
 }

@@ -1,9 +1,19 @@
+import 'package:hive/hive.dart';
+
+import '../../data/models/loginModel.dart';
+
+part 'loginEntity.g.dart';
+
+@HiveType(typeId: 0)
 class LoginEntity {
+  @HiveField(0)
+  final  Data? personalDetail;
   final String? message;
   final String? token;
 
   LoginEntity({
-    required this.message,
-    required this.token,
+    this.personalDetail,
+    this.message,
+    this.token,
   });
 }
