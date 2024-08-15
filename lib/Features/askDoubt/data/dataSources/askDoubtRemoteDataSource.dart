@@ -21,7 +21,7 @@ class AskDoubtRemoteDataSourceImpl extends AskDoubtRemoteDataSource {
       required Map<String, dynamic> body}) async {
     var response = await apiService.post(
         data: body,
-        endPoint: 'https://ehsanschool.onrender.com/api/addComplaint',
+        endPoint: 'addComplaint',
         headers: headers);
     AskDoubtEntity entity;
     entity = AskDoubtModel.fromJson(response);

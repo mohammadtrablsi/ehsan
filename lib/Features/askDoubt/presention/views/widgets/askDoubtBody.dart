@@ -5,6 +5,7 @@ import 'package:ehsan/core/utils/classes/appBackgroundImage.dart';
 import 'package:ehsan/core/utils/classes/appButton.dart';
 import 'package:ehsan/core/utils/classes/appHeader.dart';
 import 'package:ehsan/core/utils/functions/appToast.dart';
+import 'package:ehsan/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -78,10 +79,7 @@ class AskDoubtBody extends StatelessWidget {
                             paddingVertical: 1.3.h,
                             text: "send",
                             onTap: () {
-                              makeAskDoubtCubit.makeAskDoubt({
-                                "Authorization":
-                                    "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWQ0NDIwMDcwNDJjZTk3MmMwYTBkMCIsImlhdCI6MTcyMjg1NDI4M30.qbPLJ2MoZrHd0b2-_5Ndq8hDkHbu16PlMH1ByYTheBM"
-                              }, {
+                              makeAskDoubtCubit.makeAskDoubt({"Authorization":"Bearer $token"}, {
                                 "type": "اقتراح",
                                 "description": "وصف الاقتراح"
                               });

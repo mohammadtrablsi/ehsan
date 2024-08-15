@@ -23,7 +23,7 @@ class GradesRemoteDataSourceImpl extends GradesRemoteDataSource {
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
     var response = await apiService.get(
       headers: header,
-        data: body, endPoint: 'https://ehsanschool.onrender.com/api/showStudentMarks');
+        data: body, endPoint: 'showStudentMarks');
     GradesEntity entity;
     entity = GradesModel.fromJson(response);
     // SharedPreferences prefs = await SharedPreferences.getInstance();

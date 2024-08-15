@@ -1,22 +1,24 @@
-import 'package:ehsan/Features/home/presention/views/widgets/metricesInHomePage.dart';
 import 'package:ehsan/Features/metrices/presention/manger/viewMetricesCubit.dart';
+import 'package:ehsan/Features/metrices/presention/manger/viewMetricesForSubjectCubit.dart';
+import 'package:ehsan/Features/metrices/presention/manger/whichCubitInMetricesCubit.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/animatedSubjectsInMetrices.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/lineMetrices.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/metricesInMetricesPage.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/shimmerLineMetrices.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/shimmerMetricesInMetricesPage.dart';
-import 'package:ehsan/Features/metrices/presention/views/widgets/subjectsInMetrices.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/classes/appHeader.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
 class MetricesBody extends StatelessWidget {
   const MetricesBody({super.key});
+
   @override
   Widget build(BuildContext context) {
+    final viewMetricesForSubjectCubit =
+        context.read<ViewMetricesForSubjectCubit>();
     return Scaffold(
       body: AppHeader(
           text: 'charts',
@@ -31,31 +33,102 @@ class MetricesBody extends StatelessWidget {
                   SizedBox(
                     height: 1.5.h,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      BlocBuilder<ViewMetricesCubit, ViewMetricesState>(
-                        builder: (context, state) {
-                          if (state is ViewMetricesSuccess) {
-                            return MetricesInMetricesPage(
-                              data: state.entity,
-                            );
-                          } else {
-                            return const ShimmerMetricesInMetricesPage();
-                          }
-                        },
-                      ),
-                    ],
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     viewMetricesForSubjectCubit.whoIsPressed==0?BlocBuilder<ViewMetricesCubit, ViewMetricesState>(
+                  //       builder: (context, state) {
+                  //         if (state is ViewMetricesSuccess) {
+                  //           return MetricesInMetricesPage(
+                  //             data: state.entity,
+                  //           );
+                  //         } else {
+                  //           return const ShimmerMetricesInMetricesPage();
+                  //         }
+                  //       },
+                  //     ):BlocBuilder<ViewMetricesForSubjectCubit, ViewMetricesforSubjectState>(
+                  //       builder: (context, state) {
+                  //         if (state is ViewMetricesforSubjectSuccess) {
+                  //           return MetricesInMetricesPage(
+                  //             data: state.entity,
+                  //           );
+                  //         } else {
+                  //           return const ShimmerMetricesInMetricesPage();
+                  //         }
+                  //       },
+                  //     ),
+                  //   ],
+                  // ),
+                  BlocBuilder<WhichCubitInMetricesCubit,
+                      WhichCubitInMetricesState>(
+                    builder: (context, state) {
+                      if (state is CubitForMetricesForSubject) {
+                        return BlocBuilder<ViewMetricesForSubjectCubit,
+                            ViewMetricesforSubjectState>(
+                          builder: (context, state) {
+                            if (state is ViewMetricesforSubjectSuccess) {
+                              return MetricesInMetricesPage(
+                                dataForSubject: state.entity,
+                                forSubject:true
+                              );
+                            } else {
+                              return const ShimmerMetricesInMetricesPage();
+                            }
+                          },
+                        );
+                      } else {
+                        return BlocBuilder<ViewMetricesCubit,
+                            ViewMetricesState>(
+                          builder: (context, state) {
+                            if (state is ViewMetricesSuccess) {
+                              return MetricesInMetricesPage(
+                                data: state.entity,
+                                forSubject:false
+                              );
+                            } else {
+                              return const ShimmerMetricesInMetricesPage();
+                            }
+                          },
+                        );
+                      }
+                    },
                   ),
                   SizedBox(
                     height: 2.h,
                   ),
-                  BlocBuilder<ViewMetricesCubit, ViewMetricesState>(
+                  BlocBuilder<WhichCubitInMetricesCubit,
+                      WhichCubitInMetricesState>(
                     builder: (context, state) {
-                      if (state is ViewMetricesSuccess) {
-                        return LineMetrices(data: state.entity);
+                      if (state is CubitForMetricesForSubject) {
+                        return BlocBuilder<ViewMetricesForSubjectCubit,
+                            ViewMetricesforSubjectState>(
+                          builder: (context, state) {
+                            if (state is ViewMetricesforSubjectSuccess) {
+                              // print(
+                              //     "llllllllllllllllllll${state.entity.data!.length}");
+                              return LineMetrices(
+                                dataForSubject: state.entity,
+                                forSubject: true,
+                              );
+                            } else {
+                              return const ShimmerLineMetrices();
+                            }
+                          },
+                        );
                       } else {
-                        return const ShimmerLineMetrices();
+                        return BlocBuilder<ViewMetricesCubit,
+                            ViewMetricesState>(
+                          builder: (context, state) {
+                            if (state is ViewMetricesSuccess) {
+                              return LineMetrices(
+                                data: state.entity,
+                                forSubject: false,
+                              );
+                            } else {
+                              return const ShimmerLineMetrices();
+                            }
+                          },
+                        );
                       }
                     },
                   ),

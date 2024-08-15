@@ -1,4 +1,6 @@
+import 'package:ehsan/Features/metrices/data/models/metricesForSubjectModel.dart';
 import 'package:ehsan/Features/metrices/domain/entites/metricesEntity.dart';
+import 'package:ehsan/Features/metrices/domain/entites/metricesForSubjectEntity.dart';
 import 'package:ehsan/Features/metrices/presention/views/metrices.dart';
 import 'package:ehsan/constants.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -6,11 +8,24 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class LineMetrices extends StatelessWidget {
-  const LineMetrices({super.key, required this.data});
-  final MetricesEntity data;
+  const LineMetrices(
+      {super.key, this.data, required this.forSubject, this.dataForSubject});
+  final MetricesEntity? data;
+  final MetricesForSubjectEntity? dataForSubject;
+  final bool forSubject;
+
+  List<FlSpot> createSpots(List<Data> data) {
+    List<FlSpot> spots = [];
+    for (int i = 0; i < data.length; i++) {
+      spots.add(FlSpot(i.toDouble(),
+          (data[i].mark!.toDouble() / data[i].fullMark!.toDouble()) * 100));
+    }
+    return spots;
+  }
 
   @override
   Widget build(BuildContext context) {
+    print(data);
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
@@ -85,20 +100,35 @@ class LineMetrices extends StatelessWidget {
                   border: Border.all(color: const Color(0xff37434d)),
                 ),
                 minX: 0,
-                maxX: 2,
+                maxX: forSubject
+                    ? (dataForSubject!.data!.length - 1).toDouble()
+                    : 2,
                 minY: 0,
                 maxY: 100,
                 lineBarsData: [
                   LineChartBarData(
-                    spots: [
-                      FlSpot(0.0, data.averageExam!.toDouble()),
-                      FlSpot(1.0, data.averageOral!.toDouble()),
-                      FlSpot(2.0, data.averageTest!.toDouble()),
-                      // FlSpot(3, 200),
-                      // FlSpot(4, 500),
-                      // FlSpot(5, 250),
-                      // FlSpot(6, 400),
-                    ],
+                    spots: forSubject
+                        ? createSpots(dataForSubject!.data!)
+                        : [
+                            // forSubject
+                            //     ? FlSpot(0.0, 0.0)
+                            // :
+                            FlSpot(0.0, data!.averageExam!.toDouble()),
+                            // forSubject
+                            //     ?
+                            // FlSpot(0.0, 0.0)
+                            // :
+                            FlSpot(1.0, data!.averageOral!.toDouble()),
+                            // forSubject
+                            //     ? FlSpot(0.0, 0.0)
+                            // :
+                            FlSpot(2.0, data!.averageTest!.toDouble()),
+
+                            // FlSpot(3, 200),
+                            // FlSpot(4, 500),
+                            // FlSpot(5, 250),
+                            // FlSpot(6, 400),
+                          ],
                     isCurved: true,
                     curveSmoothness:
                         0.5, // Increase smoothness for more curvature

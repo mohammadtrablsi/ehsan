@@ -8,7 +8,8 @@ class LoginModel extends LoginEntity {
   LoginModel({this.data, this.token, this.message})
       : super(
           message: message,
-          token: token
+          token: token,
+          personalDetail: data,
         );
 
   factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(

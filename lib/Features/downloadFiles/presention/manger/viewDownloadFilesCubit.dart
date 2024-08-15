@@ -10,6 +10,7 @@ class ViewDownlaodFilesCubit extends Cubit<ViewDownlaodFilesState> {
       : super(ViewDownlaodFilesInitial());
   bool isPassword = true;
 
+
   final ViewDownloadFilesUseCase viewDownlaodFilesUseCase;
 
   Future<void> viewDownlaodFiles(
@@ -24,4 +25,6 @@ class ViewDownlaodFilesCubit extends Cubit<ViewDownlaodFilesState> {
       // print("hhhhhhhhhhhhhhhhhhhhh$entity");
     });
   }
+
+
 }

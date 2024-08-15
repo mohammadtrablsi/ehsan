@@ -22,7 +22,7 @@ class ExamScheduleRemoteDataSourceImpl extends ExamScheduleRemoteDataSource {
         headers: header,
         data: body,
         endPoint:
-            'https://ehsanschool.onrender.com/api/showStudentExamSchedule');
+            'showStudentExamSchedule');
 
     // ExamScheduleEntity entity;
     // entity = ExamScheduleModel.fromJson(response);

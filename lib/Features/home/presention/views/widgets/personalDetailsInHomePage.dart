@@ -1,5 +1,6 @@
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/app_router.dart';
+import 'package:ehsan/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -21,7 +22,7 @@ class PersonalDetailsInHomePage extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Hi Akshay', style: style1),
+            Text('Hi $name', style: style1),
           ],
         ),
         SizedBox(
@@ -29,7 +30,7 @@ class PersonalDetailsInHomePage extends StatelessWidget {
         ),
         Row(
           children: [
-            Text('Class XI-B  |  Roll no: 04', style: style2),
+            Text('Grade $grade  |  Class $section', style: style2),
             const Spacer(),
             Padding(
               padding: EdgeInsetsDirectional.only(end: 6.w),

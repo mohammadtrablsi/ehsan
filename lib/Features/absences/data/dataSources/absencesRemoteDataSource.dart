@@ -22,7 +22,7 @@ class AbsencseRemoteDataSourceImpl extends AbsencseRemoteDataSource {
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
     var response = await apiService.get(
       headers: header,
-        data: body, endPoint: 'https://ehsanschool.onrender.com/api/showStudentAbsence');
+        data: body, endPoint: 'showStudentAbsence');
     AbsencseEntity entity;
     entity = AbsencseModel.fromJson(response);
     // SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -3,6 +3,7 @@ import 'package:ehsan/Features/Infringement/domain/useCases/viewInfringementUseC
 import 'package:ehsan/Features/Infringement/presention/manger/viewInfringementCubit.dart';
 import 'package:ehsan/Features/infringement/presention/views/widgets/infringementBody.dart';
 import 'package:ehsan/core/utils/functions/setup_service_locator.dart';
+import 'package:ehsan/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,10 +16,7 @@ class Infringement extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context) {
         return ViewInfringementCubit()
-          ..viewInfringement({
-            "Authorization":
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YWE4ODY2MmQzNmJmNWU5YzMxMDkxNSIsImlhdCI6MTcyMjYwMTgwOH0.yMjAxyzIYivBqOMiicqL2-oN4T8qaizS3xtf7gCuSog"
-          }, {});
+          ..viewInfringement({"Authorization":"Bearer $token"}, {});
       },
       child: const InfringementBody(),
     );

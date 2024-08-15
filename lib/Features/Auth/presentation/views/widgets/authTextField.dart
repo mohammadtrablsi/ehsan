@@ -28,6 +28,8 @@ class AuthTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: () => print("prapo"),
+      onFieldSubmitted: (String) => print("beooooo"),
       keyboardType: TextInputType.text,
       maxLines: maxLines,
       minLines: minLines,

@@ -23,7 +23,7 @@ class WeeklyScheduleRemoteDataSourceImpl extends WeeklyScheduleRemoteDataSource 
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
     var response = await apiService.get(
       headers: header,
-        data: body, endPoint: 'https://ehsanschool.onrender.com/api/showStudentWeekSchedule');
+        data: body, endPoint: 'showStudentWeekSchedule');
     WeeklyScheduleEntity entity;
     entity = WeeklyScheduleModel.fromJson(response);
     // SharedPreferences prefs = await SharedPreferences.getInstance();

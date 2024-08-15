@@ -25,7 +25,7 @@ class InfringementRemoteDataSourceImpl extends InfringementRemoteDataSource {
         headers: header,
         data: body,
         endPoint:
-            'https://ehsanschool.onrender.com/api/showStudentViolation');
+            'showStudentViolation');
 
     // InfringementEntity entity;
     // entity = InfringementModel.fromJson(response);

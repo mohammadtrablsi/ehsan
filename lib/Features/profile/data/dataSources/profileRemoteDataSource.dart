@@ -22,7 +22,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
     var response = await apiService.get(
         headers: header,
         data: body,
-        endPoint: 'https://ehsanschool.onrender.com/api/showStudentProfile');
+        endPoint: 'showStudentProfile');
     ProfileEntity entity;
     entity = ProfileModel.fromJson(response);
     // SharedPreferences prefs = await SharedPreferences.getInstance();

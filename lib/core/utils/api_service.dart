@@ -3,14 +3,15 @@ import 'package:dio/dio.dart';
 class ApiService {
   final Dio _dio;
 
-
   ApiService(this._dio);
+
+  String baseUrl = "https://ehsanschool.onrender.com/api/";
 
   // Future<Map<String, dynamic>> get({required String endPoint}) async {
   //   var response = await _dio.get('$endPoint');
   //   return response.data;
   // }
-   Future<Map<String, dynamic>> get({
+  Future<Map<String, dynamic>> get({
     required String endPoint,
     required Map<String, dynamic> data,
     required Map<String, dynamic> headers,
@@ -22,7 +23,7 @@ class ApiService {
       // var headers = {'Content-Type': 'application/json'};
       // Perform the PUT request
       response = await _dio.request(
-        endPoint,
+        "$baseUrl$endPoint",
         data: data,
         options: Options(
           method: 'Get',
@@ -43,7 +44,7 @@ class ApiService {
     return response.data;
   }
 
-   Future<Map<String, dynamic>> post({
+  Future<Map<String, dynamic>> post({
     required String endPoint,
     required Map<String, dynamic> data,
     required Map<String, dynamic> headers,
@@ -55,7 +56,7 @@ class ApiService {
       // var headers = {'Content-Type': 'application/json'};
       // Perform the PUT request
       response = await _dio.request(
-        endPoint,
+        "$baseUrl$endPoint",
         data: data,
         options: Options(
           method: 'Post',
@@ -94,7 +95,7 @@ class ApiService {
       var headers = {'Content-Type': 'application/json'};
       // Perform the PUT request
       response = await _dio.request(
-        endPoint,
+        "$baseUrl$endPoint",
         data: data,
         options: Options(
           method: 'PUT',
@@ -124,7 +125,7 @@ class ApiService {
       var headers = {'Content-Type': 'application/json'};
       // Perform the PUT request
       response = await _dio.request(
-        endPoint,
+        "$baseUrl$endPoint",
         options: Options(
           method: 'DELETE',
           headers: headers,

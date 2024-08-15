@@ -1,5 +1,6 @@
 import 'package:ehsan/Features/home/domain/entites/homeEntity.dart';
 import 'package:ehsan/Features/metrices/domain/entites/metricesEntity.dart';
+import 'package:ehsan/Features/metrices/domain/entites/metricesForSubjectEntity.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
 import 'package:ehsan/core/utils/functions/getJustFirstNumberAfterCama.dart';
@@ -8,9 +9,15 @@ import 'package:sizer/sizer.dart';
 
 class MetricesItemInMetricesPage extends StatefulWidget {
   const MetricesItemInMetricesPage(
-      {super.key, required this.data, required this.index});
-  final MetricesEntity data;
+      {super.key,
+      required this.data,
+      required this.index,
+      this.dataForSubject,
+      required this.forSubject});
+  final MetricesEntity? data;
+  final MetricesForSubjectEntity? dataForSubject;
   final int index;
+  final bool forSubject;
 
   @override
   State<MetricesItemInMetricesPage> createState() =>
@@ -62,11 +69,13 @@ class _MetricesItemInMetricesPageState
               ),
               Text(
                 widget.index == 0
-                    ? getJustFirstNumberAfterCama(
-                            widget.data.fullAverage!.toDouble())
+                    ? getJustFirstNumberAfterCama(widget.forSubject
+                            ? widget.dataForSubject!.average!.toDouble()
+                            : widget.data!.fullAverage!.toDouble())
                         .toString()
-                    : getJustFirstNumberAfterCama(
-                            widget.data.fullAverage!.toDouble())
+                    : getJustFirstNumberAfterCama(widget.forSubject
+                            ? widget.dataForSubject!.average!.toDouble()
+                            : widget.data!.fullAverage!.toDouble())
                         .toString(), //"80.39 %"
                 style: textStyle1,
               ),

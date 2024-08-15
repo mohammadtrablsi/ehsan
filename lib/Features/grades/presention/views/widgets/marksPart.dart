@@ -30,7 +30,7 @@ class MarksPart extends StatelessWidget {
                   SizedBox(
                     height: 1.h,
                   ),
-                  MarksItem(data:data,indexo:index),
+                  MarksItem(data: data, indexo: index),
                 ],
               ),
             ),
@@ -43,12 +43,12 @@ class MarksPart extends StatelessWidget {
   Widget _textFormarks(int index) {
     return Text(
       index == 0
-          ? "exam"
+          ? "امتحان"
           : index == 1
-              ? "oral"
-              : "test",
+              ? "شفهي"
+              : "مذاكرة",
       style: TextStyle(
-          fontSize: 10.sp, fontWeight: FontWeight.w600, color: kPrimaryColor),
+          fontSize: 11.5.sp, fontWeight: FontWeight.w600, color: kPrimaryColor),
     );
   }
 }

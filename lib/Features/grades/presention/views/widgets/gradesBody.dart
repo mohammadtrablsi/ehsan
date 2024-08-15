@@ -6,6 +6,7 @@ import 'package:ehsan/Features/grades/presention/views/widgets/shimmerMaskPart.d
 import 'package:ehsan/Features/grades/presention/views/widgets/shimmerPercentInGrades.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/classes/appBackgroundImage.dart';
+import 'package:ehsan/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -39,16 +40,19 @@ class GradesBody extends StatelessWidget {
               Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                 const ImageInGrades(),
-                  Positioned(bottom: 6.h, child:  BlocBuilder<ViewGradesCubit, ViewGradesState>(
-                    builder: (context, state) {
-                      if (state is ViewGradesSuccess) {
-                        return PercentInGrades(data:state.entity);
-                      } else {
-                        return const  ShimmerPercentInGrades();
-                      }
-                    },
-                  ),),
+                  const ImageInGrades(),
+                  Positioned(
+                    bottom: 6.h,
+                    child: BlocBuilder<ViewGradesCubit, ViewGradesState>(
+                      builder: (context, state) {
+                        if (state is ViewGradesSuccess) {
+                          return PercentInGrades(data: state.entity);
+                        } else {
+                          return const ShimmerPercentInGrades();
+                        }
+                      },
+                    ),
+                  ),
                 ],
               ),
               Flexible(
@@ -65,14 +69,14 @@ class GradesBody extends StatelessWidget {
                         height: 1.h,
                       ),
                       BlocBuilder<ViewGradesCubit, ViewGradesState>(
-                    builder: (context, state) {
-                      if (state is ViewGradesSuccess) {
-                        return MarksPart(data:state.entity);
-                      } else {
-                        return const ShimmerMarksPart();
-                      }
-                    },
-                  ),
+                        builder: (context, state) {
+                          if (state is ViewGradesSuccess) {
+                            return MarksPart(data: state.entity);
+                          } else {
+                            return const ShimmerMarksPart();
+                          }
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -88,11 +92,11 @@ class GradesBody extends StatelessWidget {
     return Column(
       children: [
         Text(
-          "احسنت",
-          style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
+          "ثابر",
+          style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
         ),
         Text(
-          "فراس ستوت!!",
+          "$name!!",
           style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w900),
         ),
       ],

@@ -34,13 +34,13 @@ class PercentInGrades extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          getJustFirstNumberAfterCama(data.fullAverage!).toString(),
-          style: TextStyle(fontSize: 26.sp, fontWeight: FontWeight.w900),
+          "${getJustFirstNumberAfterCama(data.fullAverage!).toString()}%",
+          style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900),
         ),
         Container(
           transform: Matrix4.translationValues(0, -1.h, 0.0),
           child: Text(
-            "Grad A",
+            "المعدل",
             style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w900),
           ),
         ),

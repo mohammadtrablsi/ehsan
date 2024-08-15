@@ -24,6 +24,24 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
+    List data = [
+      {
+        'image': AssetsData.onBoarding1Image,
+        'text': "Welcome to Ehsan we’re \n  excited to have you onboard",
+        'heightOfImage': 36
+      },
+      {
+        'image': AssetsData.onBoarding2Image,
+        'text':
+            "here you can know every thing \n about studing level of your children",
+        'heightOfImage': 32
+      },
+      {
+        'image': AssetsData.onBoarding3Image,
+        'text': "now lets get you started to begin \n your journey with us",
+        'heightOfImage': 36
+      }
+    ];
     return Scaffold(
         backgroundColor: Colors.white,
         body: Column(
@@ -35,26 +53,14 @@ class _OnBoardingState extends State<OnBoarding> {
                   setIndex(value);
                 }),
                 controller: pageController,
-                children: const [
-                  PageInOnBoarding(
-                    image: AssetsData.onBoarding1Image,
-                    text:
-                        "Welcome to Pharmacy we’re \n  excited to have you onboard",
-                    heightOfImage: 36,
+                children: List.generate(
+                  3,
+                  (index) => PageInOnBoarding(
+                    image: data[index]['image'],
+                    text: data[index]['text'],
+                    heightOfImage: data[index]['heightOfImage'],
                   ),
-                  PageInOnBoarding(
-                    image: AssetsData.onBoarding2Image,
-                    text:
-                        "here you can search, buy ,and \n get all kinds of medicines locally",
-                    heightOfImage: 32,
-                  ),
-                  PageInOnBoarding(
-                    image: AssetsData.onBoarding3Image,
-                    text:
-                        "now lets get you started to begin \n your journey with us",
-                    heightOfImage: 36,
-                  ),
-                ],
+                ),
               ),
             ),
             Column(
@@ -71,11 +77,12 @@ class _OnBoardingState extends State<OnBoarding> {
                 OnBoardingButtonsPart(
                   text: 'Continue',
                   transport: () {
-                    AppRouter.router.push(AppRouter.kLoginRoute);
+                    transport();
                   },
                   index: indexPage,
-                  goToRegister: () => print("ii"),
-                  skip: () => print("ii"),
+                  goToRegister: () =>
+                      AppRouter.router.push(AppRouter.kLoginRoute),
+                  skip: () => AppRouter.router.push(AppRouter.kLoginRoute),
                 ),
                 SizedBox(
                   height: 5.h,
@@ -100,6 +107,13 @@ class _OnBoardingState extends State<OnBoarding> {
     });
   }
 
+  skip() {
+    setState(() {
+      indexPage = 2;
+      pageController.animateToPage(indexPage,
+          duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
+    });
+  }
   // skip() {
   //   Get.toNamed(AppRoute.login);
   // }

@@ -24,7 +24,7 @@ class EventsRemoteDataSourceImpl extends EventsRemoteDataSource {
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
     var response = await apiService.get(
       headers: header,
-        data: body, endPoint: 'https://ehsanschool.onrender.com/api/showEvents');
+        data: body, endPoint: 'showEvents');
     // EventsEntity entity;
     // entity = EventsModel.fromJson(response);
     // SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -40,7 +40,7 @@ class EventsRemoteDataSourceImpl extends EventsRemoteDataSource {
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
     var response = await apiService.post(
       headers: header,
-        data: body, endPoint: 'https://ehsanschool.onrender.com/api/registerEvent');
+        data: body, endPoint: 'registerEvent');
     EventsEntity entity;
     entity = EventsModel.fromJson(response);
     // SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -54,7 +54,7 @@ class EventsRemoteDataSourceImpl extends EventsRemoteDataSource {
       {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
     var response = await apiService.post(
       headers: header,
-        data: body, endPoint: 'https://ehsanschool.onrender.com/api/unRegisterEvent');
+        data: body, endPoint: 'unRegisterEvent');
     EventsEntity entity;
     entity = EventsModel.fromJson(response);
     // SharedPreferences prefs = await SharedPreferences.getInstance();

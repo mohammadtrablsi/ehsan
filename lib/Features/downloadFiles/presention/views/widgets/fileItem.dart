@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class FileItem extends StatelessWidget {
-  const FileItem({super.key,required this.data});
+  const FileItem({super.key, required this.data});
   final DownloadFilesEntity data;
+  
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +35,12 @@ class FileItem extends StatelessWidget {
           ),
           AppButton(
               text: "تنزيل الملف",
-              isGradient: true,
+              isGradient: false,
               paddingVertical: 1.h,
               onTap: () {
                 print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww${data.file}");
-                AppRouter.router.push("${AppRouter.kPdfViewRoute}?file=${data.file}");
+                AppRouter.router
+                    .push("${AppRouter.kPdfViewRoute}?file=${data.file}");
               }),
           SizedBox(
             height: 1.h,
@@ -75,8 +77,8 @@ class FileItem extends StatelessWidget {
         Text(
           formateDate(data.date!),
           style: TextStyle(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w600,
+            fontSize: 10.sp,
+            fontWeight: FontWeight.w500,
           ),
         ),
         const Spacer(),

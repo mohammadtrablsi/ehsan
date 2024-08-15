@@ -75,7 +75,7 @@ class MarksItem extends StatelessWidget {
                   ? BorderRadiusDirectional.only(
                       topEnd: Radius.circular(10.sp),
                     )
-                  : index == 5
+                  : index == entity.length - 1
                       ? BorderRadiusDirectional.only(
                           bottomEnd: Radius.circular(10.sp),
                         )
