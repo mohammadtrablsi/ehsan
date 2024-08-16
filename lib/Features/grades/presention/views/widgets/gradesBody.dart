@@ -96,7 +96,7 @@ class GradesBody extends StatelessWidget {
           style: TextStyle(fontSize: 13.sp, fontWeight: FontWeight.bold),
         ),
         Text(
-          "$name!!",
+          "${prefs!.getString('name')}!!",
           style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w900),
         ),
       ],

@@ -1,8 +1,10 @@
 import 'package:ehsan/Features/metrices/data/repos/metricesRepoImp.dart';
 import 'package:ehsan/Features/metrices/domain/useCases/viewMetricesForSubjectUseCase.dart';
 import 'package:ehsan/Features/metrices/domain/useCases/viewMetricesUseCase.dart';
+import 'package:ehsan/Features/metrices/domain/useCases/viewSubjectsUseCase.dart';
 import 'package:ehsan/Features/metrices/presention/manger/viewMetricesCubit.dart';
 import 'package:ehsan/Features/metrices/presention/manger/viewMetricesForSubjectCubit.dart';
+import 'package:ehsan/Features/metrices/presention/manger/viewSubjectsCubit.dart';
 import 'package:ehsan/Features/metrices/presention/manger/whichCubitInMetricesCubit.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/metricesBody.dart';
 import 'package:ehsan/core/utils/functions/setup_service_locator.dart';
@@ -23,7 +25,8 @@ class Metrices extends StatelessWidget {
               ViewMetricesUseCase(
                 getIt.get<MetricesRepoImpl>(),
               ),
-            )..viewMetrices({"Authorization":"Bearer $token"}, {});
+            )..viewMetrices(
+                {"Authorization": "Bearer ${prefs!.getString('token')}"}, {});
           },
         ),
         BlocProvider(
@@ -40,6 +43,16 @@ class Metrices extends StatelessWidget {
             return WhichCubitInMetricesCubit(2);
           },
         ),
+        BlocProvider(
+          create: (BuildContext context) {
+            return ViewSubjectsCubit(
+              ViewSubjectsUseCase(
+                getIt.get<MetricesRepoImpl>(),
+              ),
+            )..viewSubjects(
+                {"Authorization": "Bearer ${prefs!.getString('token')}"}, {});
+          },
+        )
       ],
       child: const MetricesBody(),
     );

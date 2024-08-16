@@ -13,10 +13,11 @@ import 'package:sqflite/sqflite.dart';
 
 import 'core/utils/functions/setup_service_locator.dart';
 
-String token = "";
-String name = "";
-String grade = "";
-String section = "";
+// String token = "";
+// String name = "";
+// String grade = "";
+// String section = "";
+SharedPreferences? prefs;
 void main() async {
   // await Hive.initFlutter();
   // Hive.registerAdapter(LoginEntityAdapter());
@@ -25,13 +26,13 @@ void main() async {
   // var box = await Hive.openBox<Data>(kLoginBox);
   WidgetsFlutterBinding.ensureInitialized();
   await initDatabase();
-  SharedPreferences prefs = await SharedPreferences.getInstance();
-  token = await prefs.getString('token')!;
-  name = await prefs.getString('name')!;
-  grade = await prefs.getString('grade')!;
-  section = await prefs.getString('section')!;
+  prefs = await SharedPreferences.getInstance();
+  // token = await prefs.getString('token')!;
+  // name = await prefs.getString('name')!;
+  // grade = await prefs.getString('grade')!;
+  // section = await prefs.getString('section')!;
   // prefs.clear();
-  // print(await prefs.getString('token'));
+  // print(await prefs!.getString('token'));
   //  await Hive.openBox<LoginEntity>(kLoginBox);
   // for (var key in box.keys) {
   //   final value = box.get(key);

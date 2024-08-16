@@ -1,6 +1,6 @@
 import 'package:ehsan/Features/metrices/domain/entites/metricesEntity.dart';
 
-class MetricesModel  extends MetricesEntity{
+class MetricesModel extends MetricesEntity {
   bool? status;
   num? averageTest;
   num? averageOral;
@@ -9,6 +9,12 @@ class MetricesModel  extends MetricesEntity{
   List<Exam>? exam;
   List<Oral>? oral;
   List<Test>? test;
+  num? fullMarkTest;
+  num? markTest;
+  num? fullMarkOral;
+  num? markOral;
+  num? fullMarkExam;
+  num? markExam;
 
   MetricesModel(
       {this.status,
@@ -18,46 +24,43 @@ class MetricesModel  extends MetricesEntity{
       this.fullAverage,
       this.exam,
       this.oral,
-      this.test}): super(
+      this.test,
+      this.fullMarkTest,
+      this.markTest,
+      this.fullMarkOral,
+      this.markOral,
+      this.fullMarkExam,
+      this.markExam})
+      : super(
             averageTest: averageTest,
             averageOral: averageOral,
-            averageExam: averageExam,fullAverage: fullAverage);
+            averageExam: averageExam,
+            fullAverage: fullAverage,
+            totalMarks: (markTest! + markOral! + markExam!),
+            myTotalMarks: (fullMarkTest! + fullMarkOral! + fullMarkExam!));
 
   factory MetricesModel.fromJson(Map<String, dynamic> json) {
-    List<Exam>? examList;
-    List<Oral>? oralList;
-    List<Test>? testList;
-
-    if (json['exam'] != null) {
-      examList = [];
-      json['exam'].forEach((v) {
-        examList!.add(Exam.fromJson(v));
-      });
-    }
-
-    if (json['oral'] != null) {
-      oralList = [];
-      json['oral'].forEach((v) {
-        oralList!.add(Oral.fromJson(v));
-      });
-    }
-
-    if (json['test'] != null) {
-      testList = [];
-      json['test'].forEach((v) {
-        testList!.add(Test.fromJson(v));
-      });
-    }
-
     return MetricesModel(
       status: json['status'],
       averageTest: json['average_test'],
       averageOral: json['average_oral'],
       averageExam: json['average_exam'],
       fullAverage: json['full_average'],
-      exam: examList,
-      oral: oralList,
-      test: testList,
+      exam: json['exam'] != null
+          ? (json['exam'] as List).map((v) => Exam.fromJson(v)).toList()
+          : null,
+      oral: json['oral'] != null
+          ? (json['oral'] as List).map((v) => Oral.fromJson(v)).toList()
+          : null,
+      test: json['test'] != null
+          ? (json['test'] as List).map((v) => Test.fromJson(v)).toList()
+          : null,
+      fullMarkTest: json['full_mark_test'],
+      markTest: json['mark_test'],
+      fullMarkOral: json['full_mark_oral'],
+      markOral: json['mark_oral'],
+      fullMarkExam: json['full_mark_exam'],
+      markExam: json['mark_exam'],
     );
   }
 
@@ -77,6 +80,12 @@ class MetricesModel  extends MetricesEntity{
     if (this.test != null) {
       data['test'] = this.test!.map((v) => v.toJson()).toList();
     }
+    data['full_mark_test'] = this.fullMarkTest;
+    data['mark_test'] = this.markTest;
+    data['full_mark_oral'] = this.fullMarkOral;
+    data['mark_oral'] = this.markOral;
+    data['full_mark_exam'] = this.fullMarkExam;
+    data['mark_exam'] = this.markExam;
     return data;
   }
 }
@@ -91,7 +100,6 @@ class Exam {
   String? createdAt;
   String? updatedAt;
   num? iV;
-  num? date;
 
   Exam(
       {this.sId,
@@ -102,8 +110,7 @@ class Exam {
       this.type,
       this.createdAt,
       this.updatedAt,
-      this.iV,
-      this.date});
+      this.iV});
 
   Exam.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -117,7 +124,6 @@ class Exam {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
-    date = json['date'];
   }
 
   Map<String, dynamic> toJson() {
@@ -133,7 +139,6 @@ class Exam {
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
-    data['date'] = this.date;
     return data;
   }
 }

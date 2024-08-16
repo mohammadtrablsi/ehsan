@@ -1,9 +1,11 @@
+import 'package:ehsan/Features/metrices/domain/entites/subjectsEntity.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/subjectsInMetrices.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class AnimatedSubjectsInMetrices extends StatefulWidget {
-  const AnimatedSubjectsInMetrices({super.key});
+  const AnimatedSubjectsInMetrices({super.key, required this.data});
+  final SubjectsEntity data;
 
   @override
   State<AnimatedSubjectsInMetrices> createState() =>
@@ -36,7 +38,7 @@ class _AnimatedSubjectsInMetricesState
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 300),
             child: isPressed
-                ? SizedBox(width: 85.w, child: const SubjectsInMetrices())
+                ? SizedBox(width: 85.w, child: SubjectsInMetrices(data:widget.data))
                 : Container(),
           ),
         ),

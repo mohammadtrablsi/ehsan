@@ -1,40 +1,27 @@
 import 'package:ehsan/Features/absences/domain/entites/absencesEntity.dart';
 
-class AbsencseModel extends AbsencseEntity {
+class AbsencseModel extends AbsencseEntity{
   bool? status;
   List<Delay>? delay;
   List<Absence>? absence;
 
-  AbsencseModel({this.status, this.delay, this.absence}) 
-      : super(delays: delay, absences: absence);
+  AbsencseModel({this.status, this.delay, this.absence}): super(delays: delay, absences: absence);
 
-  factory AbsencseModel.fromJson(Map<String, dynamic> json) {
-    // Initialize the lists if they exist in the JSON
-    List<Delay>? delaysList;
-    if (json['delay'] != null) {
-      delaysList = <Delay>[];
-      json['delay'].forEach((v) {
-        delaysList!.add(Delay.fromJson(v));
-      });
-    }
-
-    List<Absence>? absencesList;
-    if (json['absence'] != null) {
-      absencesList = <Absence>[];
-      json['absence'].forEach((v) {
-        absencesList!.add(Absence.fromJson(v));
-      });
-    }
-
+ factory AbsencseModel.fromJson(Map<String, dynamic> json) {
     return AbsencseModel(
       status: json['status'],
-      delay: delaysList,
-      absence: absencesList,
+      delay: json['delay'] != null 
+          ? (json['delay'] as List).map((v) => Delay.fromJson(v)).toList() 
+          : [],
+      absence: json['absence'] != null 
+          ? (json['absence'] as List).map((v) => Absence.fromJson(v)).toList() 
+          : [],
     );
   }
 
+
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
     if (this.delay != null) {
       data['delay'] = this.delay!.map((v) => v.toJson()).toList();
@@ -48,15 +35,26 @@ class AbsencseModel extends AbsencseEntity {
 
 class Delay {
   String? sId;
+  String? delayTime;
+  String? date;
   String? studentId;
   String? createdAt;
   String? updatedAt;
   int? iV;
 
-  Delay({this.sId, this.studentId, this.createdAt, this.updatedAt, this.iV});
+  Delay(
+      {this.sId,
+      this.delayTime,
+      this.date,
+      this.studentId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   Delay.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+    delayTime = json['delay_time'];
+    date = json['date'];
     studentId = json['student_id'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -64,8 +62,10 @@ class Delay {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
+    data['delay_time'] = this.delayTime;
+    data['date'] = this.date;
     data['student_id'] = this.studentId;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
@@ -76,15 +76,23 @@ class Delay {
 
 class Absence {
   String? sId;
+  String? date;
   String? studentId;
   String? createdAt;
   String? updatedAt;
   int? iV;
 
-  Absence({this.sId, this.studentId, this.createdAt, this.updatedAt, this.iV});
+  Absence(
+      {this.sId,
+      this.date,
+      this.studentId,
+      this.createdAt,
+      this.updatedAt,
+      this.iV});
 
   Absence.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+    date = json['date'];
     studentId = json['student_id'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
@@ -92,8 +100,9 @@ class Absence {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
+    data['date'] = this.date;
     data['student_id'] = this.studentId;
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;

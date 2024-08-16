@@ -80,7 +80,7 @@ class InfringementItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          formateDate(data.date),
+          data.date, //formateDate(data.date)
           style: TextStyle(
               fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.grey),
         ),

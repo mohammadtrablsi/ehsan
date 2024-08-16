@@ -16,7 +16,7 @@ class Infringement extends StatelessWidget {
     return BlocProvider(
       create: (BuildContext context) {
         return ViewInfringementCubit()
-          ..viewInfringement({"Authorization":"Bearer $token"}, {});
+          ..viewInfringement({"Authorization":"Bearer ${prefs!.getString('token')}"}, {});
       },
       child: const InfringementBody(),
     );

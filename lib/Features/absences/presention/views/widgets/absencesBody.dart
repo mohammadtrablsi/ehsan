@@ -38,13 +38,13 @@ class AbsencesBody extends StatelessWidget {
                               i < state.entities.absences!.length;
                               i++) {
                             absences.add(formateDateForCalender(
-                                state.entities.absences![i].updatedAt));
+                                state.entities.absences![i].date!));
                           }
                           for (int j = 0;
                               j < state.entities.delays!.length;
                               j++) {
                             delays.add(formateDateForCalender(
-                                state.entities.delays![j].updatedAt));
+                                state.entities.delays![j].date!));
                           }
                           return CustomCalendar(
                               absences: absences,

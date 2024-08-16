@@ -20,7 +20,7 @@ class ViewMetricesForSubjectUseCase {
   ViewMetricesForSubjectUseCase(this.metricesRepo);
 
   Future<Either<Failure, MetricesForSubjectEntity>> call(
-      Map<String, dynamic> header,Map<String,dynamic>body) async {
-    return await metricesRepo.viewMetricesForSubject(header:header,body: body);
+      Map<String, dynamic> header,Map<String,dynamic>body,String id) async {
+    return await metricesRepo.viewMetricesForSubject(header:header,body: body,id: id);
   }
 }

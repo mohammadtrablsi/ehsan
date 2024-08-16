@@ -11,8 +11,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 
-
-
 class InfringementBody extends StatelessWidget {
   const InfringementBody({super.key});
 
@@ -20,7 +18,7 @@ class InfringementBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AppHeader(
-        text: "InfringementRepo",
+        text: "violation",
         widget: Stack(
           alignment: Alignment.bottomCenter,
           children: [

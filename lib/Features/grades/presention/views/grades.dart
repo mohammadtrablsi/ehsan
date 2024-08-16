@@ -13,14 +13,15 @@ class Grades extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-          create: (BuildContext context) {
-            return ViewGradesCubit(
-              ViewGradesUseCase(
-                getIt.get<GradesRepoImpl>(),
-              ),
-            )..viewGrades({"Authorization":"Bearer $token"}, {});
-          },
-          child: const GradesBody(),
-        );
+      create: (BuildContext context) {
+        return ViewGradesCubit(
+          ViewGradesUseCase(
+            getIt.get<GradesRepoImpl>(),
+          ),
+        )..viewGrades(
+            {"Authorization": "Bearer ${prefs!.getString('token')}"}, {});
+      },
+      child: const GradesBody(),
+    );
   }
 }

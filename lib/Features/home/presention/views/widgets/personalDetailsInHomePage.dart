@@ -22,7 +22,7 @@ class PersonalDetailsInHomePage extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Hi $name', style: style1),
+            Text('Hi ${prefs!.getString('name')}', style: style1),
           ],
         ),
         SizedBox(
@@ -30,7 +30,9 @@ class PersonalDetailsInHomePage extends StatelessWidget {
         ),
         Row(
           children: [
-            Text('Grade $grade  |  Class $section', style: style2),
+            Text(
+                'Grade ${prefs!.getString('grade')}  |  Class ${prefs!.getString('section')}',
+                style: style2),
             const Spacer(),
             Padding(
               padding: EdgeInsetsDirectional.only(end: 6.w),
@@ -51,9 +53,9 @@ class PersonalDetailsInHomePage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 3.w, vertical: 0.5.h),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(10.sp)),
-      child: const Text(
-        '2020-2021',
-        style: TextStyle(color: kPrimaryColor),
+      child: Text(
+        prefs!.getString('year') ?? "",
+        style: const TextStyle(color: kPrimaryColor),
       ),
     );
   }

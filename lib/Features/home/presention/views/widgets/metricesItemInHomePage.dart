@@ -1,14 +1,21 @@
 import 'package:ehsan/Features/home/domain/entites/homeEntity.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
+import 'package:ehsan/core/utils/functions/getJustFirstNumberAfterCama.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class MetricesItemInHomePage extends StatefulWidget {
   const MetricesItemInHomePage(
-      {super.key, required this.data, required this.index});
+      {super.key,
+      required this.data,
+      required this.index,
+      required this.image,
+      required this.colorOfAroundImage});
   final HomeEntity data;
   final int index;
+  final String image;
+  final Color colorOfAroundImage;
 
   @override
   State<MetricesItemInHomePage> createState() => _MetricesItemInHomePageState();
@@ -58,7 +65,7 @@ class _MetricesItemInHomePageState extends State<MetricesItemInHomePage> {
               ),
               Text(
                 widget.index == 0
-                    ? widget.data.average.toString()
+                    ? "${(getJustFirstNumberAfterCama(widget.data.average! * 100)!).toString()}%"
                     : widget.data.absences.toString(), //"80.39 %"
                 style: textStyle1,
               ),
@@ -81,14 +88,17 @@ class _MetricesItemInHomePageState extends State<MetricesItemInHomePage> {
       width: 18.w,
       height: 9.h,
       decoration: BoxDecoration(
-        color: const Color(0xFFE9AE24).withOpacity(0.2),
+        color: widget.colorOfAroundImage.withOpacity(0.2),
         shape: BoxShape.circle,
       ),
-      child: Container(
-        width: 5.w,
-        height: 2.5.h,
-        decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage(AssetsData.homePersonImage)),
+      child: Transform.scale(
+        scale: widget.index == 1 ? 0.50 : 1,
+        child: Container(
+          width: 5.w,
+          height: 2.5.h,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage(widget.image)),
+          ),
         ),
       ),
     );

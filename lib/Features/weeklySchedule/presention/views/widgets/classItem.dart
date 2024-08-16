@@ -48,7 +48,7 @@ class ClassItem extends StatelessWidget {
           height: 1.h,
         ),
         Text(
-          "08:15Am - 9:00Am",
+          "${data.to} - ${data.from}",
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 9.5.sp,

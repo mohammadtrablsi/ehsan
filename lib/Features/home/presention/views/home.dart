@@ -22,7 +22,7 @@ class Home extends StatelessWidget {
               ViewHomeUseCase(
                 getIt.get<HomeRepoImpl>(),
               ),
-            )..viewData({"Authorization":"Bearer $token"}, {});
+            )..viewData({"Authorization":"Bearer ${prefs!.getString('token')}"}, {});
           },
           child: const HomeBody(),
         );

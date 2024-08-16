@@ -1,3 +1,4 @@
+import 'package:ehsan/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -8,8 +9,8 @@ class ShimmerDataInProfileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[200]!,
-      highlightColor: Colors.grey[100]!,
+          baseColor: kShimmerColor1!,
+      highlightColor:kShimmerColor2! ,
       child: Container(
         width: double.infinity,
         height: 7.h,

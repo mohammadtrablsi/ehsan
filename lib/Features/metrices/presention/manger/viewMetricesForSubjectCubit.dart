@@ -14,9 +14,9 @@ class ViewMetricesForSubjectCubit extends Cubit<ViewMetricesforSubjectState> {
   final ViewMetricesForSubjectUseCase viewMetricesForSubjectUseCase;
 
   Future<void> viewMetricesForSubject(
-      Map<String, dynamic> header, Map<String, dynamic> body) async {
+      Map<String, dynamic> header, Map<String, dynamic> body,String id) async {
     emit(ViewMetricesforSubjectLoading());
-    var result = await viewMetricesForSubjectUseCase.call(header, body);
+    var result = await viewMetricesForSubjectUseCase.call(header, body,id);
     print('resulttttttttttttttttttttttttttttttttttttttttt$result');
     result.fold((failure) {
       emit(ViewMetricesforSubjectFailure(failure.message));

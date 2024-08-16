@@ -5,6 +5,7 @@ import 'package:ehsan/Features/events/presention/views/widgets/buttonInEventsDet
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
 import 'package:ehsan/core/utils/functions/appToast.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
@@ -13,10 +14,22 @@ import 'package:go_router/go_router.dart';
 
 class EventDetailsBody extends StatelessWidget {
   const EventDetailsBody(
-      {super.key, required this.indexForTag, required this.idOfEvent});
+      {super.key,
+      required this.indexForTag,
+      required this.idOfEvent,
+      required this.image,
+      required this.name,
+      required this.desc,
+      required this.date,
+      required this.place});
 
   final int indexForTag;
   final String idOfEvent;
+  final String image;
+  final String name;
+  final String desc;
+  final String date;
+  final String place;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +41,7 @@ class EventDetailsBody extends StatelessWidget {
         children: [
           Column(
             children: [
-              _imageInEventDetails(),
+              _imageInEventDetails(context),
               SizedBox(
                 height: 2.h,
               ),
@@ -38,8 +51,21 @@ class EventDetailsBody extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     _timeInEventDetails(),
+                    // SizedBox(
+                    //   height: 0.5.h,
+                    // ),
+                    Directionality(
+                      textDirection: TextDirection.rtl,
+                      child: Text(
+                        place,
+                        style: TextStyle(
+                            fontSize: 10.sp,
+                            color: Colors.black54,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ),
                     SizedBox(
-                      height: 1.h,
+                      height: 2.h,
                     ),
                     _nameOfEvent(),
                     SizedBox(
@@ -54,24 +80,24 @@ class EventDetailsBody extends StatelessWidget {
           Positioned(
             left: 5.5.w,
             bottom: 4.h,
-            child: BlocConsumer<UnRegisterOnEventCubit, UnRegisterOnEventState>(
+            child: BlocConsumer<RegisterOnEventCubit, RegisterOnEventState>(
               listener: (context, state) {
-                if (state is UnRegisterOnEventSuccess) {
+                if (state is RegisterOnEventSuccess) {
                   appToast(context, 'register is sucess');
                 } else if (state is RegisterOnEventFailure) {
                   appToast(context, 'register is failure');
                 }
               },
               builder: (context, state) {
-                if (state is UnRegisterOnEventLoading) {
+                if (state is RegisterOnEventLoading) {
                   return AvatarGlow(
                     glowColor: Colors.blue,
                     glowShape: BoxShape.circle,
                     child: InkWell(
                       borderRadius: BorderRadius.circular(180 * 3.14),
                       onTap: () {
-                        unRegisterOnEventCubit
-                            .unRegisterOnEvent({}, {"id": idOfEvent});
+                        registerOnEventCubit
+                            .registerOnEvent({}, {"id": idOfEvent});
                       },
                       child: CircleAvatar(
                         radius: 7.w,
@@ -93,8 +119,8 @@ class EventDetailsBody extends StatelessWidget {
                     child: InkWell(
                       borderRadius: BorderRadius.circular(180 * 3.14),
                       onTap: () {
-                        unRegisterOnEventCubit
-                            .unRegisterOnEvent({}, {"id": idOfEvent});
+                        registerOnEventCubit
+                            .registerOnEvent({}, {"id": idOfEvent});
                       },
                       child: CircleAvatar(
                         radius: 7.w,
@@ -151,7 +177,7 @@ class EventDetailsBody extends StatelessWidget {
     );
   }
 
-  Widget _imageInEventDetails() {
+  Widget _imageInEventDetails(BuildContext context) {
     return Stack(
       alignment: Alignment.topRight,
       children: [
@@ -160,17 +186,19 @@ class EventDetailsBody extends StatelessWidget {
           child: Container(
             width: double.infinity,
             height: 36.h,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.6),
                 image: DecorationImage(
-                    image: AssetImage(AssetsData.eventImage),
-                    fit: BoxFit.cover)),
+                    image: NetworkImage(image), fit: BoxFit.cover)),
           ),
         ),
         Positioned(
           top: 6.h,
           right: 2.w,
           child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pop();
+              },
               icon: Icon(
                 Icons.arrow_forward_ios_sharp,
                 color: kContentColor1,
@@ -188,7 +216,7 @@ class EventDetailsBody extends StatelessWidget {
         Container(
           constraints: BoxConstraints(maxWidth: 60.w),
           child: Text(
-            "06 يناير 23، 09:00 صباحًا",
+            date,
             maxLines: 1,
             style: TextStyle(
                 fontSize: 10.sp,
@@ -210,10 +238,13 @@ class EventDetailsBody extends StatelessWidget {
 
   Widget _nameOfEvent() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: kAppPadding),
-      child: Text(
-        "مسابقة صيد الأسماك",
-        style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w900),
+      padding: EdgeInsets.symmetric(horizontal: 0),
+      child: Directionality(
+        textDirection: TextDirection.rtl,
+        child: Text(
+          name,
+          style: TextStyle(fontSize: 17.sp, fontWeight: FontWeight.w900),
+        ),
       ),
     );
   }
@@ -222,7 +253,7 @@ class EventDetailsBody extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Text(
-        " مسابقة صيد الأسماك هي حدث يجمع بين عشاق صيد الأسماك للتنافس في صيد أكبر وأثقل الأسماك. تُنظم هذه المسابقات عادة على مدى عدة أيام حيث يقوم المشاركون بالخروج إلى المياه المفتوحة، سواء كانت بحيرة، بحر أو نهر، للبحث عن الأسماك ذات الحجم الكبير وتسجيلها بواسطة الوزن أو الطول. تهدف هذه المسابقات إلى تعزيز المهارات الصيدية والترفيه عن المشاركين، بالإضافة إلى دعم حفظ الموارد الطبيعية والاستدامة في صيد الأسماك. وتشكل هذه الفعاليات مناسبة للتعرف على أنواع مختلفة من الأسماك والمحافظة على التوازن البيئي، حيث يتم تحفيز المشاركين على احترام القوانين البيئية وتقديم مساهمات فعالة في مجال الحفاظ على البيئة البحرية والمياه العذبة.",
+        desc, //" مسابقة صيد الأسماك هي حدث يجمع بين عشاق صيد الأسماك للتنافس في صيد أكبر وأثقل الأسماك. تُنظم هذه المسابقات عادة على مدى عدة أيام حيث يقوم المشاركون بالخروج إلى المياه المفتوحة، سواء كانت بحيرة، بحر أو نهر، للبحث عن الأسماك ذات الحجم الكبير وتسجيلها بواسطة الوزن أو الطول. تهدف هذه المسابقات إلى تعزيز المهارات الصيدية والترفيه عن المشاركين، بالإضافة إلى دعم حفظ الموارد الطبيعية والاستدامة في صيد الأسماك. وتشكل هذه الفعاليات مناسبة للتعرف على أنواع مختلفة من الأسماك والمحافظة على التوازن البيئي، حيث يتم تحفيز المشاركين على احترام القوانين البيئية وتقديم مساهمات فعالة في مجال الحفاظ على البيئة البحرية والمياه العذبة.",
         style: TextStyle(
             // height: 1.3,
             fontSize: 12.sp,

@@ -69,14 +69,10 @@ class _MetricesItemInMetricesPageState
               ),
               Text(
                 widget.index == 0
-                    ? getJustFirstNumberAfterCama(widget.forSubject
-                            ? widget.dataForSubject!.average!.toDouble()
-                            : widget.data!.fullAverage!.toDouble())
-                        .toString()
-                    : getJustFirstNumberAfterCama(widget.forSubject
-                            ? widget.dataForSubject!.average!.toDouble()
-                            : widget.data!.fullAverage!.toDouble())
-                        .toString(), //"80.39 %"
+                    ? widget.forSubject
+                        ? "${widget.dataForSubject!.totalMarks!.toString()} / ${widget.dataForSubject!.myTotalMarks!.toString()}"
+                        : "${widget.data!.totalMarks!.toString()} / ${widget.data!.myTotalMarks!.toString()}"
+                    : "${getJustFirstNumberAfterCama(widget.forSubject ? widget.dataForSubject!.average!.toDouble() : widget.data!.fullAverage!.toDouble()).toString()}%", //"80.39 %"
                 style: textStyle1,
               ),
               SizedBox(

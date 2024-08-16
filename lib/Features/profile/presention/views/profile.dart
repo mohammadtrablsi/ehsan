@@ -18,7 +18,7 @@ class Profile extends StatelessWidget {
             ViewProfileUseCase(
               getIt.get<ProfileRepoImpl>(),
             ),
-          )..viewProfile({"Authorization":"Bearer $token"}, {});
+          )..viewProfile({"Authorization":"Bearer ${prefs!.getString('token')}"}, {});
         },
         child: const ProfileBody());
   }

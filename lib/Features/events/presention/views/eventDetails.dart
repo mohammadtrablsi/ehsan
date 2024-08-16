@@ -10,35 +10,46 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EventDetails extends StatelessWidget {
   const EventDetails(
-      {super.key, required this.indexForTag, required this.idOfEvent});
+      {super.key,
+      required this.indexForTag,
+      required this.idOfEvent,
+      required this.image,
+      required this.name,
+      required this.desc,
+      required this.date,
+      required this.place});
   final int indexForTag;
   final String idOfEvent;
-
+  final String image;
+  final String name;
+  final String desc;
+  final String date;
+  final String place;
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(providers: [
-      BlocProvider(
-      create: (BuildContext context) {
-        return RegisterOnEventCubit(
-          RegisterOnEventUseCase(
-            getIt.get<EventsRepoImpl>(),
-          ),
-        );
-      },
-    ),
-    BlocProvider(
-      create: (BuildContext context) {
-        return UnRegisterOnEventCubit(
-          UnRegisterOnEventUseCase(
-            getIt.get<EventsRepoImpl>(),
-          ),
-        );
-      },
-      
-    ),
-    ], child: EventDetailsBody(
-        indexForTag: indexForTag,
-        idOfEvent: idOfEvent,
-      ),);
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (BuildContext context) {
+            return RegisterOnEventCubit(
+              RegisterOnEventUseCase(
+                getIt.get<EventsRepoImpl>(),
+              ),
+            );
+          },
+        ),
+        BlocProvider(
+          create: (BuildContext context) {
+            return UnRegisterOnEventCubit(
+              UnRegisterOnEventUseCase(
+                getIt.get<EventsRepoImpl>(),
+              ),
+            );
+          },
+        ),
+      ],
+      child: EventDetailsBody(
+          indexForTag: indexForTag, idOfEvent: idOfEvent, image: image,name:name,desc:desc,date:date,place:place),
+    );
   }
 }

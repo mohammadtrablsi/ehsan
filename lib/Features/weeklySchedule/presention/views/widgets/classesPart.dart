@@ -27,14 +27,14 @@ class _ClassesPartState extends State<ClassesPart> {
               itemBuilder: (context, index) {
                 return Padding(
                   padding: EdgeInsetsDirectional.only(bottom: 1.7.h),
-                  child:
-                      //  index == 2
-                      //     ? const LunchTimeItem()
-                      //     :
-                      ClassItem(
-                    numberOfPeriod: index,
-                    data: viewWeeklyScheduleCubit.anyList(state.entity)[index],
-                  ),
+                  child: index % 2 == 0 && index != 0
+                      ? LunchTimeItem(data: viewWeeklyScheduleCubit
+                              .anyList(state.entity)[index],)
+                      : ClassItem(
+                          numberOfPeriod: index,
+                          data: viewWeeklyScheduleCubit
+                              .anyList(state.entity)[index],
+                        ),
                 );
               },
             ),

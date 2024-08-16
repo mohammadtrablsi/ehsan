@@ -32,7 +32,7 @@ class Absences extends StatelessWidget {
               ViewAbsencseUseCase(
                 getIt.get<AbsencseRepoImpl>(),
               ),
-            )..viewAbsences({"Authorization":"Bearer $token"}, {});
+            )..viewAbsences({"Authorization":"Bearer ${prefs!.getString('token')}"}, {});
           },
           child: AbsencesBody(),
         );

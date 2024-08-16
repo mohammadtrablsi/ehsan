@@ -1,6 +1,7 @@
 import 'package:ehsan/Features/events/domain/entites/eventsEntity.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -56,10 +57,8 @@ class EventItem extends StatelessWidget {
             color: const Color(0xFFCACACA),
             borderRadius: BorderRadius.circular(10.sp),
             image: DecorationImage(
-                image: data.photo == null
-                    ? const AssetImage(AssetsData.eventImage)
-                        as ImageProvider<Object>
-                    : NetworkImage(data.photo!),
+                image: NetworkImage(data.photo ??
+                    "https://commons.wikimedia.org/wiki/File:No_picture_available.png"),
                 fit: BoxFit.cover)),
       ),
     );
@@ -80,7 +79,7 @@ class EventItem extends StatelessWidget {
                   data.date!, //"06 يناير 23، 09:00 صباحًا"
                   maxLines: 1,
                   style: TextStyle(
-                      fontSize: 10.sp,
+                      fontSize: 8.sp,
                       color: kPrimaryColor,
                       fontWeight: FontWeight.w600),
                 ),
@@ -90,10 +89,25 @@ class EventItem extends StatelessWidget {
               ),
               Icon(
                 Icons.lock_clock_outlined,
-                size: 13.sp,
+                size: 10.sp,
                 color: kPrimaryColor,
               ),
             ],
+          ),
+          Directionality(
+            textDirection: TextDirection.rtl,
+            child: Container(
+              constraints: BoxConstraints(maxWidth: 60.w),
+              child: Text(
+                data.place!, //"06 يناير 23، 09:00 صباحًا"
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontSize: 10.sp,
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
           ),
           SizedBox(
             height: 0.4.h,
@@ -103,13 +117,13 @@ class EventItem extends StatelessWidget {
             child: Container(
               constraints: BoxConstraints(maxWidth: 70.w),
               child: Text(
-                data.description!, //"مسابقة صيد الأسماك هي حدث يجمع بين عشاق صيد الأسماك للتنافس في صيد أكبر وأثقل الأسماك. تُنظم هذه المسابقات عادة على مدى عدة أيام حيث يقوم المشاركون بالخروج إلى المياه المفتوحة، سواء كانت بحيرة، بحر أو نهر، للبحث عن الأسماك ذات الحجم الكبير وتسجيلها بواسطة الوزن أو الطول. تهدف هذه المسابقات إلى تعزيز المهارات الصيدية والترفيه عن المشاركين، بالإضافة إلى دعم حفظ الموارد الطبيعية والاستدامة في صيد الأسماك.",
-                maxLines: 3,
+                data.description!, ////"مسابقة صيد الأسماك هي حدث يجمع بين عشاق صيد الأسماك للتنافس في صيد أكبر وأثقل الأسماك. تُنظم هذه المسابقات عادة على مدى عدة أيام حيث يقوم المشاركون بالخروج إلى المياه المفتوحة، سواء كانت بحيرة، بحر أو نهر، للبحث عن الأسماك ذات الحجم الكبير وتسجيلها بواسطة الوزن أو الطول. تهدف هذه المسابقات إلى تعزيز المهارات الصيدية والترفيه عن المشاركين، بالإضافة إلى دعم حفظ الموارد الطبيعية والاستدامة في صيد الأسماك.",
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     height: 1.3,
                     fontSize: 10.sp,
-                    color: Colors.grey,
+                    color: Colors.black54,
                     fontWeight: FontWeight.w600),
               ),
             ),

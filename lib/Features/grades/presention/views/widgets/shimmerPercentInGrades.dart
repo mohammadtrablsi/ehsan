@@ -13,8 +13,8 @@ class ShimmerPercentInGrades extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[300]!,
-      highlightColor: Colors.grey[100]!,
+          baseColor: kShimmerColor1!,
+      highlightColor:kShimmerColor2 !,
       child: Container(
         width: 34.w,
         height: 17.h,

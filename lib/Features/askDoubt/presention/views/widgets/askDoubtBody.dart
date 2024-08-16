@@ -79,7 +79,10 @@ class AskDoubtBody extends StatelessWidget {
                             paddingVertical: 1.3.h,
                             text: "send",
                             onTap: () {
-                              makeAskDoubtCubit.makeAskDoubt({"Authorization":"Bearer $token"}, {
+                              makeAskDoubtCubit.makeAskDoubt({
+                                "Authorization":
+                                    "Bearer ${prefs!.getString('token')}"
+                              }, {
                                 "type": "اقتراح",
                                 "description": "وصف الاقتراح"
                               });

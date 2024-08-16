@@ -33,7 +33,7 @@ abstract class AppRouter {
   static const kEventDetailsRoute = '/eventDetails';
   static const kOnBoardingRoute = '/onBoarding';
   static const kLoginRoute = '/login';
-    static const kInfringementRoute = '/infringement';
+  static const kInfringementRoute = '/infringement';
 
   static final router = GoRouter(
     routes: [
@@ -62,9 +62,19 @@ abstract class AppRouter {
           builder: (context, state) {
             final indexForTag = state.queryParams['indexForTag'];
             final idOfEvent = state.queryParams['idOfEvent'];
+            final image = state.queryParams['image'];
+            final name = state.queryParams['name'];
+            final desc = state.queryParams['desc'];
+            final date = state.queryParams['date'];
+            final place = state.queryParams['place'];
             return EventDetails(
-              indexForTag: int.parse(indexForTag!), idOfEvent: idOfEvent!,
-            );
+                indexForTag: int.parse(indexForTag!),
+                idOfEvent: idOfEvent!,
+                image: image!,
+                name: name!,
+                desc: desc!,
+                date: date!,
+                place: place!);
           }),
       GoRoute(
         path: kDownloadFilesRoute,

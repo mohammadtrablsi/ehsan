@@ -1,8 +1,3 @@
-
-
-
-
-
 import 'package:ehsan/Features/WeeklySchedule/domain/entites/WeeklyScheduleEntity.dart';
 
 class WeeklyScheduleModel extends WeeklyScheduleEntity{
@@ -16,27 +11,27 @@ class WeeklyScheduleModel extends WeeklyScheduleEntity{
   WeeklyScheduleModel(
       {this.status, this.son, this.mun, this.the, this.wen, this.tus}):super(son:son, mun:mun, the:the, wen:wen, tus:tus);
 
- factory WeeklyScheduleModel.fromJson(Map<String, dynamic> json) {
+  
+  factory WeeklyScheduleModel.fromJson(Map<String, dynamic> json) {
     return WeeklyScheduleModel(
       status: json['status'],
       son: json['son'] != null
-          ? List<Son>.from(json['son'].map((v) => Son.fromJson(v)))
+          ? (json['son'] as List).map((v) => Son.fromJson(v)).toList()
           : null,
       mun: json['mun'] != null
-          ? List<Mun>.from(json['mun'].map((v) => Mun.fromJson(v)))
+          ? (json['mun'] as List).map((v) => Mun.fromJson(v)).toList()
           : null,
       the: json['the'] != null
-          ? List<The>.from(json['the'].map((v) => The.fromJson(v)))
+          ? (json['the'] as List).map((v) => The.fromJson(v)).toList()
           : null,
       wen: json['wen'] != null
-          ? List<Wen>.from(json['wen'].map((v) => Wen.fromJson(v)))
+          ? (json['wen'] as List).map((v) => Wen.fromJson(v)).toList()
           : null,
       tus: json['tus'] != null
-          ? List<Tus>.from(json['tus'].map((v) => Tus.fromJson(v)))
+          ? (json['tus'] as List).map((v) => Tus.fromJson(v)).toList()
           : null,
     );
   }
-
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
@@ -67,6 +62,8 @@ class Son {
   String? day;
   String? classId;
   int? iV;
+  String? from;
+  String? to;
 
   Son(
       {this.sId,
@@ -75,7 +72,9 @@ class Son {
       this.order,
       this.day,
       this.classId,
-      this.iV});
+      this.iV,
+      this.from,
+      this.to});
 
   Son.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -85,6 +84,8 @@ class Son {
     day = json['day'];
     classId = json['class_id'];
     iV = json['__v'];
+    from = json['from'];
+    to = json['to'];
   }
 
   Map<String, dynamic> toJson() {
@@ -96,6 +97,8 @@ class Son {
     data['day'] = this.day;
     data['class_id'] = this.classId;
     data['__v'] = this.iV;
+    data['from'] = this.from;
+    data['to'] = this.to;
     return data;
   }
 }
@@ -108,15 +111,19 @@ class Mun {
   String? day;
   String? classId;
   int? iV;
+  String? from;
+  String? to;
 
- Mun(
+  Mun(
       {this.sId,
       this.name,
       this.teacher,
       this.order,
       this.day,
       this.classId,
-      this.iV});
+      this.iV,
+      this.from,
+      this.to});
 
   Mun.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -126,6 +133,8 @@ class Mun {
     day = json['day'];
     classId = json['class_id'];
     iV = json['__v'];
+    from = json['from'];
+    to = json['to'];
   }
 
   Map<String, dynamic> toJson() {
@@ -137,9 +146,12 @@ class Mun {
     data['day'] = this.day;
     data['class_id'] = this.classId;
     data['__v'] = this.iV;
+    data['from'] = this.from;
+    data['to'] = this.to;
     return data;
   }
 }
+
 
 class The {
   String? sId;
@@ -149,6 +161,8 @@ class The {
   String? day;
   String? classId;
   int? iV;
+  String? from;
+  String? to;
 
   The(
       {this.sId,
@@ -157,7 +171,9 @@ class The {
       this.order,
       this.day,
       this.classId,
-      this.iV});
+      this.iV,
+      this.from,
+      this.to});
 
   The.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -167,6 +183,8 @@ class The {
     day = json['day'];
     classId = json['class_id'];
     iV = json['__v'];
+    from = json['from'];
+    to = json['to'];
   }
 
   Map<String, dynamic> toJson() {
@@ -178,10 +196,11 @@ class The {
     data['day'] = this.day;
     data['class_id'] = this.classId;
     data['__v'] = this.iV;
+    data['from'] = this.from;
+    data['to'] = this.to;
     return data;
   }
 }
-
 
 class Wen {
   String? sId;
@@ -191,6 +210,8 @@ class Wen {
   String? day;
   String? classId;
   int? iV;
+  String? from;
+  String? to;
 
   Wen(
       {this.sId,
@@ -199,7 +220,9 @@ class Wen {
       this.order,
       this.day,
       this.classId,
-      this.iV});
+      this.iV,
+      this.from,
+      this.to});
 
   Wen.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -209,6 +232,8 @@ class Wen {
     day = json['day'];
     classId = json['class_id'];
     iV = json['__v'];
+    from = json['from'];
+    to = json['to'];
   }
 
   Map<String, dynamic> toJson() {
@@ -220,10 +245,11 @@ class Wen {
     data['day'] = this.day;
     data['class_id'] = this.classId;
     data['__v'] = this.iV;
+    data['from'] = this.from;
+    data['to'] = this.to;
     return data;
   }
 }
-
 
 class Tus {
   String? sId;
@@ -233,6 +259,8 @@ class Tus {
   String? day;
   String? classId;
   int? iV;
+  String? from;
+  String? to;
 
   Tus(
       {this.sId,
@@ -241,9 +269,11 @@ class Tus {
       this.order,
       this.day,
       this.classId,
-      this.iV});
+      this.iV,
+      this.from,
+      this.to});
 
- Tus.fromJson(Map<String, dynamic> json) {
+  Tus.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     teacher = json['teacher'];
@@ -251,6 +281,8 @@ class Tus {
     day = json['day'];
     classId = json['class_id'];
     iV = json['__v'];
+    from = json['from'];
+    to = json['to'];
   }
 
   Map<String, dynamic> toJson() {
@@ -262,6 +294,8 @@ class Tus {
     data['day'] = this.day;
     data['class_id'] = this.classId;
     data['__v'] = this.iV;
+    data['from'] = this.from;
+    data['to'] = this.to;
     return data;
   }
 }

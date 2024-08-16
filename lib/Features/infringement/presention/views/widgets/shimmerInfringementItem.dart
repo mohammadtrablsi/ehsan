@@ -1,3 +1,4 @@
+import 'package:ehsan/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:sizer/sizer.dart';
@@ -23,8 +24,8 @@ class ShimmerInfringementItem extends StatelessWidget {
 
   Widget _datePart() {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[200]!,
-      highlightColor: Colors.grey[100]!,
+          baseColor: kShimmerColor1!,
+      highlightColor:kShimmerColor2! ,
       child: Container(
         height: 5.h,
         width: 10.w,

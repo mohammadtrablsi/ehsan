@@ -1,11 +1,12 @@
-DateTime formateDateForCalender(dateString) {
+DateTime formateDateForCalender(String dateString) {
+  // Split the string by the delimiter '-'
+  List<String> parts = dateString.split('-');
 
-  // Parse the string to a DateTime object
-  DateTime parsedDate = DateTime.parse(dateString);
+  // Extract the year, month, and day parts
+  int year = int.parse(parts[0]);
+  int month = int.parse(parts[1].padLeft(2, '0')); // Ensure month is two digits
+  int day = int.parse(parts[2].padLeft(2, '0')); // Ensure day is two digits
 
-  // Convert the parsed date to a UTC DateTime
-  DateTime utcDate =
-      DateTime.utc(parsedDate.year, parsedDate.month, parsedDate.day);
-
-  return utcDate; // Outputs: 2024-08-01 00:00:00.000Z
+  // Return the parsed date as a UTC DateTime
+  return DateTime.utc(year, month, day);
 }

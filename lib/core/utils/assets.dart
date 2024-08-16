@@ -19,4 +19,5 @@ class AssetsData {
   static const logo = 'assets/images/logo2.png';
   static const eventImage = 'assets/images/event.jpg';
   static const lunchImage = 'assets/images/lunch.png';
+  static const absencesImage = 'assets/images/absrnces.png';
 }

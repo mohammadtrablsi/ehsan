@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class LunchTimeItem extends StatelessWidget {
-  const LunchTimeItem({super.key});
+  const LunchTimeItem({super.key, this.data});
+  final data;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class LunchTimeItem extends StatelessWidget {
           height: 1.h,
         ),
         Text(
-          "09:00Am - 9:15Am",
+          "${data.from} - ${data.to}",
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 9.5.sp,

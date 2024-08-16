@@ -1,3 +1,4 @@
+import 'package:ehsan/Features/absences/presention/views/widgets/formateDateForExamPage.dart';
 import 'package:ehsan/Features/examSchedule/domain/entites/examScheduleEntity.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -11,12 +12,12 @@ class ExamScheduleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.end,
       mainAxisSize: MainAxisSize.max,
       children: [
         _cardExamScheduleItem(),
         SizedBox(
-          width: 4.w,
+          width: 1.w,
         ),
         _datePart(),
       ],
@@ -24,26 +25,31 @@ class ExamScheduleItem extends StatelessWidget {
   }
 
   Widget _datePart() {
-    return Column(
-      children: [
-        Text(
-          "11",
-          style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+    return SizedBox(
+      width: 12.w,
+      child: Center(
+        child: Column(
+          children: [
+            Text(
+              formateDateForExamPage(data.date!)['day']!,
+              style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 0.03.h,
+            ),
+            Text(
+              formateDateForExamPage(data.date!)['month']!,
+              style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
-        SizedBox(
-          height: 0.03.h,
-        ),
-        Text(
-          "jan",
-          style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
-        ),
-      ],
+      ),
     );
   }
 
   Widget _cardExamScheduleItem() {
     return Container(
-      width: 70.w,
+      width: 75.w,
       padding: EdgeInsets.all(2.5.w),
       decoration: BoxDecoration(
         border: Border(
@@ -81,7 +87,7 @@ class ExamScheduleItem extends StatelessWidget {
           height: 0.1.h,
         ),
         Text(
-          "الخميس",
+          data.day!,
           style: TextStyle(
               fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.grey),
         ),

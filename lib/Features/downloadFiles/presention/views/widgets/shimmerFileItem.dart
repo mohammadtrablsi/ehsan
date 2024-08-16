@@ -13,8 +13,8 @@ class ShimmerFileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Colors.grey[200]!,
-      highlightColor: Colors.grey[100]!,
+            baseColor: kShimmerColor1!,
+      highlightColor:kShimmerColor2 !,
       child: Container(
         height: 22.h,
         padding: EdgeInsets.all(2.5.w),

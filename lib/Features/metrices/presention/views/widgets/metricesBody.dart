@@ -1,5 +1,7 @@
+import 'package:ehsan/Features/metrices/data/models/subjectsModel.dart';
 import 'package:ehsan/Features/metrices/presention/manger/viewMetricesCubit.dart';
 import 'package:ehsan/Features/metrices/presention/manger/viewMetricesForSubjectCubit.dart';
+import 'package:ehsan/Features/metrices/presention/manger/viewSubjectsCubit.dart';
 import 'package:ehsan/Features/metrices/presention/manger/whichCubitInMetricesCubit.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/animatedSubjectsInMetrices.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/lineMetrices.dart';
@@ -19,6 +21,7 @@ class MetricesBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewMetricesForSubjectCubit =
         context.read<ViewMetricesForSubjectCubit>();
+    final viewsSubjectsCubit = context.read<ViewSubjectsCubit>();
     return Scaffold(
       body: AppHeader(
           text: 'charts',
@@ -29,7 +32,24 @@ class MetricesBody extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const AnimatedSubjectsInMetrices(),
+                  BlocBuilder<ViewSubjectsCubit, ViewSubjectsState>(
+                    builder: (context, state) {
+                      if (state is ViewSubjectsSuccess) {
+                        if (viewsSubjectsCubit.data.isEmpty) {
+                          viewsSubjectsCubit.data
+                              .add(Datas(name: "All", sId: "fkfkfkfk"));
+                          viewsSubjectsCubit.data.addAll(state.entity.data!);
+                        }
+                        return AnimatedSubjectsInMetrices(
+                          data: state.entity,
+                        );
+                      } else {
+                        return SizedBox(
+                          height: 4.h,
+                        );
+                      }
+                    },
+                  ),
                   SizedBox(
                     height: 1.5.h,
                   ),
@@ -68,9 +88,8 @@ class MetricesBody extends StatelessWidget {
                           builder: (context, state) {
                             if (state is ViewMetricesforSubjectSuccess) {
                               return MetricesInMetricesPage(
-                                dataForSubject: state.entity,
-                                forSubject:true
-                              );
+                                  dataForSubject: state.entity,
+                                  forSubject: true);
                             } else {
                               return const ShimmerMetricesInMetricesPage();
                             }
@@ -82,9 +101,7 @@ class MetricesBody extends StatelessWidget {
                           builder: (context, state) {
                             if (state is ViewMetricesSuccess) {
                               return MetricesInMetricesPage(
-                                data: state.entity,
-                                forSubject:false
-                              );
+                                  data: state.entity, forSubject: false);
                             } else {
                               return const ShimmerMetricesInMetricesPage();
                             }

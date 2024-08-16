@@ -1,6 +1,6 @@
 import 'package:ehsan/Features/grades/domain/entites/gradesEntity.dart';
 
-class GradesModel extends GradesEntity{
+class GradesModel extends GradesEntity {
   bool? status;
   double? averageTest;
   int? averageOral;
@@ -18,26 +18,27 @@ class GradesModel extends GradesEntity{
       this.fullAverage,
       this.exam,
       this.oral,
-      this.test}):super(fullAverage:fullAverage,exam:exam,oral:oral,test:test);
+      this.test})
+      : super(fullAverage: fullAverage, exam: exam, oral: oral, test: test);
 
- factory GradesModel.fromJson(Map<String, dynamic> json) {
-  return GradesModel(
-    status: json['status'],
-    averageTest: json['average_test'],
-    averageOral: json['average_oral'],
-    averageExam: json['average_exam'],
-    fullAverage: json['full_average'],
-    exam: json['exam'] != null
-        ? List<Exam>.from(json['exam'].map((v) => Exam.fromJson(v)))
-        : null,
-    oral: json['oral'] != null
-        ? List<Oral>.from(json['oral'].map((v) => Oral.fromJson(v)))
-        : null,
-    test: json['test'] != null
-        ? List<Test>.from(json['test'].map((v) => Test.fromJson(v)))
-        : null,
-  );
-}
+  factory GradesModel.fromJson(Map<String, dynamic> json) {
+    return GradesModel(
+      status: json['status'],
+      averageTest: json['average_test'],
+      averageOral: json['average_oral'],
+      averageExam: json['average_exam'],
+      fullAverage: json['full_average'],
+      exam: json['exam'] != null
+          ? List<Exam>.from(json['exam'].map((v) => Exam.fromJson(v)))
+          : null,
+      oral: json['oral'] != null
+          ? List<Oral>.from(json['oral'].map((v) => Oral.fromJson(v)))
+          : null,
+      test: json['test'] != null
+          ? List<Test>.from(json['test'].map((v) => Test.fromJson(v)))
+          : null,
+    );
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -69,19 +70,19 @@ class Exam {
   String? createdAt;
   String? updatedAt;
   int? iV;
-  int? date;
+  // int? date;
 
-  Exam(
-      {this.sId,
-      this.mark,
-      this.fullMark,
-      this.subjectId,
-      this.studentId,
-      this.type,
-      this.createdAt,
-      this.updatedAt,
-      this.iV,
-      this.date});
+  Exam({
+    this.sId,
+    this.mark,
+    this.fullMark,
+    this.subjectId,
+    this.studentId,
+    this.type,
+    this.createdAt,
+    this.updatedAt,
+    this.iV,
+  });
 
   Exam.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -95,7 +96,7 @@ class Exam {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
-    date = json['date'];
+    // date = json['date'];
   }
 
   Map<String, dynamic> toJson() {
@@ -111,7 +112,7 @@ class Exam {
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
-    data['date'] = this.date;
+    // data['date'] = this.date;
     return data;
   }
 }
@@ -194,7 +195,7 @@ class Oral {
   }
 }
 
-class Test{
+class Test {
   String? sId;
   int? mark;
   int? fullMark;
@@ -205,7 +206,7 @@ class Test{
   String? updatedAt;
   int? iV;
 
- Test(
+  Test(
       {this.sId,
       this.mark,
       this.fullMark,

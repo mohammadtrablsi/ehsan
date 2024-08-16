@@ -19,7 +19,7 @@ class ExamSchedule extends StatelessWidget {
           ViewExamScheduleUseCase(
             getIt.get<ExamScheduleRepoImpl>(),
           ),
-        )..ViewExamSchedule({"Authorization":"Bearer $token"}, {});
+        )..ViewExamSchedule({"Authorization":"Bearer ${prefs!.getString('token')}"}, {});
       },
       child: const ExamScheduleBody(),
     );

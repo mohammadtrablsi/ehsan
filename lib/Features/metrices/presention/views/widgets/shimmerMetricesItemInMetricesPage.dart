@@ -37,8 +37,8 @@ class _MetricesItemInMetricesPageState
         duration: const Duration(milliseconds: 1000),
         scale: 1,
         child: Shimmer.fromColors(
-          baseColor: Colors.grey[200]!,
-          highlightColor: Colors.grey[100]!,
+             baseColor: kShimmerColor1!,
+      highlightColor:kShimmerColor2 !,
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 4.w),
             height: 25.h,

@@ -2,28 +2,28 @@ import 'package:ehsan/Features/Auth/domain/entites/loginEntity.dart';
 
 class LoginModel extends LoginEntity {
   Data? data;
-  String? token;
   String? message;
+  String? token;
 
-  LoginModel({this.data, this.token, this.message})
-      : super(
+  LoginModel({this.data, this.message, this.token}):super(
           message: message,
           token: token,
           personalDetail: data,
         );
 
-  factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
-      data: json['data'] != null ? new Data.fromJson(json['data']) : null,
-      token: json['token'],
-      message: json['message']);
+  factory LoginModel.fromJson(Map<String, dynamic> json) =>LoginModel(
+    data : json['data'] != null ? new Data.fromJson(json['data']) : null,
+    message : json['message'],
+    token : json['token']
+  );
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.data != null) {
       data['data'] = this.data!.toJson();
     }
-    data['token'] = this.token;
     data['message'] = this.message;
+    data['token'] = this.token;
     return data;
   }
 }
@@ -43,6 +43,7 @@ class Data {
   String? createdAt;
   String? updatedAt;
   int? iV;
+  String? year;
 
   Data(
       {this.sId,
@@ -58,7 +59,8 @@ class Data {
       this.classId,
       this.createdAt,
       this.updatedAt,
-      this.iV});
+      this.iV,
+      this.year});
 
   Data.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -77,6 +79,7 @@ class Data {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     iV = json['__v'];
+    year = json['year'];
   }
 
   Map<String, dynamic> toJson() {
@@ -97,6 +100,7 @@ class Data {
     data['createdAt'] = this.createdAt;
     data['updatedAt'] = this.updatedAt;
     data['__v'] = this.iV;
+    data['year'] = this.year;
     return data;
   }
 }

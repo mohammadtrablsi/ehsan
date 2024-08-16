@@ -18,7 +18,7 @@ class DownloadFiles extends StatelessWidget {
               ViewDownloadFilesUseCase(
                 getIt.get<DownloadFilesRepoImpl>(),
               ),
-            )..viewDownlaodFiles({"Authorization":"Bearer $token"}, {});
+            )..viewDownlaodFiles({"Authorization":"Bearer ${prefs!.getString('token')}"}, {});
           },
           child: const DownloadFilesBody()
         );

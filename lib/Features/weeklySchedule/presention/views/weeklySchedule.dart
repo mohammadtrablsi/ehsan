@@ -21,7 +21,7 @@ class WeeklySchedule extends StatelessWidget {
               ViewWeeklyScheduleUseCase(
                 getIt.get<WeeklyScheduleRepoImpl>(),
               ),
-            )..viewWeeklySchedule({"Authorization":"Bearer $token"}, {});
+            )..viewWeeklySchedule({"Authorization":"Bearer ${prefs!.getString('token')}"}, {});
           },
           child: const WeeklyScheduleBody(),
         );
