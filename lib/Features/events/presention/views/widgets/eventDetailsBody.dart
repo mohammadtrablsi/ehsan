@@ -83,9 +83,9 @@ class EventDetailsBody extends StatelessWidget {
             child: BlocConsumer<RegisterOnEventCubit, RegisterOnEventState>(
               listener: (context, state) {
                 if (state is RegisterOnEventSuccess) {
-                  appToast(context, 'register is sucess');
+                  appToast(context, 'نجح التسجيل');
                 } else if (state is RegisterOnEventFailure) {
-                  appToast(context, 'register is failure');
+                  appToast(context, 'فشل التسجيل');
                 }
               },
               builder: (context, state) {

@@ -60,7 +60,7 @@ class InfringementItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          data.name!,
+          data.name ?? "",
           textAlign: TextAlign.end,
           style: TextStyle(
             fontSize: 12.sp,
@@ -80,7 +80,7 @@ class InfringementItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          data.date, //formateDate(data.date)
+          data.date ?? "", //formateDate(data.date)
           style: TextStyle(
               fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.grey),
         ),

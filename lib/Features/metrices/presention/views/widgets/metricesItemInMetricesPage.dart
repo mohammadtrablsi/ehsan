@@ -70,7 +70,7 @@ class _MetricesItemInMetricesPageState
               Text(
                 widget.index == 0
                     ? widget.forSubject
-                        ? "${widget.dataForSubject!.totalMarks!.toString()} / ${widget.dataForSubject!.myTotalMarks!.toString()}"
+                        ? "${widget.dataForSubject?.totalMarks?.toString()} / ${widget.dataForSubject!.myTotalMarks!.toString()}"
                         : "${widget.data!.totalMarks!.toString()} / ${widget.data!.myTotalMarks!.toString()}"
                     : "${getJustFirstNumberAfterCama(widget.forSubject ? widget.dataForSubject!.average!.toDouble() : widget.data!.fullAverage!.toDouble()).toString()}%", //"80.39 %"
                 style: textStyle1,
@@ -79,7 +79,7 @@ class _MetricesItemInMetricesPageState
                 height: 1.h,
               ),
               Text(
-                widget.index == 0 ? "average" : "average percent",
+                widget.index == 0 ? "العلامات" : "المعدل",
                 style: textStyle2,
               ),
             ],

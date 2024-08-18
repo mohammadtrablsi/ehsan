@@ -13,47 +13,47 @@ class GridPart extends StatelessWidget {
     List<Map<String, String>> data = [
       {
         'image': AssetsData.homeResultsImage,
-        'text': 'result',
+        'text': 'النتائج',
         'route': AppRouter.kGradesRoute
       },
       {
         'image': AssetsData.homeDateSheetImage,
-        'text': 'absences',
+        'text': 'الغيابات والتأخيرات',
         'route': AppRouter.kAbsencesRoute
       },
       {
         'image': AssetsData.homeAssignmentImage,
-        'text': 'files',
+        'text': 'الملفات الدراسية',
         'route': AppRouter.kDownloadFilesRoute
       },
       {
         'image': AssetsData.homeDoubtsImage,
-        'text': 'ask doubts',
+        'text': 'اقتراحات وشكاوي',
         'route': AppRouter.kAskDoubtRoute
       },
       {
         'image': AssetsData.homeEventImage,
-        'text': 'event',
+        'text': 'الفعاليات',
         'route': AppRouter.kViewEventsRoute
       },
       {
         'image': AssetsData.homeLogoutImage,
-        'text': 'Metrices',
+        'text': 'احصائيات',
         'route': AppRouter.kMetricesRoute
       },
       {
         'image': AssetsData.homecalendraImage,
-        'text': 'weekly schedule',
+        'text': 'يرنامج البرنامج',
         'route': AppRouter.kWeeklyScheduleRoute
       },
       {
         'image': AssetsData.homecalendraImage,
-        'text': 'exam schedule',
+        'text': 'برنامج الفحص',
         'route': AppRouter.kExamScheduleRoute
       },
       {
         'image': AssetsData.homecalendraImage,
-        'text': 'infringement',
+        'text': 'المخالفات',
         'route': AppRouter.kInfringementRoute
       }
     ];

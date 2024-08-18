@@ -11,13 +11,13 @@ class DataInProfilePart extends StatelessWidget {
   Widget build(BuildContext context) {
     setDataFromEntity();
     List<Map<String, String>> data = [
-      {'label': 'birthadate', 'content': '2020-2021'},
-      {'label': 'birthPlace', 'content': 'VI'},
-      {'label': 'fatherName', 'content': 'shaba1'},
-      {'label': 'motherName', 'content': '28/1/2003'},
-      {'label': 'joinDate', 'content': 'Monika'},
-      {'label': 'teleNum', 'content': 'Father Name'},
-      {'label': 'address', 'content': 'Damascus'}
+      {'label': 'تاريخ الميلاد', 'content': '2020-2021'},
+      {'label': 'مكان الميلاد', 'content': 'VI'},
+      {'label': 'اسم الأب', 'content': 'shaba1'},
+      {'label': 'اسم الأم', 'content': '28/1/2003'},
+      {'label': 'تاريخ الانضمام', 'content': 'Monika'},
+      {'label': 'رقم الهاتف', 'content': 'Father Name'},
+      {'label': 'العنوان', 'content': 'Damascus'}
     ];
     return Column(
       children: [

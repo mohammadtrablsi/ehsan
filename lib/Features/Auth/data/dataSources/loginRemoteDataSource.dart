@@ -31,9 +31,9 @@ class LoginRemoteDataSourceImpl extends LoginRemoteDataSource {
     await prefs.setString(
         'name', entity.personalDetail?.fullName ?? "noFullNam");
     await prefs.setString(
-        'grade', entity.personalDetail?.classId!.name ?? "noGrade");
+        'grade', entity.personalDetail?.classId?.name ?? "noGrade");
     await prefs.setString(
-        'section', entity.personalDetail?.classId!.section ?? "noSection");
+        'section', entity.personalDetail?.classId?.section ?? "noSection");
          await prefs.setString(
         'year', entity.personalDetail?.year ?? "noYear");
     print("temmmmmmmmmmmmmmmmmmmmmmmmmmm${prefs.get('grade')}");

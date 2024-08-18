@@ -1,5 +1,3 @@
-
-
 import 'package:ehsan/Features/Profile/domain/entites/ProfileEntity.dart';
 import 'package:ehsan/Features/profile/data/models/profileModel.dart';
 import 'package:ehsan/core/utils/api_service.dart';
@@ -20,9 +18,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body}) async {
     var response = await apiService.get(
-        headers: header,
-        data: body,
-        endPoint: 'showStudentProfile');
+        headers: header, data: body, endPoint: 'showStudentProfil');
     ProfileEntity entity;
     entity = ProfileModel.fromJson(response);
     // SharedPreferences prefs = await SharedPreferences.getInstance();

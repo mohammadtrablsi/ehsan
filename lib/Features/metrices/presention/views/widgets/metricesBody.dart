@@ -24,7 +24,7 @@ class MetricesBody extends StatelessWidget {
     final viewsSubjectsCubit = context.read<ViewSubjectsCubit>();
     return Scaffold(
       body: AppHeader(
-          text: 'charts',
+          text: 'احصائيات',
           widget: Padding(
             padding: EdgeInsetsDirectional.only(
                 top: 3.h, end: kAppPadding, start: kAppPadding),
@@ -37,7 +37,7 @@ class MetricesBody extends StatelessWidget {
                       if (state is ViewSubjectsSuccess) {
                         if (viewsSubjectsCubit.data.isEmpty) {
                           viewsSubjectsCubit.data
-                              .add(Datas(name: "All", sId: "fkfkfkfk"));
+                              .add(Datas(name: "جميع المواد", sId: "fkfkfkfk"));
                           viewsSubjectsCubit.data.addAll(state.entity.data!);
                         }
                         return AnimatedSubjectsInMetrices(

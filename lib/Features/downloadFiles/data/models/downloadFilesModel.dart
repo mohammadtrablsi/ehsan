@@ -18,7 +18,7 @@ class DownloadFilesModel extends DownloadFilesEntity{
       this.subjectId,
       this.createdAt,
       this.updatedAt,
-      this.iV}):super(subject:subjectId!.name,name:name,date:updatedAt,file:url);
+      this.iV}):super(subject:subjectId?.name,name:name,date:updatedAt,file:url);
 
   factory DownloadFilesModel.fromJson(Map<String, dynamic> json) =>DownloadFilesModel(
     sId : json['_id'],

@@ -1,4 +1,6 @@
 class AssetsData {
+  static const noDataLottie = 'assets/images/noData.json';
+
   static const toDo2 = 'assets/images/toDo2.png';
   static const backgroundImage = 'assets/images/backgroundImage.png';
   static const backgroundImage2 = 'assets/images/backgroundImage2.png';
@@ -19,5 +21,5 @@ class AssetsData {
   static const logo = 'assets/images/logo2.png';
   static const eventImage = 'assets/images/event.jpg';
   static const lunchImage = 'assets/images/lunch.png';
-  static const absencesImage = 'assets/images/absrnces.png';
+  static const absencesImage = 'assets/images/logo2.png';
 }

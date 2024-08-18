@@ -36,7 +36,7 @@ class AppHeader extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                text!,
+                                text ?? "",
                                 style: TextStyle(
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.bold,
@@ -63,6 +63,7 @@ class AppHeader extends StatelessWidget {
             ),
             Flexible(
               child: Container(
+                  width: double.infinity, ///////////////////
                   height: 84.h,
                   decoration: BoxDecoration(
                       color: Colors.white,

@@ -17,14 +17,15 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-          create: (BuildContext context) {
-            return ViewHomeCubit(
-              ViewHomeUseCase(
-                getIt.get<HomeRepoImpl>(),
-              ),
-            )..viewData({"Authorization":"Bearer ${prefs!.getString('token')}"}, {});
-          },
-          child: const HomeBody(),
-        );
+      create: (BuildContext context) {
+        return ViewHomeCubit(
+          ViewHomeUseCase(
+            getIt.get<HomeRepoImpl>(),
+          ),
+        )..viewData(
+            {"Authorization": "Bearer ${prefs!.getString('token')}"}, {});
+      },
+      child: const HomeBody(),
+    );
   }
 }

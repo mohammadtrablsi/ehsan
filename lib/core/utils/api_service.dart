@@ -5,7 +5,8 @@ class ApiService {
 
   ApiService(this._dio);
 
-  String baseUrl = "https://ehsanschool.onrender.com/api/";
+  String baseUrl =
+      "https://ehsanschool.onrender.com/api/"; // http://192.168.43.176:8000/api/
 
   // Future<Map<String, dynamic>> get({required String endPoint}) async {
   //   var response = await _dio.get('$endPoint');

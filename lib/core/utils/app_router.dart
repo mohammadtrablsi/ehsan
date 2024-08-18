@@ -68,13 +68,13 @@ abstract class AppRouter {
             final date = state.queryParams['date'];
             final place = state.queryParams['place'];
             return EventDetails(
-                indexForTag: int.parse(indexForTag!),
-                idOfEvent: idOfEvent!,
-                image: image!,
-                name: name!,
-                desc: desc!,
-                date: date!,
-                place: place!);
+                indexForTag: int.parse(indexForTag ?? ""),
+                idOfEvent: idOfEvent ?? "",
+                image: image ?? "",
+                name: name ?? "",
+                desc: desc ?? "",
+                date: date ?? "",
+                place: place ?? "");
           }),
       GoRoute(
         path: kDownloadFilesRoute,
@@ -84,8 +84,8 @@ abstract class AppRouter {
           path: kPdfViewRoute,
           builder: (context, state) {
             final file = state.queryParams['file'];
-            print("yyyyyyyyyyyyyyyyyyyyy${file}");
-            return PdfView(file: file!);
+            // print("yyyyyyyyyyyyyyyyyyyyy${file}");
+            return PdfView(file: file ?? "");
           }),
       GoRoute(
         path: kAbsencesRoute,

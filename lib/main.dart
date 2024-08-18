@@ -3,6 +3,7 @@ import 'package:ehsan/Features/Auth/domain/entites/loginEntity.dart';
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/app_router.dart';
 import 'package:ehsan/core/utils/simple_bloc_observer.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart';
@@ -10,14 +11,23 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'core/utils/functions/setup_service_locator.dart';
 
-// String token = "";
+String? tokenForFirBase = "";
 // String name = "";
 // String grade = "";
 // String section = "";
 SharedPreferences? prefs;
+void subscribeToTopic() {
+  FirebaseMessaging.instance.subscribeToTopic("7").then((_) {
+    print("تم الاشتراك في الموضوع بنجاح!");
+  }).catchError((error) {
+    print("فشل الاشتراك في الموضوع: $error");
+  });
+}
+
 void main() async {
   // await Hive.initFlutter();
   // Hive.registerAdapter(LoginEntityAdapter());
@@ -25,8 +35,38 @@ void main() async {
   setupServiceLocator();
   // var box = await Hive.openBox<Data>(kLoginBox);
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   await initDatabase();
   prefs = await SharedPreferences.getInstance();
+  // Handle foreground messages
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    print('Received a foreground message: ${message.messageId}');
+    print(message.data);
+    // Handle the message and show a notification
+  });
+  FirebaseMessaging.instance
+      .getToken()
+      .then((value) => tokenForFirBase=value);
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    print('A new onMessageOpenedApp event was published!');
+    print(message.data);
+    // Handle the message when the app is opened from a background state
+  });
+  FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? message) {
+    if (message != null) {
+      print('A message triggered the app launch: ${message.messageId}');
+      print(message.data);
+      // message.data.forEach((key, value) {
+      //   print('$key: $value');
+      // });
+      // } else {
+      //   print('No data found in the message.');
+      // }
+      // Handle the message when the app is opened from a terminated state
+    }
+  });
+  subscribeToTopic();
+
   // token = await prefs.getString('token')!;
   // name = await prefs.getString('name')!;
   // grade = await prefs.getString('grade')!;

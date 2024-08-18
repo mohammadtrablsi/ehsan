@@ -73,7 +73,7 @@ class _MetricesItemInHomePageState extends State<MetricesItemInHomePage> {
                 height: 1.h,
               ),
               Text(
-                widget.index == 0 ? "average" : "absences",
+                widget.index == 0 ? "المعدل" : "الغيابات",
                 style: textStyle2,
               ),
             ],

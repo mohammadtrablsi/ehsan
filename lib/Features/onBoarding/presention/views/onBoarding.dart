@@ -27,69 +27,71 @@ class _OnBoardingState extends State<OnBoarding> {
     List data = [
       {
         'image': AssetsData.onBoarding1Image,
-        'text': "Welcome to Ehsan we’re \n  excited to have you onboard",
+        'text': "مرحبًا بك في إحسان، نحن \n متحمسون لانضمامك إلينا",
         'heightOfImage': 36
       },
       {
         'image': AssetsData.onBoarding2Image,
-        'text':
-            "here you can know every thing \n about studing level of your children",
+        'text': "هنا يمكنك معرفة كل شيء \n عن مستوى دراسة أطفالك",
         'heightOfImage': 32
       },
       {
         'image': AssetsData.onBoarding3Image,
-        'text': "now lets get you started to begin \n your journey with us",
+        'text': "الآن دعنا نبدأ لنطلق \n رحلتك معنا",
         'heightOfImage': 36
       }
     ];
     return Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            Expanded(
-              flex: 2,
-              child: PageView(
-                onPageChanged: ((value) {
-                  setIndex(value);
-                }),
-                controller: pageController,
-                children: List.generate(
-                  3,
-                  (index) => PageInOnBoarding(
-                    image: data[index]['image'],
-                    text: data[index]['text'],
-                    heightOfImage: data[index]['heightOfImage'],
+        body: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Column(
+            children: [
+              Expanded(
+                flex: 2,
+                child: PageView(
+                  onPageChanged: ((value) {
+                    setIndex(value);
+                  }),
+                  controller: pageController,
+                  children: List.generate(
+                    3,
+                    (index) => PageInOnBoarding(
+                      image: data[index]['image'],
+                      text: data[index]['text'],
+                      heightOfImage: data[index]['heightOfImage'],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: 2.h,
-                ),
-                AnimatedPoints(
-                  indexPage: indexPage,
-                ),
-                SizedBox(
-                  height: 7.h,
-                ),
-                OnBoardingButtonsPart(
-                  text: 'Continue',
-                  transport: () {
-                    transport();
-                  },
-                  index: indexPage,
-                  goToRegister: () =>
-                      AppRouter.router.push(AppRouter.kLoginRoute),
-                  skip: () => AppRouter.router.push(AppRouter.kLoginRoute),
-                ),
-                SizedBox(
-                  height: 5.h,
-                ),
-              ],
-            ),
-          ],
+              Column(
+                children: [
+                  SizedBox(
+                    height: 2.h,
+                  ),
+                  AnimatedPoints(
+                    indexPage: indexPage,
+                  ),
+                  SizedBox(
+                    height: 7.h,
+                  ),
+                  OnBoardingButtonsPart(
+                    text: 'استمر',
+                    transport: () {
+                      transport();
+                    },
+                    index: indexPage,
+                    goToRegister: () =>
+                        AppRouter.router.push(AppRouter.kLoginRoute),
+                    skip: () => AppRouter.router.push(AppRouter.kLoginRoute),
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ));
   }
 

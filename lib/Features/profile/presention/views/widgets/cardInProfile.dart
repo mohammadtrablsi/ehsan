@@ -21,14 +21,14 @@ class CardInProfile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            data.name!,
+            data.name??"",
             style: style1,
           ),
           SizedBox(
             height: 1.5.h,
           ),
           Text(
-            "Grade ${data.className}  |  Class: ${data.classSection}",
+            "الصف ${data.className}  |  الشعبة ${data.classSection}",
             style: style2,
           ),
         ],

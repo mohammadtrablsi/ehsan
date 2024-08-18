@@ -5,6 +5,7 @@ import 'package:ehsan/core/utils/app_router.dart';
 import 'package:ehsan/core/utils/classes/animatedAppHeader.dart';
 import 'package:ehsan/core/utils/classes/appButton.dart';
 import 'package:ehsan/core/utils/classes/appHeader.dart';
+import 'package:ehsan/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -64,135 +65,140 @@ class _LoginBodyState extends State<LoginBody> {
                               top: 16.h, bottom: 6.h, start: 5.w, end: 5.w)
                           : EdgeInsets.symmetric(horizontal: 5.w),
                       duration: const Duration(milliseconds: 400),
-                      child: Form(
-                        key: loginCubit.formstate,
-                        child: Column(
-                          children: [
-                            AuthTextField(
-                              controller: loginCubit.name,
-                              label: 'enter your name',
-                              preIcon: Icons.person,
-                              vaildator: (val) {
-                                return vaildator(val!, 2, 20, 'name');
-                              },
-                              obscureText: false,
-                              suffixIcon: null,
-                              suffixIconOnPressed: () {},
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            BlocBuilder<LoginCubit, LoginState>(
-                                builder: (context, state) {
-                              return AuthTextField(
-                                controller: loginCubit.id,
-                                label: 'enter your id',
-                                preIcon: Icons.password,
+                      child: Directionality(
+                        textDirection: TextDirection.rtl,
+                        child: Form(
+                          key: loginCubit.formstate,
+                          child: Column(
+                            children: [
+                              AuthTextField(
+                                controller: loginCubit.name,
+                                label: 'أدخل اسمك',
+                                preIcon: Icons.person,
                                 vaildator: (val) {
-                                  return vaildator(val!, 5, 15, 'password');
+                                  return vaildator(val!, 2, 20, 'name');
                                 },
-                                obscureText: loginCubit.isPassword,
-                                suffixIcon: loginCubit.isPassword
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                suffixIconOnPressed: () {
-                                  loginCubit.revPassword();
-                                },
-                              );
-                            }),
-                            SizedBox(
-                              height: 7.h,
-                            ),
-                            BlocListener<LoginCubit, LoginState>(
-                              listener: (context, state) {
-                                if (state is LoginSuccess) {
-                                  AppRouter.router.push(AppRouter.kHomeRoute);
-                                  appToast(context, 'Registration successful!');
-                                } else if (state is LoginFailure) {
-                                  appToast(context, state.errMessage);
-                                }
-                              },
-                              child: BlocBuilder<LoginCubit, LoginState>(
-                                builder: (context, state) {
-                                  if (state is LoginLoading) {
-                                    return AppButton(
-                                      isLoading: true,
-                                      paddingVertical: 1.6.h,
-                                      text: 'Login',
-                                      onTap: () => setState(() {
-                                        loginCubit.makeLogin({}, {
-                                          "full_name": "فراس",
-                                          "id": "66ad442007042ce972c0a0d0"
-                                        });
-                                        //
-                                      }),
-                                    );
-                                  } else {
-                                    return AppButton(
-                                      paddingVertical: 1.6.h,
-                                      text: 'Login',
-                                      onTap: () => setState(() {
-                                        loginCubit.makeLogin({}, {
-                                          "full_name": "فراس",
-                                          "id": "66ad442007042ce972c0a0d0"
-                                        });
-                                        // AppRouter.router.push(AppRouter.kHomeRoute);
-                                      }),
-                                    );
-                                  }
-                                  // Default return statement if none of the conditions are met.
-                                  // return const SizedBox
-                                  //     .shrink(); // Or any other fallback widget.
-                                },
+                                obscureText: false,
+                                suffixIcon: null,
+                                suffixIconOnPressed: () {},
                               ),
-                            ),
-                            // AuthButton(
-                            //   widget: BlocListener<LoginCubit, LoginState>(
-                            //     listener: (context, state) {
-                            //       if (state is LoginSuccess) {
-                            //         appToast(
-                            //             context, 'Registration successful!');
-                            //       } else if (state is LoginFailure) {
-                            //         appToast(context, state.errMessage);
-                            //       }
-                            //     },
-                            //     child: BlocBuilder<LoginCubit, LoginState>(
-                            //       builder: (context, state) {
-                            //         if (state is LoginLoading) {
-                            //           return SizedBox(
-                            //             height: 3.h,
-                            //             width: 6.w,
-                            //             child: const CircularProgressIndicator(
-                            //               color: Colors.white,
-                            //             ),
-                            //           );
-                            //         } else {
-                            //           return Text(
-                            //             "Create",
-                            //             style: TextStyle(
-                            //               fontSize: 13.sp,
-                            //               fontWeight: FontWeight.bold,
-                            //               color: Colors.white,
-                            //             ),
-                            //           );
-                            //         }
-                            //       },
-                            //     ),
-                            //   ),
-                            //   radius: 13.sp,
-                            //   paddinghorizontal: 7.h,
-                            //   paddingvertical: 2.h,
-                            //   onpressed: () {
-                            //     loginCubit.makeLogin({
-                            //       "password": password!.text,
-                            //       "username": name!.text
-                            //     }, formstate, context);
-                            //   },
-                            // ),
-                            SizedBox(
-                              height: 1.h,
-                            ),
-                          ],
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              BlocBuilder<LoginCubit, LoginState>(
+                                  builder: (context, state) {
+                                return AuthTextField(
+                                  controller: loginCubit.id,
+                                  label: 'أدخل الرمز',
+                                  preIcon: Icons.password,
+                                  vaildator: (val) {
+                                    return vaildator(val!, 5, 15, 'password');
+                                  },
+                                  obscureText: loginCubit.isPassword,
+                                  suffixIcon: loginCubit.isPassword
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  suffixIconOnPressed: () {
+                                    loginCubit.revPassword();
+                                  },
+                                );
+                              }),
+                              SizedBox(
+                                height: 7.h,
+                              ),
+                              BlocListener<LoginCubit, LoginState>(
+                                listener: (context, state) {
+                                  if (state is LoginSuccess) {
+                                    AppRouter.router.push(AppRouter.kHomeRoute);
+                                    appToast(context, 'التسجيل ناجح!');
+                                  } else if (state is LoginFailure) {
+                                    appToast(context, state.errMessage);
+                                  }
+                                },
+                                child: BlocBuilder<LoginCubit, LoginState>(
+                                  builder: (context, state) {
+                                    if (state is LoginLoading) {
+                                      return AppButton(
+                                        isLoading: true,
+                                        paddingVertical: 1.6.h,
+                                        text: 'تسجيل الدخول',
+                                        onTap: () => setState(() {
+                                          loginCubit.makeLogin({}, {
+                                            "full_name": "فراس",
+                                            "id": "66ad442007042ce972c0a0d0",
+                                            "token": tokenForFirBase,
+                                          });
+                                          //
+                                        }),
+                                      );
+                                    } else {
+                                      return AppButton(
+                                        paddingVertical: 1.6.h,
+                                        text: 'تسجيل الدخول',
+                                        onTap: () => setState(() {
+                                          loginCubit.makeLogin({}, {
+                                            "full_name": "فراس",
+                                            "id": "66ad442007042ce972c0a0d0",
+                                            "token": tokenForFirBase,
+                                          });
+                                          // AppRouter.router.push(AppRouter.kHomeRoute);
+                                        }),
+                                      );
+                                    }
+                                    // Default return statement if none of the conditions are met.
+                                    // return const SizedBox+
+                                    //     .shrink(); // Or any other fallback widget.
+                                  },
+                                ),
+                              ),
+                              // AuthButton(
+                              //   widget: BlocListener<LoginCubit, LoginState>(
+                              //     listener: (context, state) {
+                              //       if (state is LoginSuccess) {
+                              //         appToast(
+                              //             context, 'Registration successful!');
+                              //       } else if (state is LoginFailure) {
+                              //         appToast(context, state.errMessage);
+                              //       }
+                              //     },
+                              //     child: BlocBuilder<LoginCubit, LoginState>(
+                              //       builder: (context, state) {
+                              //         if (state is LoginLoading) {
+                              //           return SizedBox(
+                              //             height: 3.h,
+                              //             width: 6.w,
+                              //             child: const CircularProgressIndicator(
+                              //               color: Colors.white,
+                              //             ),
+                              //           );
+                              //         } else {
+                              //           return Text(
+                              //             "Create",
+                              //             style: TextStyle(
+                              //               fontSize: 13.sp,
+                              //               fontWeight: FontWeight.bold,
+                              //               color: Colors.white,
+                              //             ),
+                              //           );
+                              //         }
+                              //       },
+                              //     ),
+                              //   ),
+                              //   radius: 13.sp,
+                              //   paddinghorizontal: 7.h,
+                              //   paddingvertical: 2.h,
+                              //   onpressed: () {
+                              //     loginCubit.makeLogin({
+                              //       "password": password!.text,
+                              //       "username": name!.text
+                              //     }, formstate, context);
+                              //   },
+                              // ),
+                              SizedBox(
+                                height: 1.h,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -242,7 +248,7 @@ class _LoginBodyState extends State<LoginBody> {
                         fontSize: 22.sp,
                         color: isPressed ? Colors.black : kContentColor1,
                       ),
-                      child: const Text("Hi student"),
+                      child: const Text("مرحبا بالطلاب"),
                     ),
                     SizedBox(
                       height: 1.h,
@@ -256,7 +262,7 @@ class _LoginBodyState extends State<LoginBody> {
                             ? Colors.black.withOpacity(0.6)
                             : kContentColor1,
                       ),
-                      child: const Text("sign in to contiune"),
+                      child: const Text("سجل الدخول للاستمرار"),
                     ),
                   ],
                 ),

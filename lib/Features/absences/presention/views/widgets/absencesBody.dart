@@ -66,8 +66,8 @@ class AbsencesBody extends StatelessWidget {
                     BlocBuilder<viewAbsencseCubit, ViewAbsencseState>(
                       builder: (context, state) {
                         if (state is ViewAbsencseSuccess) {
-                          print(
-                              ":::::::::::::::::::::::::::::::::${state.entities.delays!.length}");
+                          // print(
+                          //     ":::::::::::::::::::::::::::::::::${state.entities.delays!.length}");
                           return CountOfAbsences(
                             absencesColor: absencesColor,
                             delayColor: delayColor,

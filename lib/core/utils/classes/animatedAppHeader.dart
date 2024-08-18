@@ -56,7 +56,7 @@ class _AnimatedAppHeaderState extends State<AnimatedAppHeader> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Text(
-                                  widget.text!,
+                                  widget.text??"",
                                   style: TextStyle(
                                       fontSize: 14.sp,
                                       fontWeight: FontWeight.bold,

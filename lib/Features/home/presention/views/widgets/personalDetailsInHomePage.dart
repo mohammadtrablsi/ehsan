@@ -16,35 +16,41 @@ class PersonalDetailsInHomePage extends StatelessWidget {
         color: Colors.white.withOpacity(0.8),
         fontWeight: FontWeight.w300,
         fontSize: 13.sp);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Padding(
+        padding: EdgeInsetsDirectional.only(start: 6.w),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Hi ${prefs!.getString('name')}', style: style1),
-          ],
-        ),
-        SizedBox(
-          height: 1.h,
-        ),
-        Row(
-          children: [
-            Text(
-                'Grade ${prefs!.getString('grade')}  |  Class ${prefs!.getString('section')}',
-                style: style2),
-            const Spacer(),
-            Padding(
-              padding: EdgeInsetsDirectional.only(end: 6.w),
-              child: _button(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text('أهلاً ${prefs!.getString('name')}', style: style1),
+              ],
             ),
+            SizedBox(
+              height: 0.5.h, //1.h
+            ),
+            Row(
+              children: [
+                Text(
+                    'الصف ${prefs!.getString('grade')}  |  الشعبة ${prefs!.getString('section')}',
+                    style: style2),
+                const Spacer(),
+                Padding(
+                  padding: EdgeInsetsDirectional.only(end: 6.w),
+                  child: _button(),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 1.h,
+            ),
+            _year(),
           ],
         ),
-        SizedBox(
-          height: 1.h,
-        ),
-        _year(),
-      ],
+      ),
     );
   }
 

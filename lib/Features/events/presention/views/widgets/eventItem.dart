@@ -22,7 +22,7 @@ class EventItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            data.name!,
+            data.name??"",
             style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
           ),
           SizedBox(
@@ -76,7 +76,7 @@ class EventItem extends StatelessWidget {
               Container(
                 constraints: BoxConstraints(maxWidth: 60.w),
                 child: Text(
-                  data.date!, //"06 يناير 23، 09:00 صباحًا"
+                  data.date??"", //"06 يناير 23، 09:00 صباحًا"
                   maxLines: 1,
                   style: TextStyle(
                       fontSize: 8.sp,
@@ -99,7 +99,7 @@ class EventItem extends StatelessWidget {
             child: Container(
               constraints: BoxConstraints(maxWidth: 60.w),
               child: Text(
-                data.place!, //"06 يناير 23، 09:00 صباحًا"
+                data.place??"", //"06 يناير 23، 09:00 صباحًا"
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -117,7 +117,7 @@ class EventItem extends StatelessWidget {
             child: Container(
               constraints: BoxConstraints(maxWidth: 70.w),
               child: Text(
-                data.description!, ////"مسابقة صيد الأسماك هي حدث يجمع بين عشاق صيد الأسماك للتنافس في صيد أكبر وأثقل الأسماك. تُنظم هذه المسابقات عادة على مدى عدة أيام حيث يقوم المشاركون بالخروج إلى المياه المفتوحة، سواء كانت بحيرة، بحر أو نهر، للبحث عن الأسماك ذات الحجم الكبير وتسجيلها بواسطة الوزن أو الطول. تهدف هذه المسابقات إلى تعزيز المهارات الصيدية والترفيه عن المشاركين، بالإضافة إلى دعم حفظ الموارد الطبيعية والاستدامة في صيد الأسماك.",
+                data.description??"", ////"مسابقة صيد الأسماك هي حدث يجمع بين عشاق صيد الأسماك للتنافس في صيد أكبر وأثقل الأسماك. تُنظم هذه المسابقات عادة على مدى عدة أيام حيث يقوم المشاركون بالخروج إلى المياه المفتوحة، سواء كانت بحيرة، بحر أو نهر، للبحث عن الأسماك ذات الحجم الكبير وتسجيلها بواسطة الوزن أو الطول. تهدف هذه المسابقات إلى تعزيز المهارات الصيدية والترفيه عن المشاركين، بالإضافة إلى دعم حفظ الموارد الطبيعية والاستدامة في صيد الأسماك.",
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

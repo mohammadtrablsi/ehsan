@@ -31,14 +31,14 @@ class ExamScheduleItem extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              formateDateForExamPage(data.date!)['day']!,
+              formateDateForExamPage(data.date??"")['day']??"",
               style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 0.03.h,
             ),
             Text(
-              formateDateForExamPage(data.date!)['month']!,
+              formateDateForExamPage(data.date??"")['month']??"",
               style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
             ),
           ],
@@ -77,7 +77,7 @@ class ExamScheduleItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          data.name!,
+          data.name??"",
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
@@ -87,7 +87,7 @@ class ExamScheduleItem extends StatelessWidget {
           height: 0.1.h,
         ),
         Text(
-          data.day!,
+          data.day??"",
           style: TextStyle(
               fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.grey),
         ),
@@ -99,7 +99,7 @@ class ExamScheduleItem extends StatelessWidget {
     return Row(
       children: [
         Text(
-          data.time!,
+          data.time??"",
           style: TextStyle(
               fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.grey),
         ),

@@ -35,7 +35,7 @@ class LoginCubit extends Cubit<LoginState> {
       if (loginEntity.message == null) {
         emit(LoginSuccess());
       }else{
-        emit(LoginFailure(loginEntity.message!));
+        emit(LoginFailure(loginEntity.message??""));
       }
     });
   }
