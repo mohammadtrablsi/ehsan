@@ -2,6 +2,7 @@ import 'package:ehsan/Features/Infringement/domain/entites/InfringementEntity.da
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/functions/formateDate.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 class InfringementItem extends StatelessWidget {
@@ -85,9 +86,10 @@ class InfringementItem extends StatelessWidget {
               fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.grey),
         ),
         SizedBox(
-          width: 0.3.w,
+          width: 0.5.w,
         ),
-        Icon(Icons.lock_clock, size: 15.sp, color: Colors.grey),
+        // Icon(Icons.lock_clock, size: 15.sp, color: Colors.grey),
+        FaIcon(FontAwesomeIcons.calendar, size: 10.sp, color: Colors.grey),
       ],
     );
   }

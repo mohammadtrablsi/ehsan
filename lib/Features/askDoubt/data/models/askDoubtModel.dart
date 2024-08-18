@@ -1,5 +1,3 @@
-
-
 import 'package:ehsan/Features/askDoubt/domain/entites/askDoubtEntity.dart';
 
 class AskDoubtModel extends AskDoubtEntity {
@@ -33,7 +31,7 @@ class Data {
   String? sId;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  num? iV;
 
   Data(
       {this.type,

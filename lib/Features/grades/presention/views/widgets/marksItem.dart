@@ -80,7 +80,7 @@ class MarksItem extends StatelessWidget {
                           bottomEnd: Radius.circular(10.sp),
                         )
                       : BorderRadius.circular(0.sp),
-              color: entity[index].mark >= 60
+              color: entity[index].mark >= 40
                   ? const Color.fromARGB(255, 200, 243,
                       197) //const Color.fromARGB(255, 208, 237, 202)
                   : const Color.fromARGB(255, 254, 211, 211),

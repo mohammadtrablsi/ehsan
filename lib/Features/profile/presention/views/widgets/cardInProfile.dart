@@ -10,7 +10,8 @@ class CardInProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle? style1 = TextStyle(fontWeight: FontWeight.bold, fontSize: 14.sp);
-    TextStyle? style2 = TextStyle(color: Colors.grey, fontSize: 12.sp);
+    TextStyle? style2 = TextStyle(
+        color: Colors.grey, fontWeight: FontWeight.w400, fontSize: 13.sp);
     return Container(
       padding: EdgeInsets.symmetric(vertical: 1.5.h, horizontal: 3.w),
       width: double.infinity,
@@ -21,7 +22,7 @@ class CardInProfile extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            data.name??"",
+            data.name ?? "",
             style: style1,
           ),
           SizedBox(

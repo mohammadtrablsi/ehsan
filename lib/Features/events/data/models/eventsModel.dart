@@ -6,10 +6,10 @@ class EventsModel extends EventsEntity {
   String? place;
   String? date;
   String? photo;
-  int? numberOfRegistrants;
+  num? numberOfRegistrants;
   String? description;
   AdminAdded? adminAdded;
-  int? iV;
+  num? iV;
 
   EventsModel(
       {this.sId,

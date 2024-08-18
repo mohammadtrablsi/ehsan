@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
 
 class DataInProfileItem extends StatelessWidget {
@@ -10,11 +11,11 @@ class DataInProfileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextStyle? style1 = TextStyle(
-        fontSize: 10.sp, color: Colors.grey, fontWeight: FontWeight.w400);
+        fontSize: 10.5.sp, color: Colors.grey, fontWeight: FontWeight.w600);
     TextStyle? style2 = TextStyle(
         fontSize: 13.5.sp,
         color: Colors.black87.withOpacity(0.7),
-        fontWeight: FontWeight.bold);
+        fontWeight: FontWeight.w800);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -52,9 +53,11 @@ class DataInProfileItem extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          content,
-          style: style,
+        Expanded(
+          child: Text(
+            content,
+            style: style,
+          ),
         ),
         Icon(
           Icons.lock,

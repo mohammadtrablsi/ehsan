@@ -1,3 +1,4 @@
+import 'package:ehsan/Features/home/domain/entites/homeEntity.dart';
 import 'package:ehsan/Features/home/presention/manger/viewHomeCubit.dart';
 import 'package:ehsan/Features/home/presention/views/widgets/gridPart.dart';
 import 'package:ehsan/Features/home/presention/views/widgets/metricesInHomePage.dart';
@@ -46,7 +47,11 @@ class HomeBody extends StatelessWidget {
               child: BlocBuilder<ViewHomeCubit, ViewHomeState>(
                 builder: (context, state) {
                   if (state is ViewHomeSuccess) {
-                    return MetricesInHomePage(data:state.entity);
+                    return MetricesInHomePage(data: state.entity);
+                  }
+                  if (state is ViewHomeFailure) {
+                    return MetricesInHomePage(
+                        data: HomeEntity(absences: -1, average: -1.0));
                   } else {
                     return const ShimmerMetricesInHomePage();
                   }

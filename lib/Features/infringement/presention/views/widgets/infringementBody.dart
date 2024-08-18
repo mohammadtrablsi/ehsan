@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:ehsan/Features/Infringement/presention/manger/viewInfringementCubit.dart';
 import 'package:ehsan/Features/infringement/presention/views/widgets/listInfringementSchedule.dart';
 import 'package:ehsan/Features/infringement/presention/views/widgets/shimmerListViewInfringement.dart';
+import 'package:ehsan/core/utils/assets.dart';
 import 'package:ehsan/core/utils/classes/AppHeader.dart';
 import 'package:ehsan/core/utils/classes/appBackgroundImage.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,7 +19,7 @@ class InfringementBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: AppHeader(
-        text: "violation",
+        text: "المخالفات",
         widget: Stack(
           alignment: Alignment.bottomCenter,
           children: [
@@ -41,12 +42,27 @@ class InfringementBody extends StatelessWidget {
             BlocBuilder<ViewInfringementCubit, ViewInfringementState>(
               builder: (context, state) {
                 if (state is ViewInfringementSuccess) {
-                  return Padding(
-                    padding: EdgeInsetsDirectional.only(bottom: 3.h),
-                    child: ListViewInfringement(data: state.entity),
-                  );
+                  if (state.entity.isEmpty) {
+                    SizedBox(
+                        height: 100.h,
+                        child: Image.asset(AssetsData.noDataImage));
+                  } else {
+                    return Padding(
+                      padding: EdgeInsetsDirectional.only(bottom: 3.h),
+                      child: SizedBox(
+                          height: 100.h,
+                          child: ListViewInfringement(data: state.entity)),
+                    );
+                  }
+                }
+                if (state is ViewInfringementFailure) {
+                  return SizedBox(
+                      height: 100.h,
+                      child: Image.asset(AssetsData.failedImage));
                 } else {
-                  return const ShimmerListViewInfringement();
+                  return SizedBox(
+                      height: 100.h,
+                      child: const ShimmerListViewInfringement());
                 }
               },
             ),

@@ -4,11 +4,13 @@ import 'package:ehsan/Features/metrices/domain/entites/metricesForSubjectEntity.
 import 'package:ehsan/Features/metrices/presention/views/widgets/metricesItemInMetricesPage.dart';
 
 import 'package:ehsan/constants.dart';
+import 'package:ehsan/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class MetricesInMetricesPage extends StatelessWidget {
-  const MetricesInMetricesPage({super.key, this.data, this.dataForSubject,required this.forSubject});
+  const MetricesInMetricesPage(
+      {super.key, this.data, this.dataForSubject, required this.forSubject});
   final MetricesEntity? data;
   final MetricesForSubjectEntity? dataForSubject;
   final bool forSubject;
@@ -22,7 +24,18 @@ class MetricesInMetricesPage extends StatelessWidget {
                 padding: index == 0
                     ? EdgeInsetsDirectional.only(end: 5.w)
                     : EdgeInsets.zero,
-                child: MetricesItemInMetricesPage(forSubject: forSubject,dataForSubject:dataForSubject,data: data, index: index),
+                child: MetricesItemInMetricesPage(
+                  forSubject: forSubject,
+                  dataForSubject: dataForSubject,
+                  data: data,
+                  index: index,
+                  color: index == 0
+                      ? const Color(0xFFE9AE24).withOpacity(0.2)
+                      : const Color(0xFF1BB993).withOpacity(0.2),
+                  image: index == 0
+                      ? AssetsData.homePersonImage
+                      : AssetsData.averageImage,
+                ),
               )),
     );
   }

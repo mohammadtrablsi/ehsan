@@ -76,7 +76,7 @@ class _LoginBodyState extends State<LoginBody> {
                                 label: 'أدخل اسمك',
                                 preIcon: Icons.person,
                                 vaildator: (val) {
-                                  return vaildator(val!, 2, 20, 'name');
+                                  return vaildator(val!, 1, 20, 'name');
                                 },
                                 obscureText: false,
                                 suffixIcon: null,
@@ -92,7 +92,7 @@ class _LoginBodyState extends State<LoginBody> {
                                   label: 'أدخل الرمز',
                                   preIcon: Icons.password,
                                   vaildator: (val) {
-                                    return vaildator(val!, 5, 15, 'password');
+                                    return vaildator(val!, 1, 100, 'password');
                                   },
                                   obscureText: loginCubit.isPassword,
                                   suffixIcon: loginCubit.isPassword
@@ -109,10 +109,12 @@ class _LoginBodyState extends State<LoginBody> {
                               BlocListener<LoginCubit, LoginState>(
                                 listener: (context, state) {
                                   if (state is LoginSuccess) {
-                                    AppRouter.router.push(AppRouter.kHomeRoute);
+                                    AppRouter.router.go(AppRouter.kHomeRoute);
+                                    prefs!.setBool('isLogined', true);
                                     appToast(context, 'التسجيل ناجح!');
                                   } else if (state is LoginFailure) {
-                                    appToast(context, state.errMessage);
+                                    appToast(
+                                        context, " حدث خطأ يرجى إعادة الحاولة");
                                   }
                                 },
                                 child: BlocBuilder<LoginCubit, LoginState>(
@@ -124,8 +126,8 @@ class _LoginBodyState extends State<LoginBody> {
                                         text: 'تسجيل الدخول',
                                         onTap: () => setState(() {
                                           loginCubit.makeLogin({}, {
-                                            "full_name": "فراس",
-                                            "id": "66ad442007042ce972c0a0d0",
+                                            "full_name": loginCubit.name.text,
+                                            "id": loginCubit.id.text,
                                             "token": tokenForFirBase,
                                           });
                                           //
@@ -137,8 +139,8 @@ class _LoginBodyState extends State<LoginBody> {
                                         text: 'تسجيل الدخول',
                                         onTap: () => setState(() {
                                           loginCubit.makeLogin({}, {
-                                            "full_name": "فراس",
-                                            "id": "66ad442007042ce972c0a0d0",
+                                            "full_name": loginCubit.name.text,
+                                            "id": loginCubit.id.text,
                                             "token": tokenForFirBase,
                                           });
                                           // AppRouter.router.push(AppRouter.kHomeRoute);

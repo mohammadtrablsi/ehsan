@@ -9,21 +9,19 @@ class ListViewExamSchedule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        padding: EdgeInsetsDirectional.only(top: 3.h),
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          return ExamScheduleItem(
-            isLatOrFirstItem: index == 0
-                ? true
-                : index == 20
-                    ? true
-                    : false,
-            data: data[index],
-          );
-        },
-      ),
+    return ListView.builder(
+      padding: EdgeInsetsDirectional.only(top: 3.h),
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        return ExamScheduleItem(
+          isLatOrFirstItem: index == 0
+              ? true
+              : index == 20
+                  ? true
+                  : false,
+          data: data[index],
+        );
+      },
     );
   }
 }

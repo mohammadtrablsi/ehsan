@@ -1,6 +1,7 @@
 import 'package:ehsan/Features/absences/presention/views/widgets/formateDateForExamPage.dart';
 import 'package:ehsan/Features/examSchedule/domain/entites/examScheduleEntity.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 class ExamScheduleItem extends StatelessWidget {
@@ -31,14 +32,14 @@ class ExamScheduleItem extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              formateDateForExamPage(data.date??"")['day']??"",
+              formateDateForExamPage(data.date ?? "")['day'] ?? "",
               style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 0.03.h,
             ),
             Text(
-              formateDateForExamPage(data.date??"")['month']??"",
+              formateDateForExamPage(data.date ?? "")['month'] ?? "",
               style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.bold),
             ),
           ],
@@ -77,7 +78,7 @@ class ExamScheduleItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          data.name??"",
+          data.name ?? "",
           style: TextStyle(
             fontSize: 12.sp,
             fontWeight: FontWeight.w500,
@@ -87,7 +88,7 @@ class ExamScheduleItem extends StatelessWidget {
           height: 0.1.h,
         ),
         Text(
-          data.day??"",
+          data.day ?? "",
           style: TextStyle(
               fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.grey),
         ),
@@ -99,14 +100,15 @@ class ExamScheduleItem extends StatelessWidget {
     return Row(
       children: [
         Text(
-          data.time??"",
+          data.time ?? "",
           style: TextStyle(
               fontSize: 10.sp, fontWeight: FontWeight.w400, color: Colors.grey),
         ),
         SizedBox(
-          width: 0.3.w,
+          width: 0.5.w,
         ),
-        Icon(Icons.lock_clock, size: 15.sp, color: Colors.grey),
+        FaIcon(FontAwesomeIcons.clock, size: 10.sp, color: Colors.grey),
+        // Icon(Icons.lock_clock, ),
       ],
     );
   }

@@ -9,6 +9,7 @@ import 'package:ehsan/Features/metrices/presention/views/widgets/metricesInMetri
 import 'package:ehsan/Features/metrices/presention/views/widgets/shimmerLineMetrices.dart';
 import 'package:ehsan/Features/metrices/presention/views/widgets/shimmerMetricesInMetricesPage.dart';
 import 'package:ehsan/constants.dart';
+import 'package:ehsan/core/utils/assets.dart';
 import 'package:ehsan/core/utils/classes/appHeader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,6 +91,11 @@ class MetricesBody extends StatelessWidget {
                               return MetricesInMetricesPage(
                                   dataForSubject: state.entity,
                                   forSubject: true);
+                            }
+                            if (state is ViewMetricesforSubjectFailure) {
+                              return SizedBox(
+                                  height: 70.h,
+                                  child: Image.asset(AssetsData.failedImage));
                             } else {
                               return const ShimmerMetricesInMetricesPage();
                             }
@@ -102,6 +108,11 @@ class MetricesBody extends StatelessWidget {
                             if (state is ViewMetricesSuccess) {
                               return MetricesInMetricesPage(
                                   data: state.entity, forSubject: false);
+                            }
+                            if (state is ViewMetricesFailure) {
+                              return SizedBox(
+                                  height: 70.h,
+                                  child: Image.asset(AssetsData.failedImage));
                             } else {
                               return const ShimmerMetricesInMetricesPage();
                             }
@@ -127,6 +138,9 @@ class MetricesBody extends StatelessWidget {
                                 dataForSubject: state.entity,
                                 forSubject: true,
                               );
+                            }
+                            if (state is ViewMetricesforSubjectFailure) {
+                              return const SizedBox();
                             } else {
                               return const ShimmerLineMetrices();
                             }
@@ -141,6 +155,9 @@ class MetricesBody extends StatelessWidget {
                                 data: state.entity,
                                 forSubject: false,
                               );
+                            }
+                            if (state is ViewMetricesFailure) {
+                              return const SizedBox();
                             } else {
                               return const ShimmerLineMetrices();
                             }

@@ -1,9 +1,6 @@
 class HomeEntity {
-  final double? average;
-  final int? absences;
+  final num? average;
+  final num? absences;
 
-  HomeEntity({
-    required this.absences,
-    required this.average
-  });
+  HomeEntity({required this.absences, required this.average});
 }

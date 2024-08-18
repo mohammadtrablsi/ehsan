@@ -187,9 +187,11 @@ class EventDetailsBody extends StatelessWidget {
             width: double.infinity,
             height: 36.h,
             decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.6),
+                color: Colors.grey.withOpacity(0.3),
                 image: DecorationImage(
-                    image: NetworkImage(image), fit: BoxFit.cover)),
+                    image: NetworkImage(image
+                        ),
+                    fit: BoxFit.cover)),
           ),
         ),
         Positioned(

@@ -19,50 +19,52 @@ class MetricesRepoImpl extends MetricesRepo {
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body}) async {
     MetricesEntity entity;
-    // try {
-    entity =
-        await metricesRemoteDataSource.viewMetrices(header: header, body: body);
-    return right(entity);
-    // } catch (e) {
-    //   if (e is DioError) {
-    //     return left(ServerFailure.fromDiorError(e));
-    //   }
-    //   return left(ServerFailure(e.toString()));
-    // }
+    try {
+      entity = await metricesRemoteDataSource.viewMetrices(
+          header: header, body: body);
+      return right(entity);
+    } catch (e) {
+      if (e is DioError) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
   }
 
   @override
   Future<Either<Failure, MetricesForSubjectEntity>> viewMetricesForSubject(
       {required Map<String, dynamic> header,
-      required Map<String, dynamic> body,required String id}) async {
+      required Map<String, dynamic> body,
+      required String id}) async {
     MetricesForSubjectEntity entity;
-    // try {
-    entity = await metricesRemoteDataSource.viewMetricesForSubject(
-        header: header, body: body, id: id);
-    print("eeeeeeeeeeeeeeeeeeeeeeeeeeee$entity");
-    return right(entity);
-    // } catch (e) {
-    //   if (e is DioError) {
-    //     return left(ServerFailure.fromDiorError(e));
-    //   }
-    //   return left(ServerFailure(e.toString()));
-    // }
+    try {
+      entity = await metricesRemoteDataSource.viewMetricesForSubject(
+          header: header, body: body, id: id);
+      print("eeeeeeeeeeeeeeeeeeeeeeeeeeee$entity");
+      return right(entity);
+    } catch (e) {
+      if (e is DioError) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
   }
-    @override
+
+  @override
   Future<Either<Failure, SubjectsEntity>> viewSubjects(
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body}) async {
     SubjectsEntity entity;
-    // try {
-    entity = await metricesRemoteDataSource.viewSubjects(
-        header: header, body: body);
-    print("eeeeeeeeeeeeeeeeeeeeeeeeeeee$entity");
-    return right(entity);
-    // } catch (e) {
-    //   if (e is DioError) {
-    //     return left(ServerFailure.fromDiorError(e));
-    //   }
-    //   return left(ServerFailure(e.toString()));
-    // }
+    try {
+      entity = await metricesRemoteDataSource.viewSubjects(
+          header: header, body: body);
+      print("eeeeeeeeeeeeeeeeeeeeeeeeeeee$entity");
+      return right(entity);
+    } catch (e) {
+      if (e is DioError) {
+        return left(ServerFailure.fromDiorError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
   }
 }

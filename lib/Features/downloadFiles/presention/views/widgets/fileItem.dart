@@ -9,7 +9,6 @@ import 'package:sizer/sizer.dart';
 class FileItem extends StatelessWidget {
   const FileItem({super.key, required this.data});
   final DownloadFilesEntity data;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +56,7 @@ class FileItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.sp),
           color: kPrimaryColor.withOpacity(0.3)),
       child: Text(
-        data.subject??"",
+        data.subject ?? "",
         style: TextStyle(
             fontSize: 11.sp, fontWeight: FontWeight.bold, color: kPrimaryColor),
       ),
@@ -66,7 +65,7 @@ class FileItem extends StatelessWidget {
 
   Widget _nameOfFile() {
     return Text(
-      data.name??"",
+      data.name ?? "",
       style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
     );
   }
@@ -75,7 +74,7 @@ class FileItem extends StatelessWidget {
     return Row(
       children: [
         Text(
-          formateDate(data.date??""),
+          formateDate(data.date ?? "", false),
           style: TextStyle(
             fontSize: 10.sp,
             fontWeight: FontWeight.w500,

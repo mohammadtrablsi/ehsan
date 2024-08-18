@@ -1,5 +1,3 @@
-
-
 import 'package:dartz/dartz.dart';
 import 'package:ehsan/Features/absences/domain/entites/absencesEntity.dart';
 import 'package:ehsan/Features/absences/domain/repos/absencesRepo.dart';
@@ -10,7 +8,6 @@ import 'package:ehsan/core/errors/failure.dart';
 
 import 'package:dio/dio.dart';
 
-
 import '../dataSources/downloadFilesRemoteDataSource.dart';
 
 class DownloadFilesRepoImpl extends DownloadFilesRepo {
@@ -19,10 +16,12 @@ class DownloadFilesRepoImpl extends DownloadFilesRepo {
   DownloadFilesRepoImpl({required this.downloadFilesRemoteDataSource});
   @override
   Future<Either<Failure, List<DownloadFilesEntity>>> viewDownloadFiles(
-      {required Map<String, dynamic> header,required Map<String, dynamic> body}) async {
+      {required Map<String, dynamic> header,
+      required Map<String, dynamic> body}) async {
     List<DownloadFilesEntity> entity;
     try {
-      entity = await downloadFilesRemoteDataSource.viewDownloadFiles(header: header,body: body);
+      entity = await downloadFilesRemoteDataSource.viewDownloadFiles(
+          header: header, body: body);
       return right(entity);
     } catch (e) {
       if (e is DioError) {

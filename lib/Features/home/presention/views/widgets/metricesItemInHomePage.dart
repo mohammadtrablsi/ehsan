@@ -3,6 +3,7 @@ import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
 import 'package:ehsan/core/utils/functions/getJustFirstNumberAfterCama.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sizer/sizer.dart';
 
 class MetricesItemInHomePage extends StatefulWidget {
@@ -37,7 +38,9 @@ class _MetricesItemInHomePageState extends State<MetricesItemInHomePage> {
   Widget build(BuildContext context) {
     TextStyle? textStyle1 =
         TextStyle(fontWeight: FontWeight.w900, fontSize: 20.sp);
-    TextStyle? textStyle2 = TextStyle(color: Colors.grey, fontSize: 11.sp);
+    TextStyle? textStyleError =
+        TextStyle(fontWeight: FontWeight.w600, fontSize: 12.sp);
+    TextStyle? textStyle2 = TextStyle(color: Colors.grey, fontSize: 11.5.sp);
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 1000),
       opacity: isLoading ? 1 : 0,
@@ -63,18 +66,35 @@ class _MetricesItemInHomePageState extends State<MetricesItemInHomePage> {
               SizedBox(
                 height: 2.h,
               ),
-              Text(
-                widget.index == 0
-                    ? "${(getJustFirstNumberAfterCama(widget.data.average! * 100)!).toString()}%"
-                    : widget.data.absences.toString(), //"80.39 %"
-                style: textStyle1,
-              ),
-              SizedBox(
-                height: 1.h,
-              ),
-              Text(
-                widget.index == 0 ? "المعدل" : "الغيابات",
-                style: textStyle2,
+              Padding(
+                padding: widget.index == 1
+                    ? EdgeInsetsDirectional.only(start: 1.5.w)
+                    : EdgeInsets.zero,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.index == 0
+                          ? widget.data.average != -1.0
+                              ? "${(getJustFirstNumberAfterCama(widget.data.average! * 100)!).toString()}%"
+                              : "يوجد خطأ"
+                          : widget.data.absences != -1
+                              ? widget.data.absences.toString()
+                              : "يوجد خطأ", //"80.39 %"
+                      style: widget.data.average != -1.0 ||
+                              widget.data.absences != -1
+                          ? textStyle1
+                          : textStyleError,
+                    ),
+                    SizedBox(
+                      height: 1.h,
+                    ),
+                    Text(
+                      widget.index == 0 ? "المعدل" : "الغيابات",
+                      style: textStyle2,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

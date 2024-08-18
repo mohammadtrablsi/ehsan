@@ -1,6 +1,7 @@
 import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/app_router.dart';
 import 'package:ehsan/core/utils/assets.dart';
+import 'package:ehsan/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
@@ -76,7 +77,13 @@ class _SplashScreenState extends State<SplashScreen>
   void wait() async {
     await Future.delayed(const Duration(seconds: 3));
     animcontroller.forward();
-    await Future.delayed(const Duration(seconds: 2))
-        .then((value) => AppRouter.router.push(AppRouter.kOnBoardingRoute));
+    await Future.delayed(const Duration(seconds: 2)).then((_) async {
+      bool isLogined = prefs?.getBool('isLogined') ?? false;
+      if (!isLogined) {
+        AppRouter.router.go(AppRouter.kOnBoardingRoute);
+      } else {
+        AppRouter.router.go(AppRouter.kHomeRoute);
+      }
+    });
   }
 }

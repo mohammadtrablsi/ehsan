@@ -3,12 +3,12 @@ String? vaildator(String val, int min, int max, String type) {
     return "you can't leave it empty";
   }
 
-  if (type == "name") {
-    final nameRegExp = RegExp(r'^[a-zA-Z0-9_]+$');
-    if (!nameRegExp.hasMatch(val)) {
-      return "please enter your correct name";
-    }
-  }
+  // if (type == "name") {
+  //   final nameRegExp = RegExp(r'^[a-zA-Z0-9_]+$');
+  //   if (!nameRegExp.hasMatch(val)) {
+  //     return "please enter your correct name";
+  //   }
+  // }
 
   if (type == "email") {
     final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');

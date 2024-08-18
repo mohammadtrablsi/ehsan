@@ -21,5 +21,8 @@ class AssetsData {
   static const logo = 'assets/images/logo2.png';
   static const eventImage = 'assets/images/event.jpg';
   static const lunchImage = 'assets/images/lunch.png';
-  static const absencesImage = 'assets/images/logo2.png';
+  static const failedImage = 'assets/images/failedImage.png';
+  static const noDataImage = 'assets/images/noDataImageo.png';
+  static const absencesImage = 'assets/images/absences.png';
+  static const averageImage = 'assets/images/average.png';
 }

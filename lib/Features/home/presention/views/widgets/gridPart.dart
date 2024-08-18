@@ -1,8 +1,12 @@
 import 'package:ehsan/Features/home/presention/views/widgets/itemInGrid.dart';
 import 'package:ehsan/core/utils/app_router.dart';
 import 'package:ehsan/core/utils/assets.dart';
+import 'package:ehsan/core/utils/functions/appAlert.dart';
+import 'package:ehsan/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
 class GridPart extends StatelessWidget {
@@ -10,7 +14,7 @@ class GridPart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, String>> data = [
+    List<Map<String, dynamic>> data = [
       {
         'image': AssetsData.homeResultsImage,
         'text': 'النتائج',
@@ -37,13 +41,13 @@ class GridPart extends StatelessWidget {
         'route': AppRouter.kViewEventsRoute
       },
       {
-        'image': AssetsData.homeLogoutImage,
+        'image': FontAwesomeIcons.chartSimple,
         'text': 'احصائيات',
         'route': AppRouter.kMetricesRoute
       },
       {
-        'image': AssetsData.homecalendraImage,
-        'text': 'يرنامج البرنامج',
+        'image': FontAwesomeIcons.calendarDay,
+        'text': 'يرنامج الاسبوع',
         'route': AppRouter.kWeeklyScheduleRoute
       },
       {
@@ -52,8 +56,13 @@ class GridPart extends StatelessWidget {
         'route': AppRouter.kExamScheduleRoute
       },
       {
-        'image': AssetsData.homecalendraImage,
+        'image': FontAwesomeIcons.exclamationTriangle,
         'text': 'المخالفات',
+        'route': AppRouter.kInfringementRoute
+      },
+      {
+        'image': FontAwesomeIcons.signOut,
+        'text': 'تسجيل الخروج',
         'route': AppRouter.kInfringementRoute
       }
     ];
@@ -78,9 +87,18 @@ class GridPart extends StatelessWidget {
                     child: InkWell(
                         borderRadius: BorderRadius.circular(10.sp),
                         onTap: () {
-                          AppRouter.router.push(data[index]['route']!);
+                          if (index != 9) {
+                            AppRouter.router.push(data[index]['route']!);
+                          } else {
+                            return appAlert(
+                                context, "هل انت متأكد من تسجيل الخروج؟", () {
+                              GoRouter.of(context).go(AppRouter.kLoginRoute);
+                              prefs?.clear();
+                            });
+                          }
                         },
                         child: ItemInGrid(
+                          index: index,
                           image: data[index]['image']!,
                           text: data[index]['text']!,
                         ))),

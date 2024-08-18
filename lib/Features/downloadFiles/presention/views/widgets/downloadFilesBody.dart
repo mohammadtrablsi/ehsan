@@ -3,6 +3,7 @@ import 'package:ehsan/Features/downloadFiles/presention/manger/viewDownloadFiles
 import 'package:ehsan/Features/downloadFiles/presention/views/widgets/listViewOfFiles.dart';
 import 'package:ehsan/Features/downloadFiles/presention/views/widgets/shimmerListViewOfFiles.dart';
 import 'package:ehsan/constants.dart';
+import 'package:ehsan/core/utils/assets.dart';
 import 'package:ehsan/core/utils/classes/AppHeader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,8 +29,13 @@ class DownloadFilesBody extends StatelessWidget {
                   if (state is ViewDownlaodFilesLoading) {
                     return const ShimmerListViewOfFiles();
                   } else if (state is ViewDownlaodFilesSuccess) {
-                    print("xxxxxxxxxxxxxxxxxxxxxxxx${state.entities}");
-                    return ListViewOfFiles(data: state.entities);
+                    // print("xxxxxxxxxxxxxxxxxxxxxxxx${state.entities}");
+                    return state.entities.isEmpty
+                        ? Expanded(child: Image.asset(AssetsData.noDataImage))
+                        : ListViewOfFiles(data: state.entities);
+                  }
+                  if (state is ViewDownlaodFilesFailure) {
+                    return Expanded(child: Image.asset(AssetsData.failedImage));
                   } else {
                     return const SizedBox.shrink();
                   }

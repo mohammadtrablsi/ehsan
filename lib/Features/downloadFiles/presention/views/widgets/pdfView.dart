@@ -30,19 +30,23 @@ class _PdfViewState extends State<PdfView> {
         alignment: Alignment.center,
         children: [
           Container(
-            child: const PDF().cachedFromUrl(
-              widget.file,
-              placeholder: (progress) => Center(
-                  child: Center(
-                child: CircularPercentIndicator(
-                  radius: 60.0,
-                  lineWidth: 5.0,
-                  percent: progress / 100,
-                  center: Text('${progress.toStringAsFixed(1)}%'),
-                  progressColor: kPrimaryColor,
+            child: InteractiveViewer(
+              panEnabled: true, // Enables panning (scrolling)
+              minScale: 0.5, // Minimum zoom out level
+              maxScale: 4.0, // Maximum zoom in level
+              child: const PDF().cachedFromUrl(
+                widget.file,
+                placeholder: (progress) => Center(
+                  child: CircularPercentIndicator(
+                    radius: 60.0,
+                    lineWidth: 5.0,
+                    percent: progress / 100,
+                    center: Text('${progress.toStringAsFixed(1)}%'),
+                    progressColor: kPrimaryColor,
+                  ),
                 ),
-              )),
-              errorWidget: (error) => Center(child: Text(error.toString())),
+                errorWidget: (error) => Center(child: Text(error.toString())),
+              ),
             ),
           ),
           InkWell(
@@ -59,30 +63,32 @@ class _PdfViewState extends State<PdfView> {
                   color: Colors.transparent,
                 ),
                 Positioned(
-                    right: 5.w,
-                    height: 20.h,
-                    child: InkWell(
-                        onTap: () {
-                          context.pop();
-                        },
-                        child: AnimatedSwitcher(
-                          duration: const Duration(milliseconds: 400),
-                          child: widget.INeedGoOut
-                              ? CircleAvatar(
-                                  radius: 16.sp,
-                                  backgroundColor: kPrimaryColor,
-                                  child: const Center(
-                                    child: Icon(
-                                      Icons.arrow_forward_ios,
-                                      color: kContentColor1,
-                                    ),
-                                  ),
-                                )
-                              : Container(),
-                        ))),
+                  right: 5.w,
+                  height: 20.h,
+                  child: InkWell(
+                    onTap: () {
+                      context.pop();
+                    },
+                    child: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 400),
+                      child: widget.INeedGoOut
+                          ? CircleAvatar(
+                              radius: 16.sp,
+                              backgroundColor: kPrimaryColor,
+                              child: const Center(
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: kContentColor1,
+                                ),
+                              ),
+                            )
+                          : Container(),
+                    ),
+                  ),
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

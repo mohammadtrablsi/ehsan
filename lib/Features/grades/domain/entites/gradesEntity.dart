@@ -1,7 +1,7 @@
 import 'package:ehsan/Features/grades/data/models/gradesScheduleModel.dart';
 
 class GradesEntity {
-  final double? fullAverage;
+  final num? fullAverage;
   final List<Exam>? exam;
   final List<Oral>? oral;
   final List<Test>? test;

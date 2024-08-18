@@ -1,6 +1,6 @@
 import 'package:ehsan/Features/WeeklySchedule/domain/entites/WeeklyScheduleEntity.dart';
 
-class WeeklyScheduleModel extends WeeklyScheduleEntity{
+class WeeklyScheduleModel extends WeeklyScheduleEntity {
   bool? status;
   List<Son>? son;
   List<Mun>? mun;
@@ -9,9 +9,9 @@ class WeeklyScheduleModel extends WeeklyScheduleEntity{
   List<Tus>? tus;
 
   WeeklyScheduleModel(
-      {this.status, this.son, this.mun, this.the, this.wen, this.tus}):super(son:son, mun:mun, the:the, wen:wen, tus:tus);
+      {this.status, this.son, this.mun, this.the, this.wen, this.tus})
+      : super(son: son, mun: mun, the: the, wen: wen, tus: tus);
 
-  
   factory WeeklyScheduleModel.fromJson(Map<String, dynamic> json) {
     return WeeklyScheduleModel(
       status: json['status'],
@@ -58,10 +58,10 @@ class Son {
   String? sId;
   String? name;
   String? teacher;
-  int? order;
+  num? order;
   String? day;
   String? classId;
-  int? iV;
+  num? iV;
   String? from;
   String? to;
 
@@ -107,10 +107,10 @@ class Mun {
   String? sId;
   String? name;
   String? teacher;
-  int? order;
+  num? order;
   String? day;
   String? classId;
-  int? iV;
+  num? iV;
   String? from;
   String? to;
 
@@ -152,15 +152,14 @@ class Mun {
   }
 }
 
-
 class The {
   String? sId;
   String? name;
   String? teacher;
-  int? order;
+  num? order;
   String? day;
   String? classId;
-  int? iV;
+  num? iV;
   String? from;
   String? to;
 
@@ -206,10 +205,10 @@ class Wen {
   String? sId;
   String? name;
   String? teacher;
-  int? order;
+  num? order;
   String? day;
   String? classId;
-  int? iV;
+  num? iV;
   String? from;
   String? to;
 
@@ -255,10 +254,10 @@ class Tus {
   String? sId;
   String? name;
   String? teacher;
-  int? order;
+  num? order;
   String? day;
   String? classId;
-  int? iV;
+  num? iV;
   String? from;
   String? to;
 

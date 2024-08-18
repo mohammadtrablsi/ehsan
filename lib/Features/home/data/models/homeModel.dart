@@ -2,8 +2,8 @@ import 'package:ehsan/Features/home/domain/entites/homeEntity.dart';
 
 class HomeModel extends HomeEntity {
   bool? status;
-  int? absence;
-  double? fullAverage;
+  num? absence;
+  num? fullAverage;
 
   HomeModel({this.status, this.absence, this.fullAverage})
       : super(absences: absence, average: fullAverage);

@@ -1,5 +1,6 @@
 import 'package:ehsan/Features/Profile/domain/entites/ProfileEntity.dart';
 import 'package:ehsan/Features/profile/presention/views/widgets/dataInProfileItem.dart';
+import 'package:ehsan/core/utils/functions/formateDate.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
@@ -76,12 +77,12 @@ class DataInProfilePart extends StatelessWidget {
 
   List<String> dataFromEntity = [];
   void setDataFromEntity() {
-    dataFromEntity.add("l"); //entity.birthadate!
-    dataFromEntity.add(entity.birthPlace!);
-    dataFromEntity.add(entity.fatherName!);
-    dataFromEntity.add(entity.motherName!);
-    dataFromEntity.add(entity.joinDate!);
-    dataFromEntity.add(entity.teleNum!);
-    dataFromEntity.add(entity.address!);
+    dataFromEntity.add(formateDate(entity.birthadate, true) ?? ""); //
+    dataFromEntity.add(entity.birthPlace ?? "");
+    dataFromEntity.add(entity.fatherName ?? "");
+    dataFromEntity.add(entity.motherName ?? "");
+    dataFromEntity.add(entity.joinDate ?? "");
+    dataFromEntity.add(entity.teleNum ?? "");
+    dataFromEntity.add(entity.address ?? "");
   }
 }

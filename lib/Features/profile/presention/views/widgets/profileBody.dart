@@ -23,48 +23,45 @@ class ProfileBody extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: kAppPadding),
-            child: BlocBuilder<ViewProfileCubit, ViewProfileState>(
-              builder: (context, state) {
-                if (state is ViewProfileSuccess) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      CardInProfile(data: state.entity),
-                      SizedBox(
-                        height: 4.h,
-                      ),
-                      DataInProfilePart(entity: state.entity),
-                    ],
-                  );
-                }
-                if (state is ViewProfileFailure) {
-                  return Container(
-                    width: 30.w,
-                    height: 15.h,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(AssetsData.logo),
-                            fit: BoxFit.cover)),
-                  );
-                } else {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      const ShimmerCardInProfile(),
-                      SizedBox(
-                        height: 4.h,
-                      ),
-                      const ShimmerDataInProfilePart(),
-                    ],
-                  );
-                }
-              },
+            child: SingleChildScrollView(
+              child: BlocBuilder<ViewProfileCubit, ViewProfileState>(
+                builder: (context, state) {
+                  if (state is ViewProfileSuccess) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        state.entity.name == null
+                            ? Image.asset(AssetsData.noDataImage)
+                            : CardInProfile(data: state.entity),
+                        SizedBox(
+                          height: 4.h,
+                        ),
+                        DataInProfilePart(entity: state.entity),
+                      ],
+                    );
+                  }
+                  if (state is ViewProfileFailure) {
+                    return Image.asset(AssetsData.failedImage);
+                  } else {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: 2.h,
+                        ),
+                        const ShimmerCardInProfile(),
+                        SizedBox(
+                          height: 4.h,
+                        ),
+                        const ShimmerDataInProfilePart(),
+                      ],
+                    );
+                  }
+                },
+              ),
             ),
           ),
         ),

@@ -13,11 +13,15 @@ class MetricesItemInMetricesPage extends StatefulWidget {
       required this.data,
       required this.index,
       this.dataForSubject,
-      required this.forSubject});
+      required this.forSubject,
+      required this.color,
+      required this.image});
   final MetricesEntity? data;
   final MetricesForSubjectEntity? dataForSubject;
   final int index;
   final bool forSubject;
+  final Color color;
+  final String image;
 
   @override
   State<MetricesItemInMetricesPage> createState() =>
@@ -40,7 +44,7 @@ class _MetricesItemInMetricesPageState
   @override
   Widget build(BuildContext context) {
     TextStyle? textStyle1 =
-        TextStyle(fontWeight: FontWeight.w900, fontSize: 20.sp);
+        TextStyle(fontWeight: FontWeight.w900, fontSize: 15.8.sp);
     TextStyle? textStyle2 = TextStyle(color: Colors.grey, fontSize: 11.sp);
     return AnimatedOpacity(
       duration: const Duration(milliseconds: 1000),
@@ -94,14 +98,17 @@ class _MetricesItemInMetricesPageState
       width: 18.w,
       height: 9.h,
       decoration: BoxDecoration(
-        color: const Color(0xFFE9AE24).withOpacity(0.2),
+        color: widget.color,
         shape: BoxShape.circle,
       ),
-      child: Container(
-        width: 5.w,
-        height: 2.5.h,
-        decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage(AssetsData.homePersonImage)),
+      child: Transform.scale(
+        scale: widget.index == 0 ? 1 : 0.55,
+        child: Container(
+          width: 5.w,
+          height: 2.5.h,
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage(widget.image)),
+          ),
         ),
       ),
     );

@@ -2,10 +2,10 @@ import 'package:ehsan/Features/grades/domain/entites/gradesEntity.dart';
 
 class GradesModel extends GradesEntity {
   bool? status;
-  double? averageTest;
-  int? averageOral;
-  int? averageExam;
-  double? fullAverage;
+  num? averageTest;
+  num? averageOral;
+  num? averageExam;
+  num? fullAverage;
   List<Exam>? exam;
   List<Oral>? oral;
   List<Test>? test;
@@ -62,15 +62,15 @@ class GradesModel extends GradesEntity {
 
 class Exam {
   String? sId;
-  int? mark;
-  int? fullMark;
+  num? mark;
+  num? fullMark;
   SubjectId? subjectId;
   String? studentId;
   String? type;
   String? createdAt;
   String? updatedAt;
-  int? iV;
-  // int? date;
+  num? iV;
+  // num? date;
 
   Exam({
     this.sId,
@@ -121,7 +121,7 @@ class SubjectId {
   String? sId;
   String? name;
   String? classId;
-  int? iV;
+  num? iV;
 
   SubjectId({this.sId, this.name, this.classId, this.iV});
 
@@ -144,14 +144,14 @@ class SubjectId {
 
 class Oral {
   String? sId;
-  int? mark;
-  int? fullMark;
+  num? mark;
+  num? fullMark;
   SubjectId? subjectId;
   String? studentId;
   String? type;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  num? iV;
 
   Oral(
       {this.sId,
@@ -197,14 +197,14 @@ class Oral {
 
 class Test {
   String? sId;
-  int? mark;
-  int? fullMark;
+  num? mark;
+  num? fullMark;
   SubjectId? subjectId;
   String? studentId;
   String? type;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  num? iV;
 
   Test(
       {this.sId,

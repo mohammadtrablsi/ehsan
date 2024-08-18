@@ -11,7 +11,8 @@ class ShimmerListViewInfringement extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return SizedBox(
+      height: 100.h,
       child: ListView.builder(
         padding: EdgeInsetsDirectional.only(top: 3.h),
         itemCount: 10,

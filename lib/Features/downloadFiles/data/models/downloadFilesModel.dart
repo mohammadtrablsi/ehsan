@@ -8,7 +8,7 @@ class DownloadFilesModel extends DownloadFilesEntity{
   SubjectId? subjectId;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  num? iV;
 
   DownloadFilesModel(
       {this.sId,

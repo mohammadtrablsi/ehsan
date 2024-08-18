@@ -5,7 +5,7 @@ class ExamScheduleModel extends ExamScheduleEntity {
   String? name;
   String? date;
   String? time;
-  int? iV;
+  num? iV;
   String? day;
 
   ExamScheduleModel(

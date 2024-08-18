@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:ehsan/Features/examSchedule/presention/manger/viewExamScheduleCubit.dart';
 import 'package:ehsan/Features/examSchedule/presention/views/widgets/shimmerListViewExamSchedule.dart';
 import 'package:ehsan/constants.dart';
+import 'package:ehsan/core/utils/assets.dart';
 import 'package:ehsan/core/utils/classes/AppHeader.dart';
 import 'package:ehsan/core/utils/classes/appBackgroundImage.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,14 +44,28 @@ class ExamScheduleBody extends StatelessWidget {
             BlocBuilder<ViewExamScheduleCubit, ViewExamScheduleState>(
               builder: (context, state) {
                 if (state is ViewExamScheduleSuccess) {
+                  if (state.entity.isEmpty) {
+                    SizedBox(
+                        height: 100.h,
+                        child: Image.asset(AssetsData.noDataImage));
+                  }
                   return Padding(
                     padding: EdgeInsetsDirectional.only(bottom: 3.h),
                     child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: kAppPadding),
-                        child: ListViewExamSchedule(data: state.entity)),
+                        child: SizedBox(
+                            height: 100.h,
+                            child: ListViewExamSchedule(data: state.entity))),
                   );
+                }
+                if (state is ViewExamScheduleFailure) {
+                  return SizedBox(
+                      height: 100.h,
+                      child: Image.asset(AssetsData.failedImage));
                 } else {
-                  return const ShimmerListViewExamSchedule();
+                  return SizedBox(
+                      height: 100.h,
+                      child: const ShimmerListViewExamSchedule());
                 }
               },
             ),

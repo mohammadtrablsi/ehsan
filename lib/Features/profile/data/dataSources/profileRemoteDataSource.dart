@@ -18,7 +18,7 @@ class ProfileRemoteDataSourceImpl extends ProfileRemoteDataSource {
       {required Map<String, dynamic> header,
       required Map<String, dynamic> body}) async {
     var response = await apiService.get(
-        headers: header, data: body, endPoint: 'showStudentProfil');
+        headers: header, data: body, endPoint: 'showStudentProfile');
     ProfileEntity entity;
     entity = ProfileModel.fromJson(response);
     // SharedPreferences prefs = await SharedPreferences.getInstance();

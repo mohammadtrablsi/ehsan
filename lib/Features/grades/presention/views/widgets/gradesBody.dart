@@ -5,6 +5,7 @@ import 'package:ehsan/Features/grades/presention/views/widgets/percentInGrades.d
 import 'package:ehsan/Features/grades/presention/views/widgets/shimmerMaskPart.dart';
 import 'package:ehsan/Features/grades/presention/views/widgets/shimmerPercentInGrades.dart';
 import 'package:ehsan/constants.dart';
+import 'package:ehsan/core/utils/assets.dart';
 import 'package:ehsan/core/utils/classes/appBackgroundImage.dart';
 import 'package:ehsan/main.dart';
 import 'package:flutter/cupertino.dart';
@@ -47,6 +48,9 @@ class GradesBody extends StatelessWidget {
                       builder: (context, state) {
                         if (state is ViewGradesSuccess) {
                           return PercentInGrades(data: state.entity);
+                        }
+                        if (state is ViewGradesFailure) {
+                          return (const Text(""));
                         } else {
                           return const ShimmerPercentInGrades();
                         }
@@ -72,6 +76,10 @@ class GradesBody extends StatelessWidget {
                         builder: (context, state) {
                           if (state is ViewGradesSuccess) {
                             return MarksPart(data: state.entity);
+                          }
+                          if (state is ViewGradesFailure) {
+                            return Expanded(
+                                child: Image.asset(AssetsData.failedImage));
                           } else {
                             return const ShimmerMarksPart();
                           }

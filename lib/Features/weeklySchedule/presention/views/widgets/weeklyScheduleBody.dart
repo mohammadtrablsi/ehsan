@@ -25,7 +25,10 @@ class WeeklyScheduleBody extends StatelessWidget {
                   builder: (context, state) {
                     if (state is ViewWeeklyScheduleSuccess) {
                       return const DayOfWeekPart();
-                    }else{
+                    }
+                    if (state is ViewWeeklyScheduleFailure) {
+                      return const SizedBox();
+                    } else {
                       return const ShimmerDayOfWeekPart();
                     }
                   },

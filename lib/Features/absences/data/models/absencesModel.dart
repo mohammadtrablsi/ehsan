@@ -40,7 +40,7 @@ class Delay {
   String? studentId;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  num? iV;
 
   Delay(
       {this.sId,
@@ -80,7 +80,7 @@ class Absence {
   String? studentId;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  num? iV;
 
   Absence(
       {this.sId,

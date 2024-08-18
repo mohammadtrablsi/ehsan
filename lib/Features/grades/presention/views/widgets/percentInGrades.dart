@@ -34,7 +34,7 @@ class PercentInGrades extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          "${getJustFirstNumberAfterCama(data.fullAverage!).toString()}%",
+          "${getJustFirstNumberAfterCama(data.fullAverage!.toDouble()).toString()}%",
           style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w900),
         ),
         Container(

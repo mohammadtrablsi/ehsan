@@ -7,7 +7,7 @@ class InfringementModel extends InfringementEntity {
   String? studentId;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  num? iV;
 
   InfringementModel(
       {this.sId,

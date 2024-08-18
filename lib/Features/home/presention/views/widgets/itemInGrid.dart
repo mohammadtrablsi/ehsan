@@ -1,12 +1,19 @@
+import 'package:ehsan/constants.dart';
 import 'package:ehsan/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
 
 class ItemInGrid extends StatelessWidget {
-  const ItemInGrid({super.key, required this.image, required this.text});
-  final String image;
+  const ItemInGrid(
+      {super.key,
+      required this.image,
+      required this.text,
+      required this.index});
+  final image;
   final String text;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +38,19 @@ class ItemInGrid extends StatelessWidget {
   }
 
   Widget _image() {
-    return Container(
-      height: 4.h,
-      width: 8.w,
-      decoration: BoxDecoration(
-          image:
-              DecorationImage(image: AssetImage(image), fit: BoxFit.fitHeight)),
-    );
+    return index != 5 && index != 8 && index != 6 && index != 9
+        ? Container(
+            height: 4.h,
+            width: 8.w,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(image), fit: BoxFit.fitHeight)),
+          )
+        : FaIcon(
+            image,
+            size: 26.sp,
+            color: kPrimaryColor,
+          );
   }
 
   Widget _text() {

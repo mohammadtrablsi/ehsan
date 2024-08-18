@@ -42,7 +42,7 @@ class Data {
   ClassId? classId;
   String? createdAt;
   String? updatedAt;
-  int? iV;
+  num? iV;
   String? year;
 
   Data(
@@ -109,7 +109,7 @@ class ClassId {
   String? sId;
   String? name;
   String? section;
-  int? iV;
+  num? iV;
   String? admin;
 
   ClassId({this.sId, this.name, this.section, this.iV, this.admin});

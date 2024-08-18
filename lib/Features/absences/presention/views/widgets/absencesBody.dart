@@ -3,6 +3,7 @@ import 'package:ehsan/Features/absences/presention/views/widgets/countOfAbsences
 import 'package:ehsan/Features/absences/presention/views/widgets/customCalendar.dart';
 import 'package:ehsan/Features/absences/presention/views/widgets/shimmerForCountOfAbsences.dart';
 import 'package:ehsan/constants.dart';
+import 'package:ehsan/core/utils/assets.dart';
 import 'package:ehsan/core/utils/classes/AppHeader.dart';
 import 'package:ehsan/core/utils/classes/appBackgroundImage.dart';
 import 'package:ehsan/core/utils/functions/formateDateForCalender.dart';
@@ -51,6 +52,11 @@ class AbsencesBody extends StatelessWidget {
                               delays: delays,
                               absencesColor: absencesColor,
                               delayColor: delayColor);
+                        }
+                        if (state is ViewAbsencseFailure) {
+                          return SizedBox(
+                              height: 70.h,
+                              child: Image.asset(AssetsData.failedImage));
                         } else {
                           return CustomCalendar(
                               absences: [],
@@ -74,6 +80,9 @@ class AbsencesBody extends StatelessWidget {
                             numberOfDelays: state.entities.delays!.length,
                             numberOfAbsences: state.entities.absences!.length,
                           );
+                        }
+                        if (state is ViewAbsencseFailure) {
+                          return const SizedBox();
                         } else {
                           return const ShimmerCountOfAbsences();
                         }

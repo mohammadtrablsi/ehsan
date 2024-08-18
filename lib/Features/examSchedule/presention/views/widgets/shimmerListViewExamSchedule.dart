@@ -11,23 +11,21 @@ class ShimmerListViewExamSchedule extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        padding: EdgeInsetsDirectional.only(top: 3.h),
-        itemCount: 10,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: EdgeInsetsDirectional.only(bottom: 1.5.h),
-            child: ShimmerExamScheduleItem(
-              isLatOrFirstItem: index == 0
-                  ? true
-                  : index == 20
-                      ? true
-                      : false,
-            ),
-          );
-        },
-      ),
+    return ListView.builder(
+      padding: EdgeInsetsDirectional.only(top: 3.h),
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: EdgeInsetsDirectional.only(bottom: 1.5.h),
+          child: ShimmerExamScheduleItem(
+            isLatOrFirstItem: index == 0
+                ? true
+                : index == 20
+                    ? true
+                    : false,
+          ),
+        );
+      },
     );
   }
 }
