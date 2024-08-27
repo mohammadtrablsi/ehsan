@@ -25,9 +25,6 @@ class AskDoubtRemoteDataSourceImpl extends AskDoubtRemoteDataSource {
         headers: headers);
     AskDoubtEntity entity;
     entity = AskDoubtModel.fromJson(response);
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // await prefs.setInt('userId', entity.id);
-    // print("iddddddddddddddddddddddddddddddddddd${entity.id}");
     return entity;
   }
 }

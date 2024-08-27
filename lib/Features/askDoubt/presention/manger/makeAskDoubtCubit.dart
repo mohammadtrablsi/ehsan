@@ -18,7 +18,6 @@ class MakeAskDoubtCubit extends Cubit<MakeAskDoubtState> {
       Map<String, dynamic> header, Map<String, dynamic> body) async {
     emit(MakeAskDoubtLoading());
     var result = await makeAskDoubtUseCase.call(header, body);
-    print('resulttttttttttttttttttttttttttttttttttttttttt$result');
     result.fold((failure) {
       emit(MakeAskDoubtFailure(failure.message));
     }, (_) {
